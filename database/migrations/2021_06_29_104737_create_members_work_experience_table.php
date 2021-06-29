@@ -15,6 +15,14 @@ class CreateMembersWorkExperienceTable extends Migration
     {
         Schema::create('members_work_experience', function (Blueprint $table) {
             $table->id();
+            $table->string('organization_name')->nullable();
+            $table->string('designation')->nullable();
+            $table->string('years')->nullable();
+            $table->string('remark')->nullable();
+
+            $table->unsignedBigInteger('member_id')->nullable();
+            $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

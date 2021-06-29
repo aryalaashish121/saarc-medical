@@ -16,8 +16,7 @@ class MembershipTypeSeeder extends Seeder
     {
         $membership_types = [
             ['name' => 'Type 1 Member'],
-            ['name' => 'Type 2 Member'],
-            
+            ['name' => 'Type 2 Member'], 
          
         ];
 
