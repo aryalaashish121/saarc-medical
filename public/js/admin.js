@@ -39,9 +39,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
-    console.log('Admin component mounted.');
+    console.log("Admin component mounted.");
   }
 });
 
@@ -524,6 +529,29 @@ var EventBus = new vue__WEBPACK_IMPORTED_MODULE_0__.default();
     Vue.prototype.$eventBus = EventBus;
   }
 });
+
+/***/ }),
+
+/***/ "./resources/js/plugins/vuetify.js":
+/*!*****************************************!*\
+  !*** ./resources/js/plugins/vuetify.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+Object(function webpackMissingModule() { var e = new Error("Cannot find module 'vuetify'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+Object(function webpackMissingModule() { var e = new Error("Cannot find module 'vuetify/dist/vuetify.min.css'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+
+
+
+vue__WEBPACK_IMPORTED_MODULE_1__.default.use(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'vuetify'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var opts = {};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new Object(function webpackMissingModule() { var e = new Error("Cannot find module 'vuetify'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(opts));
 
 /***/ }),
 
@@ -1373,30 +1401,63 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    [
+      _c(
+        "v-row",
+        { staticClass: "px-5" },
+        [
+          _c(
+            "v-col",
+            { attrs: { md: "4" } },
+            [
+              _c(
+                "v-card",
+                { staticClass: "mt-5 outlined elevation-5 rounded-pill" },
+                [
+                  _c("v-avatar", { staticClass: "tile bg-orange" }, [
+                    _c("span", { staticClass: "white--text text-h5 ml-5" }, [
+                      _vm._v("image avatar")
+                    ])
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("v-spacer"),
+          _vm._v(" "),
+          _c(
+            "v-col",
+            { attrs: { md: "4" } },
+            [
+              _c(
+                "v-card",
+                {
+                  staticClass: "mt-5",
+                  attrs: { outlined: "", elevation: "5" }
+                },
+                [
+                  _c("v-card-title", [_vm._v(" Hello World 3 ")]),
+                  _vm._v(" "),
+                  _c("v-card-subtitle", [_vm._v(" address details here ")])
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Admin Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _c("a", [_vm._v("what the hell is googin on ")])
-            ])
-          ])
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -16810,21 +16871,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var _common_cruds__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/cruds */ "./resources/js/common/cruds.js");
-/* harmony import */ var _common_event__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/event */ "./resources/js/common/event.js");
-/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./router */ "./resources/js/admin/router.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var _plugins_vuetify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../plugins/vuetify */ "./resources/js/plugins/vuetify.js");
+/* harmony import */ var _common_cruds__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/cruds */ "./resources/js/common/cruds.js");
+/* harmony import */ var _common_event__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../common/event */ "./resources/js/common/event.js");
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./router */ "./resources/js/admin/router.js");
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 
-window.Vue = vue__WEBPACK_IMPORTED_MODULE_0__.default;
+
+window.Vue = vue__WEBPACK_IMPORTED_MODULE_1__.default;
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0__.default.use(_common_event__WEBPACK_IMPORTED_MODULE_2__.default);
-vue__WEBPACK_IMPORTED_MODULE_0__.default.component('example-component', __webpack_require__(/*! ../admin/dashboard/Home.vue */ "./resources/js/admin/dashboard/Home.vue").default);
-var admin = new vue__WEBPACK_IMPORTED_MODULE_0__.default({
-  eventBus: _common_event__WEBPACK_IMPORTED_MODULE_2__.default,
-  cruds: _common_cruds__WEBPACK_IMPORTED_MODULE_1__.default,
+vue__WEBPACK_IMPORTED_MODULE_1__.default.use(_common_event__WEBPACK_IMPORTED_MODULE_3__.default);
+vue__WEBPACK_IMPORTED_MODULE_1__.default.component('example-component', __webpack_require__(/*! ../admin/dashboard/Home.vue */ "./resources/js/admin/dashboard/Home.vue").default);
+var admin = new vue__WEBPACK_IMPORTED_MODULE_1__.default({
+  eventBus: _common_event__WEBPACK_IMPORTED_MODULE_3__.default,
+  cruds: _common_cruds__WEBPACK_IMPORTED_MODULE_2__.default,
+  router: _router__WEBPACK_IMPORTED_MODULE_4__.default,
+  vuetify: _plugins_vuetify__WEBPACK_IMPORTED_MODULE_0__.default,
   el: "#admin"
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (admin);
