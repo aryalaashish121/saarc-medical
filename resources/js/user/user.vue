@@ -1,6 +1,7 @@
 <template>
+<v-app>
   <div>
-    <v-alert>This one is alert message</v-alert>
+    <v-alert type="primary">This one is alert message</v-alert>
     <v-row class="px-5">
       <v-col md="4">
         <v-card class="mt-5 outlined elevation-5 rounded-pill">
@@ -21,15 +22,17 @@
     label="okey not there text here.."
     >
     </v-text-field>
+    <v-text-field
+    label="okey not there text here.."
+    >
+    </v-text-field>
   </div>
+</v-app>
 </template>
 
 <script>
-import vuetify from '../plugins/vuetify'
+
 export default {
-    components:{
-        vuetify,
-    },
   mounted() {
     console.log("User component mounted.");
   },

@@ -1,17 +1,7 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">Admin Component</div>
-
-                    <div class="card-body">
-                     <a>You are admin </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+   <v-app>
+       <v-alert type="primary">Congratulation you are admin</v-alert>
+   </v-app>
 </template>
 
 <script>
