@@ -1,6 +1,6 @@
 {{-- extended from home --}}
-
-<table class="table">
+<admin-component />
+{{-- <table class="table">
     <thead class="thead-dark">
       <tr>
         <th scope="col">#</th>
@@ -28,4 +28,4 @@
      
     </tbody>
   </table>
-  
+   --}}
