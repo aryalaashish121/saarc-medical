@@ -1,2 +1,3 @@
 
-<example-component></example-component>   
+
+    <user-component></user-component>
