@@ -1382,7 +1382,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
+        _c("div", { staticClass: "col-md-12" }, [
           _c("div", { staticClass: "card" }, [
             _c("div", { staticClass: "card-header" }, [
               _vm._v("Admin Component")
@@ -16821,6 +16821,7 @@ window.Vue = vue__WEBPACK_IMPORTED_MODULE_0__.default;
 
 
 vue__WEBPACK_IMPORTED_MODULE_0__.default.use(_common_event__WEBPACK_IMPORTED_MODULE_2__.default);
+vue__WEBPACK_IMPORTED_MODULE_0__.default.component('example-component', __webpack_require__(/*! ../admin/dashboard/Home.vue */ "./resources/js/admin/dashboard/Home.vue").default);
 var admin = new vue__WEBPACK_IMPORTED_MODULE_0__.default({
   eventBus: _common_event__WEBPACK_IMPORTED_MODULE_2__.default,
   cruds: _common_cruds__WEBPACK_IMPORTED_MODULE_1__.default,
