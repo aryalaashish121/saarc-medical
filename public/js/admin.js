@@ -16825,13 +16825,7 @@ vue__WEBPACK_IMPORTED_MODULE_0__.default.component('example-component', __webpac
 var admin = new vue__WEBPACK_IMPORTED_MODULE_0__.default({
   eventBus: _common_event__WEBPACK_IMPORTED_MODULE_2__.default,
   cruds: _common_cruds__WEBPACK_IMPORTED_MODULE_1__.default,
-  router: _router__WEBPACK_IMPORTED_MODULE_3__.default,
-  el: "#admin",
-  data: function data() {
-    return {
-      path: "/dashboard"
-    };
-  }
+  el: "#admin"
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (admin);
 })();

@@ -20,7 +20,7 @@ class CreateMembersQualificationsTable extends Migration
             $table->string('degree')->nullable();
             $table->string('grade')->nullable();
             $table->string('completed_year')->nullable();
-            $table->boolean('is_training')->nullable();
+            $table->boolean('is_training')->default(false);
 
             $table->unsignedBigInteger('member_id')->nullable();
             $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');

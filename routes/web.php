@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\Membercontroller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -22,8 +23,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::prefix('admin')->middleware(['auth'])->group(function () {
-Route::get('/', 'AdminController@index')->name('admin');
-});
 // Route::resource('members', [Membercontroller::class]);
+Route::group(['middleware'=>'auth'], function(){
+
+Route::group(['prefix'=>'admin','as'=>'admin.',], function(){
+Route::resource('admin', AdminController::class);
+});
+});

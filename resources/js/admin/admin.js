@@ -13,13 +13,7 @@ Vue.component('example-component', require('../admin/dashboard/Home.vue').defaul
 const admin = new Vue({
     eventBus,
     cruds,
-    router,
     el: "#admin",
-    data() {
-        return {
-            path: "/dashboard",
-        }
 
-    },
 });
 export default admin;
