@@ -1,5 +1,6 @@
 <template>
   <div>
+    <v-alert>This one is alert message</v-alert>
     <v-row class="px-5">
       <v-col md="4">
         <v-card class="mt-5 outlined elevation-5 rounded-pill">
@@ -11,7 +12,7 @@
       <v-spacer></v-spacer>
       <v-col md="4">
         <v-card class="mt-5" outlined elevation="5">
-          <v-card-title> Hello World 3 </v-card-title>
+          <v-card-title> Hello World 3 okey </v-card-title>
           <v-card-subtitle> address details here </v-card-subtitle>
         </v-card>
       </v-col>
