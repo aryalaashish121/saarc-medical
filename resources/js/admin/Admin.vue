@@ -1,13 +1,19 @@
 <template>
-   <v-app>
-       <v-alert type="primary">Congratulation you are admin</v-alert>
-   </v-app>
-</template>
+<v-app>
 
+        <Home />
+</v-app>
+</template>
 <script>
-    export default {
-        mounted() {
-            console.log('Admin component mounted.')
-        }
+import Home from './dashboard/Home.vue';
+import Nav from "./nav/Nav.vue";
+  export default {
+      components:{
+        Home,Nav
+      },
+    data () {
+     
+   
     }
+  }
 </script>

@@ -11,7 +11,7 @@ const routes = [
     {
         path: '/dashboard',
         name: 'admin.dashboard',
-        component: require('./dashboard/Home').default
+        component: require('./Admin.vue').default
     }
 ];
 const router = new Router({

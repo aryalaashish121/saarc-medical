@@ -9,7 +9,7 @@ import eventBus from "../common/event";
 import router from "./router";
 Vue.use(eventBus);
 
-Vue.component('example-component', require('../admin/dashboard/Home.vue').default);
+
 
 const admin = new Vue({
     eventBus,
