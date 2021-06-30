@@ -2,6 +2,7 @@
 window.Vue = require("vue");
 
 import Vue from "vue";
+import vuetify from '../plugins/vuetify'
 window.Vue = Vue;
 import cruds from "../common/cruds";
 import eventBus from "../common/event";
@@ -14,6 +15,7 @@ const admin = new Vue({
     eventBus,
     cruds,
     router,
+    vuetify,
     el: "#admin",
     data() {
         return {
