@@ -6,6 +6,7 @@ use App\Models\Member;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Membercontroller extends Controller
 {
@@ -16,7 +17,51 @@ class Membercontroller extends Controller
      */
     public function index()
     {
-      return Member::all();
+       $per_page = request()->per_page;
+       $status = request()->status;
+       $meberstatus = request()->memberstatus;
+       $application_no = request()->application_no;
+       $name = request()->name;
+       $orderBy = request()->sort_by;
+
+       $order_direction = '';
+
+       if (request()->has('sort_desc')) {
+       $order_direction = request()->sort_desc == 'true' ? 'desc' : 'asc';
+       } else {
+       $order_direction = 'desc';
+       }
+
+       if (!request()->has('sort_by')) {
+       $orderBy = 'first_name_en';
+       }
+
+       $members = DB::table('members')
+       ->where(['is_deleted' => false]);
+       if (!empty($status)) {
+       if ($status == 'true') {
+       $status = 1;
+       } else {
+       $status = 0;
+       }
+       $members->where(['status' => $status]);
+       }
+       if (!empty($meberstatus)) {
+       if ($meberstatus == 'true') {
+       $meberstatus = 1;
+       } else {
+       $meberstatus = 0;
+       }
+       $members->where(['is_aproved' => $meberstatus]);
+       }
+       if (!empty($name)) {
+       $members->where('first_name_en', 'like', '\\' . $name . '%');
+       }
+       if (!empty($application_no)) {
+       $members->where('application_no', 'like', '\\' . $application_no . '%');
+       }
+       $members->orderBy($orderBy, $order_direction);
+       return $members->paginate($per_page);
     }
 
     /**
@@ -55,9 +100,16 @@ class Membercontroller extends Controller
      * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function show(Member $member)
+    public function show($id)
     {
-        //
+       $check = Member::findOrFail($id);
+
+       $member = Member::where('id',$id)
+       ->get()->first();
+       if($member){
+       return $member;
+       }
+       return "Member not found";
     }
 
     /**
@@ -89,8 +141,133 @@ class Membercontroller extends Controller
      * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Member $member)
+    public function destroy($id)
     {
-        //
+
+    $member = Member::findOrFail($id);
+
+    $member->status = false;
+    $member->is_deleted = true;
+    $member->save();
+    if($member){
+    return "Deleted Sucessfully";
+    }
+    return "Could not delete";
+
+    }
+
+
+    public function restore($id)
+    {
+    $member = Member::findOrFail($id);
+
+    $member->status = true;
+    $member->is_deleted = false;
+    $member->save();
+    if($member){
+    return "Restored Sucessfully";
+    }
+    return "Could not restore";
+
+    }
+
+    public function updateStatus(Request $request)
+    {
+    $status = $request->status;
+    $id = $request->id;
+
+    if ($status == 'true') {
+    $status = 1;
+    } else {
+    $status = 0;
+    }
+    $member_data_update['status'] = $status;
+    $update_status = Member::where("id", $id)->update($member_data_update);
+
+    if ($update_status) {
+    return "Student Status Updated successfully";
+    } else {
+    return "Student Status Not Updated. Please try Again.";
+    }
+    }
+    /**
+    * Approve or reject the member request.
+    *
+    * @param \App\Models\Member $member
+    * @return \Illuminate\Http\Response
+    */
+    public function manageMemberRequest(Request $request){
+    $checkiD = Member::findOrFail($request->id);
+    if($checkiD){
+    $result = Member::where('id',$request->id)->update(['is_aproved'=>$request->status]);
+    if($request->status){
+    return "Accepted updated";
+    }else{
+    return "Rejected Sucessfully";
+    }
+    }
+    }
+    /**
+    * Get the deleted members .
+    *
+    * @param \App\Models\Member $member
+    * @return \Illuminate\Http\Response
+    */
+    public function trash()
+    {
+    $per_page = request()->per_page;
+    $status = request()->status;
+    $meberstatus = request()->memberstatus;
+    $application_no = request()->application_no;
+    $name = request()->name;
+    $orderBy = request()->sort_by;
+
+    $order_direction = '';
+
+    if (request()->has('sort_desc')) {
+    $order_direction = request()->sort_desc == 'true' ? 'desc' : 'asc';
+    } else {
+    $order_direction = 'desc';
+    }
+
+    if (!request()->has('sort_by')) {
+    $orderBy = 'first_name_en';
+    }
+
+    $members = DB::table('members')
+    ->where(['is_deleted' => true]);
+
+    if (!empty($status)) {
+    if ($status == 'true') {
+    $status = 1;
+    } else {
+    $status = 0;
+    }
+    $members->where(['status' => $status]);
+    }
+    if (!empty($meberstatus)) {
+    if ($meberstatus == 'true') {
+    $meberstatus = 1;
+    } else {
+    $meberstatus = 0;
+    }
+    $members->where(['is_aproved' => $meberstatus]);
+    }
+    if (!empty($name)) {
+    $members->where('first_name_en', 'like', '\\' . $name . '%');
+    }
+    if (!empty($application_no)) {
+    $members->where('application_no', 'like', '\\' . $application_no . '%');
+    }
+    $members->orderBy($orderBy, $order_direction);
+    return $members->paginate($per_page);
+    }
+
+    public function deletePermanently($id){
+    $checkiD = Member::findOrFail($id);
+    if($checkiD->delete()){
+    return "Deleted Permanently";
+    }
+    return "Could not delete";
     }
 }

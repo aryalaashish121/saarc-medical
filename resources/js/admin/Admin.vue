@@ -12,7 +12,9 @@ import Nav from "./nav/Nav.vue";
         Home,Nav
       },
     data () {
-     
+     return{
+       
+     }
    
     }
   }

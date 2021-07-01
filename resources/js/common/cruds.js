@@ -161,12 +161,5 @@ export default {
             console.log('Request Completed...');
         }
     },
-    computed: {
-        appSetting() {
-            return this.$store.getters.appSetting;
-        },
-        appUser() {
-            return this.$store.getters.appUser;
-        }
-    }
+
 };

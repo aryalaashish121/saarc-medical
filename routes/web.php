@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\Membercontroller;
+use App\Models\Member;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -30,3 +31,14 @@ Route::group(['prefix'=>'admin','as'=>'admin.',], function(){
 Route::resource('admin', AdminController::class);
 });
 });
+// Route::resource('/members', [Membercontroller::class]);
+Route::get('/members',[Membercontroller::class, 'index']);
+Route::get('/members/trash',[Membercontroller::class, 'trash']);
+Route::get('/members/{id}',[Membercontroller::class, 'show']);
+Route::get('members/restore/{id}',[Membercontroller::class,'restore']);
+
+Route::post('/members/manage', [Membercontroller::class,'manageMemberRequest'] );
+Route::post('update-member-status',[Membercontroller::class,'updateStatus']);
+
+Route::delete('/members/{id}',[Membercontroller::class,'destroy']);
+Route::delete('/members/trash/{id}',[Membercontroller::class,'deletePermanently']);
