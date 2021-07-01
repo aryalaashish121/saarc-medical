@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div>
     
                @if(Auth::user()->is_admin)
                    @include('admin.admin')
