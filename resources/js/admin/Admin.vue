@@ -1,21 +1,19 @@
 <template>
-<v-app>
-      
-        <Home />
-</v-app>
+  <v-app>
+    <Nav />
+    <v-main class="mx-5">
+      <router-view></router-view>
+    </v-main>
+  </v-app>
 </template>
 <script>
-import Home from './dashboard/Home.vue';
 import Nav from "./nav/Nav.vue";
-  export default {
-      components:{
-        Home,Nav
-      },
-    data () {
-     return{
-       
-     }
-   
-    }
-  }
+export default {
+  components: {
+    Nav,
+  },
+  data() {
+    return {};
+  },
+};
 </script>

@@ -1,17 +1,16 @@
 <template>
   <div>
-      
-    <Members />
-      <Trash />
+    <Navbar />
+    <h1>This is Home</h1>
   </div>
 </template>
 <script>
-import axios from 'axios';
-import Trash from "../members/Trash.vue";
-import Members from "../members/Members.vue"
-  export default {
-   components:{
-     Members,Trash
-   }
-  }
+import axios from "axios";
+
+import Navbar from "../nav/Nav.vue";
+export default {
+  components: {
+    Navbar,
+  },
+};
 </script>

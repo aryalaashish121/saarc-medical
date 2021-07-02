@@ -1,5 +1,4 @@
 <template>
-
   <div class="pa-5">
     <v-card class="mt-3" rounded="lg">
       <v-card-title>
@@ -111,8 +110,8 @@
               <strong>Full Name (In Block Letters)</strong>
             </v-row>
             <v-row>
-            <v-col cols="12" md="4">
-               <validation-provider
+              <v-col cols="12" md="4">
+                <validation-provider
                   :rules="{
                     max: 20,
                     min: 2,
@@ -129,7 +128,7 @@
                     v-model="form_fields.first_name_en"
                     outlined
                     prepend-inner-icon="mdi-format-text"
-                     dense
+                    dense
                     v-on:keypress="
                       restrictOverValue($event, 20) | isLetter($event)
                     "
@@ -137,10 +136,9 @@
                   >
                   </v-text-field>
                 </validation-provider>
-                
               </v-col>
-            <v-col cols="12" md="4">
-              <validation-provider
+              <v-col cols="12" md="4">
+                <validation-provider
                   :rules="{
                     min: 2,
                     max: 20,
@@ -155,7 +153,7 @@
                     v-model="form_fields.middle_name_en"
                     outlined
                     prepend-inner-icon="mdi-format-text"
-                     dense
+                    dense
                     v-on:keypress="
                       restrictOverValue($event, 20) | isLetter($event)
                     "
@@ -164,7 +162,7 @@
                 </validation-provider>
               </v-col>
               <v-col cols="12" md="4">
-                  <validation-provider
+                <validation-provider
                   :rules="{
                     max: 20,
                     min: 2,
@@ -178,7 +176,7 @@
                     :error-messages="errors"
                     :success="valid"
                     label="Last Name"
-                  dense
+                    dense
                     v-model="form_fields.last_name_en"
                     prepend-inner-icon="mdi-format-text"
                     required
@@ -190,7 +188,6 @@
                   </v-text-field>
                 </validation-provider>
               </v-col>
-              
             </v-row>
             <v-row>
               <strong>Date of Birth</strong>
@@ -215,7 +212,6 @@
                       outlined
                       v-bind="attrs"
                       v-on="on"
-                      
                     ></v-text-field>
                   </template>
                   <v-date-picker
@@ -255,7 +251,7 @@
             </v-row>
             <v-row>
               <v-col cols="12" md="4">
-               <validation-provider
+                <validation-provider
                   :rules="{
                     required: true,
                   }"
@@ -270,7 +266,7 @@
                     item-text="name"
                     v-model="form_fields.gender"
                     label="Gender"
-                      dense
+                    dense
                     outlined
                     prepend-inner-icon="mdi-gender-male-female"
                   ></v-autocomplete>
@@ -335,7 +331,7 @@
                   <v-text-field
                     :error-messages="errors"
                     :success="valid"
-                      dense
+                    dense
                     label="Mobile Number"
                     :counter="10"
                     v-model="form_fields.mobile"
@@ -367,7 +363,7 @@
                     :success="valid"
                     counter="50"
                     outlined
-                      dense
+                    dense
                   >
                   </v-text-field>
                 </validation-provider>
@@ -392,7 +388,7 @@
               <v-col cols="12" md="6">
                 <v-card outlined elevation="3" class="px-5">
                   <v-card-title> Permanent Address </v-card-title>
-                 
+
                   <v-card-text class="mt-3">
                     <v-row>
                        <v-col cols="6" sm="1" md="12">
@@ -417,26 +413,26 @@
                        </v-col>
                     </v-row>
                     <v-row>
-                       <v-col cols="6" sm="1" md="12">
-                      <validation-provider
-                            rules="required"
-                            name="District"
-                            v-slot="{ errors, valid }"
-                          >
-                            <v-autocomplete
-                              :error-messages="errors"
-                              :success="valid"
-                              :items="districtListItems"
-                              label="District"
-                              item-value="id"
-                              item-text="name"
-                              v-model="form_fields.p_district_id"
-                              outlined
-                              dense
-                              prepend-inner-icon="mdi-map-marker-radius-outline"
-                            ></v-autocomplete>
-                      </validation-provider>
-                       </v-col>
+                      <v-col cols="6" sm="1" md="12">
+                        <validation-provider
+                          rules="required"
+                          name="District"
+                          v-slot="{ errors, valid }"
+                        >
+                          <v-autocomplete
+                            :error-messages="errors"
+                            :success="valid"
+                            :items="districtListItems"
+                            label="District"
+                            item-value="id"
+                            item-text="name"
+                            v-model="form_fields.p_district_id"
+                            outlined
+                            dense
+                            prepend-inner-icon="mdi-map-marker-radius-outline"
+                          ></v-autocomplete>
+                        </validation-provider>
+                      </v-col>
                     </v-row>
                     <v-row>
                        <v-col cols="6" sm="1" md="12">
@@ -450,42 +446,54 @@
                        </v-col>
                     </v-row>
                     <v-row>
-                       <v-col cols="6" sm="1" md="12">
-                      <validation-provider
-                            :rules="{
-                              min: 1,
-                              max: 2,
-                              regex: /^[0-9]+$/,
-                            }"
-                            name="Ward no."
-                            v-slot="{ errors, valid }"
+                      <v-col cols="6" sm="1" md="12">
+                        <validation-provider
+                          :rules="{
+                            min: 1,
+                            max: 2,
+                            regex: /^[0-9]+$/,
+                          }"
+                          name="Ward no."
+                          v-slot="{ errors, valid }"
+                        >
+                          <v-text-field
+                            :error-messages="errors"
+                            :success="valid"
+                            label="Ward No."
+                            v-model="form_fields.p_ward_no"
+                            prepend-inner-icon="mdi-fireplace-off"
+                            required
+                            dense
+                            outlined
+                            :rules="wardnoRules"
+                            @keypress="restrictOverValue($event, 2)"
                           >
-                            <v-text-field
-                              :error-messages="errors"
-                              :success="valid"
-                              label="Ward No."
-                              v-model="form_fields.p_ward_no"
-                              prepend-inner-icon="mdi-fireplace-off"
-                              required
-                              dense
-                              outlined
-                              :rules="wardnoRules"
-                              @keypress="restrictOverValue($event, 2)"
-                            >
-                            </v-text-field>
-                          </validation-provider>
-                       </v-col>
+                          </v-text-field>
+                        </validation-provider>
+                      </v-col>
                     </v-row>
                     <v-row>
-                       <v-col cols="6" sm="1" md="12">
-                       <validation-provider
-                            :rules="{
-                              required: true,
-                              min: 5,
-                              max: 50,
-                            }"
-                            name="Street address"
-                            v-slot="{ errors, valid }"
+                      <v-col cols="6" sm="1" md="12">
+                        <validation-provider
+                          :rules="{
+                            required: true,
+                            min: 5,
+                            max: 50,
+                          }"
+                          name="Street address"
+                          v-slot="{ errors, valid }"
+                        >
+                          <v-text-field
+                            :error-messages="errors"
+                            :success="valid"
+                            label="Tole/Street"
+                            v-model="form_fields.p_street"
+                            prepend-inner-icon="mdi-road-variant"
+                            required
+                            dense
+                            counter="50"
+                            v-on:keypress="restrictOverValue($event, 50)"
+                            outlined
                           >
                             <v-text-field
                               :error-messages="errors"
@@ -506,13 +514,12 @@
                   </v-card-text>
                 </v-card>
               </v-col>
-              
+
               <v-col cols="12" md="6">
                 <v-card outlined elevation="3" class="px-5">
                   <v-card-title> Temporary Address </v-card-title>
-                  
+
                   <v-card-text class="mt-3">
- 
                     <v-row>
                       
                        <v-col cols="6" sm="1" md="12">
@@ -538,27 +545,26 @@
                        </v-col>
                     </v-row>
                     <v-row>
-                       <v-col cols="6" sm="1" md="12">
-                      <validation-provider
-                            rules=""
-                            name="Current district"
-                            v-slot="{ errors, valid }"
-                          >
-                            <v-autocomplete
-                              :error-messages="errors"
-                              :success="valid"
-                              :items="districtListItems"
-                              label="District"
-                              item-text="name"
-                              item-value="id"
-                              v-model="form_fields.t_district_id"
-                              outlined
-                              dense
-                              prepend-inner-icon="mdi-map-marker-radius-outline"
-                             
-                            ></v-autocomplete>
-                      </validation-provider>
-                       </v-col>
+                      <v-col cols="6" sm="1" md="12">
+                        <validation-provider
+                          rules=""
+                          name="Current district"
+                          v-slot="{ errors, valid }"
+                        >
+                          <v-autocomplete
+                            :error-messages="errors"
+                            :success="valid"
+                            :items="districtListItems"
+                            label="District"
+                            item-text="name"
+                            item-value="id"
+                            v-model="form_fields.t_district_id"
+                            outlined
+                            dense
+                            prepend-inner-icon="mdi-map-marker-radius-outline"
+                          ></v-autocomplete>
+                        </validation-provider>
+                      </v-col>
                     </v-row>
                     <v-row>
                        <v-col cols="6" sm="1" md="12">
@@ -572,44 +578,55 @@
                        </v-col>
                     </v-row>
                     <v-row>
-                       <v-col cols="6" sm="1" md="12">
-                     <validation-provider
-                            :rules="{
-                              min: 1,
-                              max: 2,
-                              regex: /^[0-9]+$/,
-                            }"
-                            name="Ward no."
-                            v-slot="{ errors, valid }"
+                      <v-col cols="6" sm="1" md="12">
+                        <validation-provider
+                          :rules="{
+                            min: 1,
+                            max: 2,
+                            regex: /^[0-9]+$/,
+                          }"
+                          name="Ward no."
+                          v-slot="{ errors, valid }"
+                        >
+                          <v-text-field
+                            :error-messages="errors"
+                            :success="valid"
+                            label="Ward No."
+                            v-model="form_fields.t_ward_no"
+                            :rules="wardnoRules"
+                            prepend-inner-icon="mdi-fireplace-off"
+                            required
+                            outlined
+                            dense
+                            type="number"
+                            @keypress="restrictOverValue($event, 2)"
                           >
-                            <v-text-field
-                              :error-messages="errors"
-                              :success="valid"
-                              label="Ward No."
-                              v-model="form_fields.t_ward_no"
-                              :rules="wardnoRules"
-                              prepend-inner-icon="mdi-fireplace-off"
-                              required
-                              outlined
-                              dense
-                              type="number"
-                             
-                              @keypress="restrictOverValue($event, 2)"
-                            >
-                            </v-text-field>
-                          </validation-provider>
-                       </v-col>
+                          </v-text-field>
+                        </validation-provider>
+                      </v-col>
                     </v-row>
                     <v-row>
-                       <v-col cols="6" sm="1" md="12">
-                     <validation-provider
-                            :rules="{
-                              required: false,
-                              min: 5,
-                              max: 50,
-                            }"
-                            name="Street address"
-                            v-slot="{ errors, valid }"
+                      <v-col cols="6" sm="1" md="12">
+                        <validation-provider
+                          :rules="{
+                            required: false,
+                            min: 5,
+                            max: 50,
+                          }"
+                          name="Street address"
+                          v-slot="{ errors, valid }"
+                        >
+                          <v-text-field
+                            :error-messages="errors"
+                            :success="valid"
+                            label="Tole/Street"
+                            prepend-inner-icon="mdi-road-variant"
+                            v-model="form_fields.t_street"
+                            required
+                            outlined
+                            dense
+                            counter="50"
+                            v-on:keypress="restrictOverValue($event, 50)"
                           >
                             <v-text-field
                               :error-messages="errors"
@@ -662,7 +679,7 @@
                 ></v-text-field>
               </v-col>
               <v-col cols="12" md="6">
-                 <validation-provider
+                <validation-provider
                   :rules="{
                     length: 10,
                     required: true,
@@ -671,8 +688,8 @@
                   name="Mobile number"
                   v-slot="{ errors, valid }"
                 >
-                <v-text-field
-                :error-messages="errors"
+                  <v-text-field
+                    :error-messages="errors"
                     :success="valid"
                   outlined
                   clearable
@@ -684,8 +701,8 @@
                    v-on:keypress="
                       restrictOverValue($event, 10) | isNumber($event)
                     "
-                ></v-text-field>
-                 </validation-provider>
+                  ></v-text-field>
+                </validation-provider>
               </v-col>
             </v-row>
             <v-row>
@@ -721,8 +738,8 @@
                   name="Mobile number"
                   v-slot="{ errors, valid }"
                 >
-                <v-text-field
-                :error-messages="errors"
+                  <v-text-field
+                    :error-messages="errors"
                     :success="valid"
                   outlined
                   clearable
@@ -733,7 +750,7 @@
                    v-on:keypress="
                       restrictOverValue($event, 10) | isNumber($event)
                     "
-                ></v-text-field>
+                  ></v-text-field>
                 </validation-provider>
               </v-col>
             </v-row>
@@ -920,10 +937,8 @@
           </v-card-text>
         </v-card>
       </v-card-text>
-      
     </v-card>
   </div>
-    
 </template>
 
 <script>
@@ -1008,9 +1023,9 @@ export default {
         (v) => (v && v >= 1) || "Ward no. cannot be 0",
         (v) => (v && v <= 100) || "Max should not be above 100",
       ],
-      loading:false,
-   genderItems: ["Male", "Female", "Others"],
-    }
+      loading: false,
+      genderItems: ["Male", "Female", "Others"],
+    };
   },
   watch: {
     menu(val) {
@@ -1031,9 +1046,9 @@ const self = this;
     save(date) {
       this.$refs.menu.save(date);
     },
-    checkLoader(){
+    checkLoader() {
       const self = this;
-       self.$store.commit("showSnackbar", {
+      self.$store.commit("showSnackbar", {
         message: "Please select the classroom...",
         color: false,
       });
