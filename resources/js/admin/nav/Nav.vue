@@ -7,7 +7,7 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-menu> </v-menu>
-      <v-btn class="mx-2" elevation="2" outlined text rounded color="black">
+      <v-btn class="mx-2" elevation="2" outlined text rounded color="black" @click="logout">
         Log Out
         <v-icon right> mdi-exit-to-app </v-icon>
       </v-btn>
@@ -46,6 +46,7 @@
   </nav>
 </template>
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -55,7 +56,15 @@ export default {
         { title: "Members", icon: "mdi-account-group", href: "/members" },
         { title: "Trash", icon: "mdi-delete", href: "/trash" },
       ],
-    };
+    }
   },
+    methods:{
+      logout(){
+        axios.get('logout',()=>{
+          alert("Logged out");
+        })
+      }
+    }
+ 
 };
 </script>

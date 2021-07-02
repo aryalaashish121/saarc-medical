@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\DistrictController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\Membercontroller;
 use App\Http\Controllers\MembershipTypeController;
 use App\Http\Controllers\StateController;
@@ -52,3 +53,4 @@ Route::get('/get-district-data',[DistrictController::class,'index']);
 Route::get('/get-membership-type-data',[MembershipTypeController::class,'index']);
 
 Route::post('/members/apply',[Membercontroller::class,'store']);
+Route::get('logout', [LogoutController::class,'logout']);
