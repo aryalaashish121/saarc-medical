@@ -2,7 +2,25 @@
    
   <div>
        <ViewMembers ref="viewMembers"></ViewMembers>
-      
+      <v-snackbar
+      v-model="snackbar"
+      :timeout="5000"
+    >
+      {{ snackbar_text }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="blue"
+          text
+          v-bind="attrs"
+          @click="snackbar = false"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
+ 
+
        <v-data-table
         :headers="headers"
         :loading="isLoading"
@@ -189,7 +207,7 @@
       
 
     </v-data-table>
-    <Trash />
+
   </div>
 
   
@@ -197,11 +215,13 @@
 <script>
 import axios from 'axios';
 import ViewMembers from "./View.vue";
-import Trash from "./Trash.vue";
+
   export default {
-    components:{ViewMembers,Trash},
+    components:{ViewMembers},
     data () {
       return {
+        snackbar:false,
+        snackbar_text:"",
         membersList:[],
          isLoading:false,
          options: {},
@@ -339,6 +359,8 @@ import Trash from "./Trash.vue";
       try {
         await axios.post("update-member-status", params);
         self.loadMembers();
+        self.snackbar_text = "Status updated sucessfully";
+        self.snackbar = true;
       } catch (err) {
         console.log(err);
       }

@@ -134,10 +134,7 @@ export default {
                         })
                     }
                     else {
-                        self.$store.commit("showSnackbar", {
-                            message: errResponse.data.message,
-                            color: errResponse.data.success
-                        });
+
                     }
                 }
             }

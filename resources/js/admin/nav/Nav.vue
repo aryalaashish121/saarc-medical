@@ -1,42 +1,15 @@
 <template>
-  <v-sheet
+  <v-card
+    class="mx-auto"
     height="400"
-    class="overflow-hidden"
-    style="position: relative;"
+    width="256"
   >
-    <v-container class="fill-height">
-      <v-row
-        align="center"
-        justify="center"
-      >
-        <v-btn
-          color="pink"
-          dark
-          @click.stop="drawer = !drawer"
-        >
-          Toggle
-        </v-btn>
-      </v-row>
-    </v-container>
-
     <v-navigation-drawer
-      v-model="drawer"
-      absolute
-      temporary
+      class="deep-purple accent-4"
+      dark
+      permanent
     >
-      <v-list-item>
-        <v-list-item-avatar>
-          <v-img src="https://randomuser.me/api/portraits/men/78.jpg"></v-img>
-        </v-list-item-avatar>
-
-        <v-list-item-content>
-          <v-list-item-title>John Leider</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-
-      <v-divider></v-divider>
-
-      <v-list dense>
+      <v-list>
         <v-list-item
           v-for="item in items"
           :key="item.title"
@@ -51,18 +24,25 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+
+      <template v-slot:append>
+        <div class="pa-2">
+          <v-btn block>
+            Logout
+          </v-btn>
+        </div>
+      </template>
     </v-navigation-drawer>
-  </v-sheet>
-  
+  </v-card>
 </template>
 <script>
   export default {
     data () {
       return {
-        drawer: null,
         items: [
-          { title: 'Home', icon: 'mdi-view-dashboard' },
-          { title: 'About', icon: 'mdi-forum' },
+          { title: 'Dashboard', icon: 'mdi-view-dashboard' },
+          { title: 'Account', icon: 'mdi-account-box' },
+          { title: 'Admin', icon: 'mdi-gavel' },
         ],
       }
     },
