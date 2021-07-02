@@ -1,4 +1,5 @@
-
+import adbs from "ad-bs-converter";
+import moment from 'moment';
 export default class Conversions {
     constructor() {
 
@@ -44,25 +45,25 @@ export default class Conversions {
         else e.preventDefault();
     }
 
-    // ConvertADtoBS(date) {
-    //     var convertedDate = moment(date).format("YYYY/MM/DD");
-    //     var converted_date_bs = adbs.ad2bs(convertedDate);
-    //     if (`${converted_date_bs.en.month}` <= 9)
-    //         converted_date_bs.en.month = "0" + converted_date_bs.en.month;
-    //     if (`${converted_date_bs.en.day}` <= 9)
-    //         converted_date_bs.en.day = "0" + converted_date_bs.en.day;
-    //     return `${converted_date_bs.en.year}-${converted_date_bs.en.month}-${converted_date_bs.en.day}`;
-    // }
-    // ConvertBStoAD(date) {
+    ConvertADtoBS(date) {
+        var convertedDate = moment(date).format("YYYY/MM/DD");
+        var converted_date_bs = adbs.ad2bs(convertedDate);
+        if (`${converted_date_bs.en.month}` <= 9)
+            converted_date_bs.en.month = "0" + converted_date_bs.en.month;
+        if (`${converted_date_bs.en.day}` <= 9)
+            converted_date_bs.en.day = "0" + converted_date_bs.en.day;
+        return `${converted_date_bs.en.year}-${converted_date_bs.en.month}-${converted_date_bs.en.day}`;
+    }
+    ConvertBStoAD(date) {
 
-    //     var date_To_convert = moment(date).format("YYYY/MM/DD");
-    //     var converted_date_ad = adbs.bs2ad(date_To_convert);
-    //     if (`${converted_date_ad.month}` <= 9)
-    //         converted_date_ad.month = "0" + converted_date_ad.month;
-    //     if (`${converted_date_ad.day}` <= 9)
-    //         converted_date_ad.day = "0" + converted_date_ad.day;
-    //     return `${converted_date_ad.year}-${converted_date_ad.month}-${converted_date_ad.day}`;
-    // }
+        var date_To_convert = moment(date).format("YYYY/MM/DD");
+        var converted_date_ad = adbs.bs2ad(date_To_convert);
+        if (`${converted_date_ad.month}` <= 9)
+            converted_date_ad.month = "0" + converted_date_ad.month;
+        if (`${converted_date_ad.day}` <= 9)
+            converted_date_ad.day = "0" + converted_date_ad.day;
+        return `${converted_date_ad.year}-${converted_date_ad.month}-${converted_date_ad.day}`;
+    }
     // covertToWords(value) {
     //     if (!value) return '';
     //     return ToWords.toWords(value);

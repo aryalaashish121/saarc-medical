@@ -82,16 +82,7 @@ class Membercontroller extends Controller
      */
     public function store(Request $request)
     {
-    //    $members_to_store = [];
-    //    $members_to_store = $request->validated();
-    //    $members_to_store['created_by']= Auth::user();
-    //    $members_to_store['created_at'] = Carbon::now();
 
-    //    $query = Member::insertGetId($members_to_store);
-      
-    //    if($query){
-    //        return "ok";
-    //    }
     }
 
     /**
