@@ -483,18 +483,7 @@
                           name="Street address"
                           v-slot="{ errors, valid }"
                         >
-                          <v-text-field
-                            :error-messages="errors"
-                            :success="valid"
-                            label="Tole/Street"
-                            v-model="form_fields.p_street"
-                            prepend-inner-icon="mdi-road-variant"
-                            required
-                            dense
-                            counter="50"
-                            v-on:keypress="restrictOverValue($event, 50)"
-                            outlined
-                          >
+                          
                             <v-text-field
                               :error-messages="errors"
                               :success="valid"
@@ -616,18 +605,7 @@
                           name="Street address"
                           v-slot="{ errors, valid }"
                         >
-                          <v-text-field
-                            :error-messages="errors"
-                            :success="valid"
-                            label="Tole/Street"
-                            prepend-inner-icon="mdi-road-variant"
-                            v-model="form_fields.t_street"
-                            required
-                            outlined
-                            dense
-                            counter="50"
-                            v-on:keypress="restrictOverValue($event, 50)"
-                          >
+                      
                             <v-text-field
                               :error-messages="errors"
                               :success="valid"
