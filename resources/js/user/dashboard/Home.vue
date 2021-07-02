@@ -207,7 +207,7 @@
                 >
                   <template v-slot:activator="{ on, attrs }">
                     <v-text-field
-                       v-model="form_fields.dobAD"
+                       v-model="form_fields.dob_ad"
                       label="D.o.B (A.D.)"
                       prepend-inner-icon="mdi-calendar"
                       readonly
@@ -219,7 +219,7 @@
                     ></v-text-field>
                   </template>
                   <v-date-picker
-                    v-model="form_fields.dobAD"
+                    v-model="form_fields.dob_ad"
                     :active-picker.sync="activePicker"
                     :max="
                       new Date(
@@ -230,7 +230,7 @@
                     "
                      @input="
                                   (menu = false),
-                                    ConvertADtoBS(form_fields.dobAD)
+                                    ConvertADtoBS(form_fields.dob_ad)
                                 "
                     min="1950-01-01"
                     @change="save"
@@ -241,14 +241,14 @@
                 <v-text-field
                   outlined
                  
-                   v-model="form_fields.dobBS"
+                   v-model="form_fields.dob_bs"
                    ref=""
                   label="D.o.B (B.S.)"
                   prepend-inner-icon="mdi-calendar"
                   dense
                    @input="
                                 (menu = false),
-                                  ConvertBStoAD(form_fields.dobBS)
+                                  ConvertBStoAD(form_fields.dob_bs)
                               "
                 ></v-text-field>
               </v-col>
@@ -956,8 +956,8 @@ export default {
         first_name_en:"",
         last_name_en:"",
         last_name_en:"",
-        dobBS:"",
-        dobAD:"",
+        dob_bs:"",
+        dob_ad:"",
         gender:"",
         religion:"",
         nationality:"",
@@ -1123,10 +1123,10 @@ const self = this;
       return new Conversions().isLetter(e);
     },
     ConvertADtoBS(date) {
-      this.form_fields.dobBS = new Conversions().ConvertADtoBS(date);
+      this.form_fields.dob_bs = new Conversions().ConvertADtoBS(date);
     },
     ConvertBStoAD(date) {
-      this.form_fields.dobAD = new Conversions().ConvertBStoAD(date);
+      this.form_fields.dob_ad = new Conversions().ConvertBStoAD(date);
     },
   },
 };

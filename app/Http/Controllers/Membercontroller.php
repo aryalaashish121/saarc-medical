@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MemberRequest;
 use App\Models\Member;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -80,8 +81,29 @@ class Membercontroller extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MemberRequest $request)
     {
+
+        $data_to_insert = [];
+        $data_to_insert = $request->member_details;
+        $data_to_insert['application_no'] = 55;
+        $data_to_insert['created_at']=Carbon::now();
+        $member_request = Member::create($data_to_insert);
+
+        // $work_experiences = $request->work_experiences;
+        // foreach ($work_experiences as $experiences){
+
+        // $insert_member_qualification = [];
+        // $insert_member_qualification['designation'] = $experiences->designation;
+        // $insert_member_qualification['organization_name'] = $experiences->organization_name;
+        // $insert_member_qualification['remark'] = $experiences->remarks;
+        // $insert_member_qualification['years'] = $experiences->years;
+        // $insert_member_qualification['member_id'] = $member_request->id;
+
+
+        // }
+        // $insert_member_qualification = [];
+        // $insert_member_qualification = $request->work_experiences;
 
     }
 
