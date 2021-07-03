@@ -1,5 +1,6 @@
 <template>
   <div class="pa-5">
+    <VueProgressBar />
     <v-card class="mt-3" rounded="lg">
       <v-card-title>
         <v-row>
@@ -946,7 +947,7 @@
         <v-card-actions class="justify-end mt-3 ">
        
           <v-btn
-           @click="save"
+           @click="apply"
             color="primary"
             :loading="loading"
           >
@@ -956,6 +957,7 @@
             <v-btn
       depressed
       color="error"
+      @click="checkloader"
     >
       Cancle
     </v-btn>
@@ -966,6 +968,7 @@
         </v-card>
       </v-card-text>
     </v-card>
+    <VueFbCustomerChat />
   </div>
 </template>
 
@@ -1075,13 +1078,15 @@ const self = this;
     },
     checkLoader() {
       const self = this;
+      console.log("Testing phase");
       self.$store.commit("showSnackbar", {
         message: "Please select the classroom...",
-        color: false,
+        
       });
     },
     loadProvinces() {
       const self = this;
+     
       axios
         .get("get-state-data")
         .then(function (response) {
@@ -1115,7 +1120,12 @@ const self = this;
           console.log(error);
         });
     },
-
+    checkloader(){
+      //   this.$store.commit("showSnackbar", {
+      //   message: "loading",   
+      //  });
+      console.log("Testing");
+    },
 
     addwork_experience() {
       const self = this;
@@ -1151,7 +1161,7 @@ const self = this;
     },
     
 
-    async save(){
+    async apply(){
       const self = this;
       
       self.url = "/members/apply";

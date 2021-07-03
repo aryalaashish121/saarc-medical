@@ -60,9 +60,14 @@ export default {
   },
     methods:{
       logout(){
-        axios.get('logout',()=>{
-          alert("Logged out");
-        })
+       
+       let res =  axios.get('logout');
+       if(res){
+         window.location.reload();
+       }
+          
+          
+       
       }
     }
  
