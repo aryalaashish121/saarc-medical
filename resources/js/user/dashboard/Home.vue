@@ -64,15 +64,22 @@
               dense
             ></v-text-field
           ></v-col>
+       
 
           <v-col cols="12" sm="12" md="4">
-            <v-select
-              outlined
-              dense
-              prepend-inner-icon="mdi-account-star"
-              label="Membership Type"
-            ></v-select
-          ></v-col>
+                  <v-autocomplete
+                   
+                    :items="membershiptypeList"
+                    item-value="id"
+                    item-text="name"
+                    v-model="form_fields.membership_type"
+                    label="Membership Type"
+                    dense
+                    outlined
+                    clearable
+                    prepend-inner-icon="mdi-account-stare"
+                  ></v-autocomplete>
+          </v-col>
           <v-spacer></v-spacer>
           <v-col cols="12" sm="12" md="4">
             <v-card flat>
@@ -197,7 +204,7 @@
                 >
                   <template v-slot:activator="{ on, attrs }">
                     <v-text-field
-                      v-model="form_fields.dobAD"
+                       v-model="form_fields.dob_ad"
                       label="D.o.B (A.D.)"
                       prepend-inner-icon="mdi-calendar"
                       readonly
@@ -208,7 +215,7 @@
                     ></v-text-field>
                   </template>
                   <v-date-picker
-                    v-model="form_fields.dobAD"
+                    v-model="form_fields.dob_ad"
                     :active-picker.sync="activePicker"
                     :max="
                       new Date(
@@ -217,6 +224,10 @@
                         .toISOString()
                         .substr(0, 10)
                     "
+                     @input="
+                                  (menu = false),
+                                    ConvertADtoBS(form_fields.dob_ad)
+                                "
                     min="1950-01-01"
                     @change="save"
                   ></v-date-picker>
@@ -225,11 +236,16 @@
               <v-col cols="12" md="4">
                 <v-text-field
                   outlined
-                  readonly
-                  v-model="form_fields.dobBS"
+                 
+                   v-model="form_fields.dob_bs"
+                   ref=""
                   label="D.o.B (B.S.)"
                   prepend-inner-icon="mdi-calendar"
                   dense
+                   @input="
+                                (menu = false),
+                                  ConvertBStoAD(form_fields.dob_bs)
+                              "
                 ></v-text-field>
               </v-col>
             </v-row>
@@ -262,6 +278,7 @@
                   label="Nationality"
                   prepend-inner-icon="mdi-earth"
                   dense
+                  v-model="form_fields.nationality"
                 ></v-text-field>
               </v-col>
               <v-col cols="12" md="4">
@@ -270,6 +287,7 @@
                   label="Religion"
                   prepend-inner-icon="mdi-plus"
                   dense
+                  v-model="form_fields.religion"
                 ></v-text-field>
               </v-col>
             </v-row>
@@ -281,22 +299,24 @@
             </v-row>
             <v-row>
               <v-col cols="12" md="4">
-                <validation-provider
-                  :rules="{
-                    required: true,
-                  }"
-                  name="Country code"
-                  v-slot="{ errors, valid }"
-                >
-                  <v-text-field
-                    :error-messages="errors"
-                    :success="valid"
-                    outlined
-                    label="Country Code"
-                    prepend-inner-icon="mdi-earth"
-                    dense
-                  ></v-text-field>
-                </validation-provider>
+                 <validation-provider
+                              :rules="{
+                               
+                               required:true,
+                              }"
+                              name="Country code"
+                              v-slot="{ errors, valid }"
+                            >
+                <v-text-field
+                 :error-messages="errors"
+                 :success="valid"
+                  outlined
+                  label="Country Code"
+                  prepend-inner-icon="mdi-earth"
+                  dense
+                  v-model="form_fields.country_code"
+                ></v-text-field>
+                 </validation-provider>
               </v-col>
               <v-col cols="12" md="4">
                 <validation-provider
@@ -354,6 +374,7 @@
                   label="Website"
                   prepend-inner-icon="mdi-web"
                   dense
+                  v-model="form_fields.website"
                 ></v-text-field>
               </v-col>
             </v-row>
@@ -370,26 +391,26 @@
 
                   <v-card-text class="mt-3">
                     <v-row>
-                      <v-col cols="6" sm="1" md="12">
-                        <validation-provider
-                          rules="required"
-                          name="State "
-                          v-slot="{ errors, valid }"
-                        >
-                          <v-autocomplete
-                            :error-messages="errors"
-                            :success="valid"
-                            :items="provinceListItems"
-                            label="State/Province"
-                            item-text="name"
-                            item-value="id"
-                            v-model="form_fields.p_provinance_id"
-                            outlined
-                            dense
-                            prepend-inner-icon="mdi-map-legend"
-                          ></v-autocomplete>
-                        </validation-provider>
-                      </v-col>
+                       <v-col cols="6" sm="1" md="12">
+                     <validation-provider
+                            rules="required"
+                            name="State "
+                            v-slot="{ errors, valid }"
+                          >
+                            <v-autocomplete
+                              :error-messages="errors"
+                              :success="valid"
+                              :items="provinceListItems"
+                              label="State/Province"
+                              item-text="name"
+                              item-value="id"
+                              v-model="form_fields.p_state_id"
+                              outlined
+                              dense
+                              prepend-inner-icon="mdi-map-legend"
+                            ></v-autocomplete>
+                          </validation-provider>
+                       </v-col>
                     </v-row>
                     <v-row>
                       <v-col cols="6" sm="1" md="12">
@@ -414,14 +435,15 @@
                       </v-col>
                     </v-row>
                     <v-row>
-                      <v-col cols="6" sm="1" md="12">
-                        <v-text-field
-                          outlined
-                          label="Municipality"
-                          prepend-inner-icon="mdi-home-city-outline"
-                          dense
-                        ></v-text-field>
-                      </v-col>
+                       <v-col cols="6" sm="1" md="12">
+                      <v-text-field
+                        outlined
+                        label="Municipality"
+                        prepend-inner-icon="mdi-home-city-outline"
+                        dense
+                        v-model="form_fields.p_municipality"
+                      ></v-text-field>
+                       </v-col>
                     </v-row>
                     <v-row>
                       <v-col cols="6" sm="1" md="12">
@@ -473,9 +495,21 @@
                             v-on:keypress="restrictOverValue($event, 50)"
                             outlined
                           >
-                          </v-text-field>
-                        </validation-provider>
-                      </v-col>
+                            <v-text-field
+                              :error-messages="errors"
+                              :success="valid"
+                              label="Tole/Street"
+                              v-model="form_fields.p_village_name"
+                              prepend-inner-icon="mdi-road-variant"
+                              required
+                              dense
+                              counter="50"
+                              v-on:keypress="restrictOverValue($event, 50)"
+                              outlined
+                            >
+                            </v-text-field>
+                          </validation-provider>
+                       </v-col>
                     </v-row>
                   </v-card-text>
                 </v-card>
@@ -487,26 +521,28 @@
 
                   <v-card-text class="mt-3">
                     <v-row>
-                      <v-col cols="6" sm="1" md="12">
-                        <validation-provider
-                          rules=""
-                          name="Temporary provinance"
-                          v-slot="{ errors, valid }"
-                        >
-                          <v-autocomplete
-                            :error-messages="errors"
-                            :success="valid"
-                            :items="provinceListItems"
-                            label="State/Province"
-                            v-model="form_fields.t_provinance_id"
-                            item-value="id"
-                            item-text="name"
-                            outlined
-                            dense
-                            prepend-inner-icon="mdi-map-legend"
-                          ></v-autocomplete>
-                        </validation-provider>
-                      </v-col>
+                      
+                       <v-col cols="6" sm="1" md="12">
+                     <validation-provider
+                            rules=""
+                            name="Temporary provinance"
+                            v-slot="{ errors, valid }"
+                          >
+                            <v-autocomplete
+                              :error-messages="errors"
+                              :success="valid"
+                              :items="provinceListItems"
+                              label="State/Province"
+                              v-model="form_fields.t_state_id"
+                              item-value="id"
+                              item-text="name"
+                              outlined
+                              dense
+                              prepend-inner-icon="mdi-map-legend"
+                             
+                            ></v-autocomplete>
+                     </validation-provider>
+                       </v-col>
                     </v-row>
                     <v-row>
                       <v-col cols="6" sm="1" md="12">
@@ -531,14 +567,15 @@
                       </v-col>
                     </v-row>
                     <v-row>
-                      <v-col cols="6" sm="1" md="12">
-                        <v-text-field
-                          outlined
-                          label="Municipality"
-                          prepend-inner-icon="mdi-home-city-outline"
-                          dense
-                        ></v-text-field>
-                      </v-col>
+                       <v-col cols="6" sm="1" md="12">
+                      <v-text-field
+                        outlined
+                        label="Municipality"
+                        prepend-inner-icon="mdi-home-city-outline"
+                        dense
+                        v-model="form_fields.t_municipality"
+                      ></v-text-field>
+                       </v-col>
                     </v-row>
                     <v-row>
                       <v-col cols="6" sm="1" md="12">
@@ -591,9 +628,22 @@
                             counter="50"
                             v-on:keypress="restrictOverValue($event, 50)"
                           >
-                          </v-text-field>
-                        </validation-provider>
-                      </v-col>
+                            <v-text-field
+                              :error-messages="errors"
+                              :success="valid"
+                              label="Tole/Street"
+                              prepend-inner-icon="mdi-road-variant"
+                              v-model="form_fields.t_village_name"
+                              required
+                              outlined
+                              dense
+                              counter="50"
+                              v-on:keypress="restrictOverValue($event, 50)"
+                             
+                            >
+                            </v-text-field>
+                          </validation-provider>
+                       </v-col>
                     </v-row>
                   </v-card-text>
                 </v-card>
@@ -612,6 +662,7 @@
                   clearable
                   label="Father's Name"
                   prepend-inner-icon="mdi-format-text"
+                  v-model="form_fields.fathers_name"
                   dense
                 ></v-text-field>
               </v-col>
@@ -624,6 +675,7 @@
                   label="Father's Occupation"
                   prepend-inner-icon="mdi-briefcase"
                   dense
+                  v-model="form_fields.fathers_occupation"
                 ></v-text-field>
               </v-col>
               <v-col cols="12" md="6">
@@ -639,13 +691,14 @@
                   <v-text-field
                     :error-messages="errors"
                     :success="valid"
-                    outlined
-                    clearable
-                    label="Contact No."
-                    v-model="form_fields.father_mobile"
-                    prepend-inner-icon="mdi-phone"
-                    dense
-                    v-on:keypress="
+                  outlined
+                  clearable
+                  label="Contact No."
+                   v-model="form_fields.fathers_phone_no"
+                  prepend-inner-icon="mdi-phone"
+                  dense
+                  
+                   v-on:keypress="
                       restrictOverValue($event, 10) | isNumber($event)
                     "
                   ></v-text-field>
@@ -660,6 +713,7 @@
                   label="Mother's Name"
                   prepend-inner-icon="mdi-format-text"
                   dense
+                  v-model="form_fields.mothers_name"
                 ></v-text-field>
               </v-col>
             </v-row>
@@ -671,6 +725,7 @@
                   label="Mothers's Occupation"
                   prepend-inner-icon="mdi-briefcase"
                   dense
+                  v-model="form_fields.mothers_occupation"
                 ></v-text-field>
               </v-col>
               <v-col cols="12" md="6">
@@ -686,13 +741,13 @@
                   <v-text-field
                     :error-messages="errors"
                     :success="valid"
-                    outlined
-                    clearable
-                    label="Contact No."
-                    prepend-inner-icon="mdi-phone"
-                    dense
-                    v-model="form_fields.mother_mobile"
-                    v-on:keypress="
+                  outlined
+                  clearable
+                  label="Contact No."
+                  prepend-inner-icon="mdi-phone"
+                  dense
+                   v-model="form_fields.mothers_phone_no"
+                   v-on:keypress="
                       restrictOverValue($event, 10) | isNumber($event)
                     "
                   ></v-text-field>
@@ -705,7 +760,7 @@
             <v-row class="mt-5">
               <strong class="title"
                 >Working Experience:
-                <v-btn class="mx-2" fab dark x-small color="indigo">
+                <v-btn class="mx-2" fab dark x-small color="indigo"  @click="addwork_experience">
                   <v-icon dark> mdi-plus </v-icon>
                 </v-btn></strong
               >
@@ -720,6 +775,28 @@
                       <th class="text-left sybtitle-2">Designation</th>
                       <th class="text-left sybtitle-2">Years</th>
                       <th class="text-left sybtitle-2">Renmarks</th>
+                      <th class="text-left sybtitle-2"></th>
+                    </tr>
+                    <tr v-for="count in row_count" :key="count">  
+                  <td class="text-left sybtitle-2">
+                        {{count}}
+                  </td>
+                   <td class="text-left sybtitle-2">
+                        <v-text-field v-model="organization_name[count-1]"></v-text-field>
+                  </td>
+                   <td class="text-left sybtitle-2">
+                        <v-text-field v-model="designation[count-1]"></v-text-field>
+                  </td>
+                   <td class="text-left sybtitle-2">
+                        <v-text-field v-model="years[count-1]"></v-text-field>
+                  </td>
+                  <td class="text-left sybtitle-2">
+                        <v-text-field v-model="remarks[count-1]"></v-text-field>
+                  </td>
+                  <td class="text-left sybtitle-2">
+                        <v-btn  class="mx-2" fab dark x-small color="error" @click="deletework_experience(count-1)"><v-icon dark> mdi-minus </v-icon></v-btn>
+                  </td>
+                      
                     </tr>
                   </thead>
                 </v-simple-table>
@@ -793,6 +870,7 @@
                 solo
                 name="input-7-4"
                 label="Enter details if any......."
+                v-model="form_fields.acheivements"
               ></v-textarea>
             </v-row>
             <v-row class="mt-5">
@@ -831,18 +909,31 @@
 
                 <span>Date</span>
               </v-col>
+             
             </v-row>
-            <v-row align="center" justify="space-around">
-              <v-divider></v-divider>
-
-              <v-card-actions class="justify-end mt-3">
-                <v-btn color="primary" :loading="loading">
-                  Apply
-                  <v-icon right>mdi-content-save</v-icon>
-                </v-btn>
-                <v-btn depressed color="error"> Cancle </v-btn>
-              </v-card-actions>
-            </v-row>
+        <v-row align="center"
+    justify="space-around">
+        <v-divider></v-divider>
+        
+        <v-card-actions class="justify-end mt-3 ">
+       
+          <v-btn
+           @click="save"
+            color="primary"
+            :loading="loading"
+          >
+            Apply
+            <v-icon right>mdi-content-save</v-icon>
+          </v-btn>
+            <v-btn
+      depressed
+      color="error"
+    >
+      Cancle
+    </v-btn>
+        </v-card-actions>
+        </v-row>
+          
           </v-card-text>
         </v-card>
       </v-card-text>
@@ -857,13 +948,77 @@ import Conversions from "../../utils/conversions";
 export default {
   data() {
     return {
+      activePicker:"",
+      checkbox:false,
       date: null,
       menu: false,
-      name: "",
-      form_fields: [],
-      provinceListItems: [],
-      districtListItems: [],
+      name:"",
+     
+      provinceListItems:[],
+      districtListItems:[],
+      membershiptypeList:[],
+      work_experience:[],
+      qualifications:[],
+      training:[],
+       row_count: 0,
+       organization_name:[],
+        designation:[],
+        years:[],
+        remarks:[],
 
+      form_fields:{
+        is_aproved:false,
+        first_name_en:"",
+        last_name_en:"",
+        last_name_en:"",
+        dob_bs:"",
+        dob_ad:"",
+        gender:"",
+        religion:"",
+        nationality:"",
+        country_code:"",
+        mobile:"",
+        aux_mobile:"",
+        email:"",
+        website:"",
+        image:"",
+        p_state_id:"",
+        p_district_id:"",
+        p_municipality:"",
+        p_ward_no:"",
+        p_village_name:"",
+        t_state_id:"",
+        t_district_id:"",
+        t_municipality:"",
+        t_ward_no:"",
+        t_village_name:"",
+        is_same_address:false,
+        fathers_name:"",
+        fathers_phone_no:"",
+        fathers_occupation:"",
+        fathers_designation:"",
+        mothers_name:"",
+        mothers_phone_no:"",
+        mothers_occupation:"",
+        mothers_designation:"",
+        acheivements:"",
+      },
+      members_qualifications:{
+        univerisity_board:"",
+        level:"",
+        degree:"",
+        grade:"",
+        completed_year:"",
+        is_training:""
+      },
+      // members_work_experience:{
+      //   organization_name:"",
+      //   designation:"",
+      //   years:"",
+      //   remark:"",
+      // },
+      
+  
       wardnoRules: [
         (v) => (v && v >= 1) || "Ward no. cannot be 0",
         (v) => (v && v <= 100) || "Max should not be above 100",
@@ -877,7 +1032,14 @@ export default {
       val && setTimeout(() => (this.activePicker = "YEAR"));
     },
   },
+  created(){
+const self = this;
+    self.loadProvinces();
+    self.loadDistrict();
+    self.loadMembershipType();
+  },
   mounted() {
+    
     console.log("User component mounted.");
   },
   methods: {
@@ -891,7 +1053,79 @@ export default {
         color: false,
       });
     },
-    restrictOverValue(e, data) {
+    loadProvinces() {
+      const self = this;
+      axios
+        .get("get-state-data")
+        .then(function (response) {
+          self.provinceListItems = response.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+    loadDistrict() {
+      const self = this;
+      axios
+        .get("get-district-data")
+        .then(function (response) {
+          self.districtListItems = response.data;
+          console.log(self.districtListItems);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+     loadMembershipType() {
+      const self = this;
+      axios
+        .get("get-membership-type-data")
+        .then(function (response) {
+          self.membershiptypeList = response.data;
+          console.log(self.membershiptypeList);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+
+
+      addwork_experience() {
+      const self = this;
+        if (self.row_count < 5) {
+          self.row_count = self.row_count + 1;
+        } else {
+          alert("No more can be added")
+        }
+    },
+     deletework_experience(index) {
+      const self = this;
+       self.organization_name.splice(index, 1);
+       self.designation.splice(index, 1);
+       self.years.splice(index, 1);
+       self.remarks.splice(index, 1);
+       self.row_count = self.row_count - 1;
+    },
+
+    async save(){
+      const self = this;
+      const work_experience = [];
+      work_experience['organization_name']=self.organization_name;
+      work_experience['designation']=self.designation;
+      work_experience['years']=self.years;
+      work_experience['remarks']=self.remarks;
+
+      self.url = "/members/apply";
+      let membership = {
+          work_experiences:work_experience,
+          member_details:self.form_fields
+      };
+       let response = await axios.post(`${self.url}`, membership);
+       console.log("membership application data..");
+       console.log(membership);  
+    },
+
+     restrictOverValue(e, data) {
       if (e.target.value.length >= data) e.preventDefault();
     },
     isNumber: function (evt) {
@@ -904,10 +1138,10 @@ export default {
       return new Conversions().isLetter(e);
     },
     ConvertADtoBS(date) {
-      this.form_fields.dobBS = new Conversions().ConvertADtoBS(date);
+      this.form_fields.dob_bs = new Conversions().ConvertADtoBS(date);
     },
     ConvertBStoAD(date) {
-      this.form_fields.dobAD = new Conversions().ConvertBStoAD(date);
+      this.form_fields.dob_ad = new Conversions().ConvertBStoAD(date);
     },
   },
 };
