@@ -14,7 +14,7 @@ Vue.use(eventBus);
 const admin = new Vue({
     eventBus,
     cruds,
-
+    router,
     vuetify,
     el: "#admin",
 

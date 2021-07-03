@@ -18,7 +18,7 @@ class CreateMembersWorkExperienceTable extends Migration
             $table->string('organization_name')->nullable();
             $table->string('designation')->nullable();
             $table->string('years')->nullable();
-            $table->string('remark')->nullable();
+            $table->string('remarks')->nullable();
 
             $table->unsignedBigInteger('member_id')->nullable();
             $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');

@@ -755,24 +755,24 @@
                       <th class="text-left sybtitle-2">Renmarks</th>
                       <th class="text-left sybtitle-2"></th>
                     </tr>
-                    <tr v-for="count in row_count" :key="count">  
+                    <tr v-for="(experience, index) in work_experience" :key="index">  
                   <td class="text-left sybtitle-2">
-                        {{count}}
+                        {{index+1}}
                   </td>
                    <td class="text-left sybtitle-2">
-                        <v-text-field v-model="organization_name[count-1]"></v-text-field>
+                        <v-text-field v-model="experience.organization_name"></v-text-field>
                   </td>
                    <td class="text-left sybtitle-2">
-                        <v-text-field v-model="designation[count-1]"></v-text-field>
+                        <v-text-field v-model="experience.designation"></v-text-field>
                   </td>
                    <td class="text-left sybtitle-2">
-                        <v-text-field v-model="years[count-1]"></v-text-field>
+                        <v-text-field v-model="experience.years"></v-text-field>
                   </td>
                   <td class="text-left sybtitle-2">
-                        <v-text-field v-model="remarks[count-1]"></v-text-field>
+                        <v-text-field v-model="experience.remarks"></v-text-field>
                   </td>
                   <td class="text-left sybtitle-2">
-                        <v-btn  class="mx-2" fab dark x-small color="error" @click="deletework_experience(count-1)"><v-icon dark> mdi-minus </v-icon></v-btn>
+                        <v-btn  class="mx-2" fab dark x-small color="error" @click="deletework_experience(index)"><v-icon dark> mdi-minus </v-icon></v-btn>
                   </td>
                       
                     </tr>
@@ -786,7 +786,7 @@
             <v-row class="mt-5">
               <strong class="title"
                 >Qualification Details:
-                <v-btn class="mx-2" fab dark x-small color="indigo">
+                <v-btn class="mx-2" fab dark x-small color="indigo" @click="addQualification">
                   <v-icon dark> mdi-plus </v-icon>
                 </v-btn></strong
               >
@@ -805,6 +805,31 @@
                       <th class="text-left sybtitle-2">Grade/%</th>
                       <th class="text-left sybtitle-2">Completed Year</th>
                     </tr>
+                     <tr v-for="(qualification, index) in qualifications" :key="index">  
+                  <td class="text-left sybtitle-2">
+                        {{index+1}}
+                  </td>
+                  
+                   <td class="text-left sybtitle-2">
+                        <v-text-field v-model="qualification.univerisity_board"></v-text-field>
+                  </td>
+                   <td class="text-left sybtitle-2">
+                        <v-text-field v-model="qualification.level"></v-text-field>
+                  </td>
+                   <td class="text-left sybtitle-2">
+                        <v-text-field v-model="qualification.degree"></v-text-field>
+                  </td>
+                  <td class="text-left sybtitle-2">
+                        <v-text-field v-model="qualification.grade"></v-text-field>
+                  </td>
+                  <td class="text-left sybtitle-2">
+                        <v-text-field v-model="qualification.completed_year"></v-text-field>
+                  </td>
+                  <td class="text-left sybtitle-2">
+                        <v-btn  class="mx-2" fab dark x-small color="error" @click="deleteQualification(index)"><v-icon dark> mdi-minus </v-icon></v-btn>
+                  </td>
+                      
+                    </tr>
                   </thead>
                 </v-simple-table>
               </v-col>
@@ -815,7 +840,7 @@
             <v-row class="mt-5">
               <strong class="title"
                 >Special Trainings (If Any):
-                <v-btn class="mx-2" fab dark x-small color="indigo">
+                <v-btn class="mx-2" fab dark x-small color="indigo" @click="addTraining">
                   <v-icon dark> mdi-plus </v-icon>
                 </v-btn></strong
               >
@@ -833,6 +858,31 @@
                       <th class="text-left sybtitle-2">Degree Name</th>
                       <th class="text-left sybtitle-2">Grade/%</th>
                       <th class="text-left sybtitle-2">Completed Year</th>
+                    </tr>
+                    <tr v-for="(training, index) in trainings" :key="index">  
+                  <td class="text-left sybtitle-2">
+                        {{index+1}}
+                  </td>
+                  
+                   <td class="text-left sybtitle-2">
+                        <v-text-field v-model="training.univerisity_board"></v-text-field>
+                  </td>
+                   <td class="text-left sybtitle-2">
+                        <v-text-field v-model="training.level"></v-text-field>
+                  </td>
+                   <td class="text-left sybtitle-2">
+                        <v-text-field v-model="training.degree"></v-text-field>
+                  </td>
+                  <td class="text-left sybtitle-2">
+                        <v-text-field v-model="training.grade"></v-text-field>
+                  </td>
+                  <td class="text-left sybtitle-2">
+                        <v-text-field v-model="training.completed_year"></v-text-field>
+                  </td>
+                  <td class="text-left sybtitle-2">
+                        <v-btn  class="mx-2" fab dark x-small color="error" @click="deleteTraining(index)"><v-icon dark> mdi-minus </v-icon></v-btn>
+                  </td>
+                      
                     </tr>
                   </thead>
                 </v-simple-table>
@@ -935,15 +985,21 @@ export default {
       provinceListItems:[],
       districtListItems:[],
       membershiptypeList:[],
-      work_experience:[],
-      qualifications:[],
       training:[],
        row_count: 0,
-       organization_name:[],
+       
         designation:[],
         years:[],
         remarks:[],
-
+        work_experience:[{
+            organization_name:"",designation:"",years:"",remarks:""
+        }],
+        qualifications:[{ univerisity_board:"",level:"", degree:"",grade:"",completed_year:"",is_training:false
+        }],
+        trainings:[{ univerisity_board:"",level:"", degree:"",grade:"",completed_year:"",is_training:true
+        }],
+        
+         
       form_fields:{
         is_aproved:false,
         first_name_en:"",
@@ -981,14 +1037,7 @@ export default {
         mothers_designation:"",
         acheivements:"",
       },
-      members_qualifications:{
-        univerisity_board:"",
-        level:"",
-        degree:"",
-        grade:"",
-        completed_year:"",
-        is_training:""
-      },
+     
       // members_work_experience:{
       //   organization_name:"",
       //   designation:"",
@@ -1068,35 +1117,49 @@ const self = this;
     },
 
 
-      addwork_experience() {
+    addwork_experience() {
       const self = this;
-        if (self.row_count < 5) {
-          self.row_count = self.row_count + 1;
-        } else {
-          alert("No more can be added")
-        }
+        self.work_experience.push({ organization_name:"",designation:"",years:"",remarks:"" });
+        console.log(self.work_experience);
     },
      deletework_experience(index) {
       const self = this;
-       self.organization_name.splice(index, 1);
-       self.designation.splice(index, 1);
-       self.years.splice(index, 1);
-       self.remarks.splice(index, 1);
-       self.row_count = self.row_count - 1;
+      self.work_experience.splice(index, 1);
+        if(index===0) self.work_experience();
     },
+    
+     addQualification() {
+      const self = this;
+        self.qualifications.push({ univerisity_board:"",level:"", degree:"",grade:"",completed_year:"",is_training:false });
+        console.log(self.qualifications);
+    },
+     deleteQualification(index) {
+      const self = this;
+      self.qualifications.splice(index, 1);
+        if(index===0) self.qualifications();
+    },
+
+    addTraining() {
+      const self = this;
+        self.trainings.push({ univerisity_board:"",level:"", degree:"",grade:"",completed_year:"",is_training:true });
+        console.log(self.trainings);
+    },
+     deleteTraining(index) {
+      const self = this;
+      self.trainings.splice(index, 1);
+        if(index===0) self.trainings();
+    },
+    
 
     async save(){
       const self = this;
-      const work_experience = [];
-      work_experience['organization_name']=self.organization_name;
-      work_experience['designation']=self.designation;
-      work_experience['years']=self.years;
-      work_experience['remarks']=self.remarks;
-
+      
       self.url = "/members/apply";
       let membership = {
-          work_experiences:work_experience,
-          member_details:self.form_fields
+          member_details:self.form_fields,
+          work_experiences:self.work_experience,
+          qualifications:self.qualifications,
+          trainings:self.trainings,
       };
        let response = await axios.post(`${self.url}`, membership);
        console.log("membership application data..");

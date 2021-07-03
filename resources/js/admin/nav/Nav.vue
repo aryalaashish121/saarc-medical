@@ -52,7 +52,7 @@ export default {
     return {
       drawer: false,
       items: [
-        { title: "Home", icon: "mdi-home", href: "/" },
+        { title: "Home", icon: "mdi-home", href: "/dashboard" },
         { title: "Members", icon: "mdi-account-group", href: "/members" },
         { title: "Trash", icon: "mdi-delete", href: "/trash" },
       ],
