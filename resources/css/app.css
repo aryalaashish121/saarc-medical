@@ -1,3 +1,28 @@
-body {
-    background-color: rosybrown;
+body{
+    margin: 0;
+    padding: 0;
+    background: url(medical.jpg);
+    background-size: cover;
+    font-family: sans-serif;
+
+}
+.loginbox{
+    width: 420px;
+    height: 520px;
+    background: #ffff;
+    color: black;
+    top: 50%;
+    margin-top: 30px;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+}
+.avatar{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 50px);
 }
