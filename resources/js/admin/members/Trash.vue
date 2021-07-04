@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Nav />
     <ViewMembers ref="viewMembers"></ViewMembers>
 
     <v-data-table

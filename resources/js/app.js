@@ -10,6 +10,7 @@ import VueProgressBar from 'vue-progressbar';
 Vue.component('user-component', require('./user/user').default);
 Vue.component('admin-component', require('./admin/Admin.vue').default);
 import vuetify from './plugins/vuetify';
+import router from './router';
 
 import VueFbCustomerChat from 'vue-fb-customer-chat'
 
@@ -35,7 +36,7 @@ Vue.use(VueProgressBar, {
 const app = new Vue({
     eventBus,
     store,
-
+    router,
     vuetify,
     el: '#app'
 });

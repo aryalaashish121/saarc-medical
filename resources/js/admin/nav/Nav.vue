@@ -44,11 +44,16 @@
       </v-list>
     </v-navigation-drawer>
   </nav>
+
+    
+    
 </template>
 <script>
-import axios from 'axios'
+import axios from 'axios';
 export default {
+
   data() {
+    
     return {
       drawer: false,
       items: [

@@ -9,6 +9,6 @@ class LogoutController extends Controller
 {
     public function logout(Request $request) {
         Auth::logout();
-        return view('welcome');
+        return redirect('/login');
       }
 }

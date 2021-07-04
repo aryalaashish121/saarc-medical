@@ -1,6 +1,10 @@
 <template>
+
   <div>
+    <Nav />
+    <router-link to="/trash">Trash</router-link>
     <ViewMembers ref="viewMembers"></ViewMembers>
+
     <v-snackbar v-model="snackbar" :timeout="5000">
       {{ snackbar_text }}
 
@@ -157,6 +161,9 @@
         <v-btn @click="check(item)" outlined small color="success" icon>
           <v-icon small dark> mdi-pencil-outline </v-icon>
         </v-btn>
+          <v-btn @click="test(item)" outlined small color="success" icon>
+          <v-icon small dark> mdi-pencil-outline </v-icon>
+        </v-btn>
 
         <v-btn @click="deleteMember(item.id)" outlined small icon color="error">
           <v-icon dark small> mdi-delete-outline </v-icon>
@@ -249,6 +256,12 @@ export default {
     this.loadMembers();
   },
   methods: {
+    test(){
+       self.$store.commit("showSnackbar", {
+                            message: "chall dekha",
+                            color: false
+                        });
+    },
     async loadMembers() {
       const self = this;
       self.isLoading = true;

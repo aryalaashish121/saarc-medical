@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-window.Vue = Vue;
 Vue.use(Router);
 
 const routes = [
@@ -19,7 +18,7 @@ const routes = [
         component: require('./members/Members.vue').default
     },
     {
-        path: '/trash',
+        path: '/admin/trash',
         name: 'Trash',
         component: require('./members/Trash.vue').default
     },
