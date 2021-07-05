@@ -67,6 +67,7 @@
                                     {{ __('Register') }}
                                 </button>
                             </div>
+                            <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
                         </div>
                     </form>
                 </div>
