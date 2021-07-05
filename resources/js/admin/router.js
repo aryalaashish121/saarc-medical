@@ -13,6 +13,11 @@ const routes = [
         component: require('./members/Members.vue').default
     },
     {
+        path: '/home',
+        name: 'admin.dashboard',
+        component: require('./members/Members.vue').default
+    },
+    {
         path: '/admin/members',
         name: 'admin.members',
         component: require('./members/Members.vue').default

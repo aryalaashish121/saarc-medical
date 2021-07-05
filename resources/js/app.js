@@ -7,8 +7,7 @@ import eventBus from "./common/event";
 import store from './common/store.js';
 import VueProgressBar from 'vue-progressbar';
 
-Vue.component('user-component', require('./user/user').default);
-Vue.component('admin-component', require('./admin/Admin.vue').default);
+
 import vuetify from './plugins/vuetify';
 import router from './router';
 
@@ -38,5 +37,71 @@ const app = new Vue({
     store,
     router,
     vuetify,
-    el: '#app'
+    el: '#app',
+    data() {
+        return {
+            drawer: true,
+            path: "/dashboard",
+        };
+    },
+
+    methods: {
+
+        clickLogout(logoutUrl, redirectLogoutUrl) {
+            axios.post(logoutUrl).then(response => {
+                window.location.href = redirectLogoutUrl;
+            });
+        },
+        dialogOk() {
+            store.commit('dialogOk');
+        },
+        dialogCancel() {
+            store.commit('dialogCancel');
+        }
+    },
+    computed: {
+
+        showDialog: {
+            get() {
+                return store.getters.showDialog;
+            },
+            set(val) {
+                if (!val) store.commit('hideDialog');
+            }
+        },
+        dialogTitle() {
+            return store.getters.dialogTitle;
+        },
+        dialogMessage() {
+            return store.getters.dialogMessage;
+        },
+        dialogType() {
+            return store.getters.dialogType;
+        },
+        dialogIcon() {
+            return store.getters.dialogIcon;
+        },
+        showSnackbar: {
+            get() {
+                return store.getters.showSnackbar;
+            },
+            set(val) {
+                if (!val) store.commit('hideSnackbar');
+            }
+        },
+        snackbarDuration() {
+            return store.getters.snackbarDuration;
+        },
+        snackbarColor() {
+            return store.getters.snackbarColor;
+        },
+        snackbarMessage() {
+            return store.getters.snackbarMessage;
+        },
+        showLoader() {
+            return store.getters.showLoader;
+        },
+
+
+    }
 });

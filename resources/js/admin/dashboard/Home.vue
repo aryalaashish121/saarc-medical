@@ -11,6 +11,7 @@
         </v-btn>
       </template>
     </v-snackbar>
+   
 
     <v-data-table
       :headers="headers"
@@ -335,6 +336,7 @@ export default {
       const self = this;
       self.$refs.viewMembers.view(_id);
     },
+   
     //    async save() {
     //   const self = this;
     //   self.loading = false;
