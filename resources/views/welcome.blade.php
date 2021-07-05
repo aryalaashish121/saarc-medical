@@ -37,7 +37,7 @@
             @endif
 
             <div class="max-w-6xl mx-auto sm:px-12 lg:px-12">      
-                           Welcome to SAARMCMC
+                    <v-alert></v-alert>       Welcome to SAARMCMC
             </div>
         </div>
     </body>

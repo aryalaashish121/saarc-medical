@@ -15,6 +15,7 @@ class CreateMembershipTypesTable extends Migration
     {
         Schema::create('membership_types', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('code')->unique();
             $table->string('name')->unique();
             $table->boolean('status')->default(true);
             $table->timestamps();

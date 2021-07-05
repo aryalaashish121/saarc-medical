@@ -1,6 +1,6 @@
 <template>
   <div class="pa-5">
-    <VueProgressBar />
+ 
     <v-card class="mt-3" rounded="lg">
       <v-card-title>
         <v-row>
@@ -308,15 +308,27 @@
                               name="Country code"
                               v-slot="{ errors, valid }"
                             >
-                <v-text-field
-                 :error-messages="errors"
-                 :success="valid"
-                  outlined
-                  label="Country Code"
-                  prepend-inner-icon="mdi-earth"
-                  dense
-                  v-model="form_fields.country_code"
-                ></v-text-field>
+                <v-autocomplete
+                              :error-messages="errors"
+                              :success="valid"
+                              :items="countryList"
+                              label="Country Code"
+                              item-text="country_code"
+                             
+                              item-value="id"
+                              v-model="form_fields.country_code"
+                              outlined
+                              dense
+                              prepend-inner-icon="mdi-map-legend"
+                            >
+                            <template slot="selection" slot-scope="data">
+    {{ data.item.code }} {{ data.item.name }}
+  </template>
+  <template slot="item" slot-scope="data">
+    {{ data.item.code }} {{ data.item.name }}
+  </template>
+                       
+                       </v-autocomplete>
                  </validation-provider>
               </v-col>
               <v-col cols="12" md="4">
@@ -926,20 +938,7 @@
               condition there of and I promise to abide by the said rules and
               regulation.
             </v-row>
-            <v-row class="mt-10">
-              <v-col cols="12" md="4" class="text-center">
-                <v-text-field outlined dense></v-text-field>
-
-                <span>Applicant Signature</span>
-              </v-col>
-              <v-spacer></v-spacer>
-              <v-col cols="12" md="4" class="text-center">
-                <v-text-field outlined dense></v-text-field>
-
-                <span>Date</span>
-              </v-col>
-             
-            </v-row>
+           
         <v-row align="center"
     justify="space-around">
         <v-divider></v-divider>
@@ -984,7 +983,7 @@ export default {
       date: null,
       menu: false,
       name:"",
-     
+      countryList:[],
       provinceListItems:[],
       districtListItems:[],
       membershiptypeList:[],
@@ -1067,6 +1066,7 @@ const self = this;
     self.loadProvinces();
     self.loadDistrict();
     self.loadMembershipType();
+    self.loadCountry();
   },
   mounted() {
     
@@ -1091,6 +1091,18 @@ const self = this;
         .get("get-state-data")
         .then(function (response) {
           self.provinceListItems = response.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+     loadCountry() {
+      const self = this;
+      axios
+        .get("get-country-data")
+        .then(function (response) {
+          self.countryList = response.data;
+          console.log(self.countryList);
         })
         .catch(function (error) {
           console.log(error);

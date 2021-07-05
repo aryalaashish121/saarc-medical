@@ -15,8 +15,11 @@ class MembershipTypeSeeder extends Seeder
     public function run()
     {
         $membership_types = [
-            ['name' => 'Type 1 Member'],
-            ['name' => 'Type 2 Member'], 
+            ['code'=>'SLTM', 'name' => 'SAARCMC Life Time Membership'],
+            ['code'=>'SGOM', 'name' => 'SAARCMC Golden Membership'],
+            ['code'=>'SOM', 'name' => 'SAARCMC Organizational Membership'],
+            ['code'=>'SGM', 'name' => 'SAARCMC General Membership'],
+            ['code'=>'SIM', 'name' => 'SAARCMC Individual Membership'],
          
         ];
 

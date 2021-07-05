@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\Membercontroller;
@@ -36,6 +37,8 @@ Route::group(['prefix'=>'admin','as'=>'admin.',], function(){
 Route::resource('admin', AdminController::class);
 });
 });
+//country data
+Route::get('get-country-data',[CountryController::class,'index']);
 // Route::resource('/members', [Membercontroller::class]);
 Route::get('/members',[Membercontroller::class, 'index']);
 Route::get('/members/trash',[Membercontroller::class, 'trash']);
