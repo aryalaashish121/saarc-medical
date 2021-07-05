@@ -1,6 +1,5 @@
 <template>
   <div class="pa-5">
- 
     <v-card class="mt-3" rounded="lg">
       <v-card-title>
         <v-row>
@@ -65,21 +64,19 @@
               dense
             ></v-text-field
           ></v-col>
-       
 
           <v-col cols="12" sm="12" md="4">
-                  <v-autocomplete
-                   
-                    :items="membershiptypeList"
-                    item-value="id"
-                    item-text="name"
-                    v-model="form_fields.membership_type"
-                    label="Membership Type"
-                    dense
-                    outlined
-                    clearable
-                    prepend-inner-icon="mdi-account-stare"
-                  ></v-autocomplete>
+            <v-autocomplete
+              :items="membershiptypeList"
+              item-value="id"
+              item-text="name"
+              v-model="form_fields.membership_type"
+              label="Membership Type"
+              dense
+              outlined
+              clearable
+              prepend-inner-icon="mdi-account-stare"
+            ></v-autocomplete>
           </v-col>
           <v-spacer></v-spacer>
           <v-col cols="12" sm="12" md="4">
@@ -205,7 +202,7 @@
                 >
                   <template v-slot:activator="{ on, attrs }">
                     <v-text-field
-                       v-model="form_fields.dob_ad"
+                      v-model="form_fields.dob_ad"
                       label="D.o.B (A.D.)"
                       prepend-inner-icon="mdi-calendar"
                       readonly
@@ -225,10 +222,7 @@
                         .toISOString()
                         .substr(0, 10)
                     "
-                     @input="
-                                  (menu = false),
-                                    ConvertADtoBS(form_fields.dob_ad)
-                                "
+                    @input="(menu = false), ConvertADtoBS(form_fields.dob_ad)"
                     min="1950-01-01"
                     @change="save"
                   ></v-date-picker>
@@ -237,16 +231,12 @@
               <v-col cols="12" md="4">
                 <v-text-field
                   outlined
-                 
-                   v-model="form_fields.dob_bs"
-                   ref=""
+                  v-model="form_fields.dob_bs"
+                  ref=""
                   label="D.o.B (B.S.)"
                   prepend-inner-icon="mdi-calendar"
                   dense
-                   @input="
-                                (menu = false),
-                                  ConvertBStoAD(form_fields.dob_bs)
-                              "
+                  @input="(menu = false), ConvertBStoAD(form_fields.dob_bs)"
                 ></v-text-field>
               </v-col>
             </v-row>
@@ -300,36 +290,33 @@
             </v-row>
             <v-row>
               <v-col cols="12" md="4">
-                 <validation-provider
-                              :rules="{
-                               
-                               required:true,
-                              }"
-                              name="Country code"
-                              v-slot="{ errors, valid }"
-                            >
-                <v-autocomplete
-                              :error-messages="errors"
-                              :success="valid"
-                              :items="countryList"
-                              label="Country Code"
-                              item-text="country_code"
-                             
-                              item-value="id"
-                              v-model="form_fields.country_code"
-                              outlined
-                              dense
-                              prepend-inner-icon="mdi-map-legend"
-                            >
-                            <template slot="selection" slot-scope="data">
-    {{ data.item.code }} {{ data.item.name }}
-  </template>
-  <template slot="item" slot-scope="data">
-    {{ data.item.code }} {{ data.item.name }}
-  </template>
-                       
-                       </v-autocomplete>
-                 </validation-provider>
+                <validation-provider
+                  :rules="{
+                    required: true,
+                  }"
+                  name="Country code"
+                  v-slot="{ errors, valid }"
+                >
+                  <v-autocomplete
+                    :error-messages="errors"
+                    :success="valid"
+                    :items="countryList"
+                    label="Country Code"
+                    item-text="country_code"
+                    item-value="id"
+                    v-model="form_fields.country_code"
+                    outlined
+                    dense
+                    prepend-inner-icon="mdi-map-legend"
+                  >
+                    <template slot="selection" slot-scope="data">
+                      {{ data.item.code }} {{ data.item.name }}
+                    </template>
+                    <template slot="item" slot-scope="data">
+                      {{ data.item.code }} {{ data.item.name }}
+                    </template>
+                  </v-autocomplete>
+                </validation-provider>
               </v-col>
               <v-col cols="12" md="4">
                 <validation-provider
@@ -404,26 +391,26 @@
 
                   <v-card-text class="mt-3">
                     <v-row>
-                       <v-col cols="6" sm="1" md="12">
-                     <validation-provider
-                            rules="required"
-                            name="State "
-                            v-slot="{ errors, valid }"
-                          >
-                            <v-autocomplete
-                              :error-messages="errors"
-                              :success="valid"
-                              :items="provinceListItems"
-                              label="State/Province"
-                              item-text="name"
-                              item-value="id"
-                              v-model="form_fields.p_state_id"
-                              outlined
-                              dense
-                              prepend-inner-icon="mdi-map-legend"
-                            ></v-autocomplete>
-                          </validation-provider>
-                       </v-col>
+                      <v-col cols="6" sm="1" md="12">
+                        <validation-provider
+                          rules="required"
+                          name="State "
+                          v-slot="{ errors, valid }"
+                        >
+                          <v-autocomplete
+                            :error-messages="errors"
+                            :success="valid"
+                            :items="provinceListItems"
+                            label="State/Province"
+                            item-text="name"
+                            item-value="id"
+                            v-model="form_fields.p_state_id"
+                            outlined
+                            dense
+                            prepend-inner-icon="mdi-map-legend"
+                          ></v-autocomplete>
+                        </validation-provider>
+                      </v-col>
                     </v-row>
                     <v-row>
                       <v-col cols="6" sm="1" md="12">
@@ -448,15 +435,15 @@
                       </v-col>
                     </v-row>
                     <v-row>
-                       <v-col cols="6" sm="1" md="12">
-                      <v-text-field
-                        outlined
-                        label="Municipality"
-                        prepend-inner-icon="mdi-home-city-outline"
-                        dense
-                        v-model="form_fields.p_municipality"
-                      ></v-text-field>
-                       </v-col>
+                      <v-col cols="6" sm="1" md="12">
+                        <v-text-field
+                          outlined
+                          label="Municipality"
+                          prepend-inner-icon="mdi-home-city-outline"
+                          dense
+                          v-model="form_fields.p_municipality"
+                        ></v-text-field>
+                      </v-col>
                     </v-row>
                     <v-row>
                       <v-col cols="6" sm="1" md="12">
@@ -496,22 +483,21 @@
                           name="Street address"
                           v-slot="{ errors, valid }"
                         >
-                          
-                            <v-text-field
-                              :error-messages="errors"
-                              :success="valid"
-                              label="Tole/Street"
-                              v-model="form_fields.p_village_name"
-                              prepend-inner-icon="mdi-road-variant"
-                              required
-                              dense
-                              counter="50"
-                              v-on:keypress="restrictOverValue($event, 50)"
-                              outlined
-                            >
-                            </v-text-field>
-                          </validation-provider>
-                       </v-col>
+                          <v-text-field
+                            :error-messages="errors"
+                            :success="valid"
+                            label="Tole/Street"
+                            v-model="form_fields.p_village_name"
+                            prepend-inner-icon="mdi-road-variant"
+                            required
+                            dense
+                            counter="50"
+                            v-on:keypress="restrictOverValue($event, 50)"
+                            outlined
+                          >
+                          </v-text-field>
+                        </validation-provider>
+                      </v-col>
                     </v-row>
                   </v-card-text>
                 </v-card>
@@ -523,28 +509,26 @@
 
                   <v-card-text class="mt-3">
                     <v-row>
-                      
-                       <v-col cols="6" sm="1" md="12">
-                     <validation-provider
-                            rules=""
-                            name="Temporary provinance"
-                            v-slot="{ errors, valid }"
-                          >
-                            <v-autocomplete
-                              :error-messages="errors"
-                              :success="valid"
-                              :items="provinceListItems"
-                              label="State/Province"
-                              v-model="form_fields.t_state_id"
-                              item-value="id"
-                              item-text="name"
-                              outlined
-                              dense
-                              prepend-inner-icon="mdi-map-legend"
-                             
-                            ></v-autocomplete>
-                     </validation-provider>
-                       </v-col>
+                      <v-col cols="6" sm="1" md="12">
+                        <validation-provider
+                          rules=""
+                          name="Temporary provinance"
+                          v-slot="{ errors, valid }"
+                        >
+                          <v-autocomplete
+                            :error-messages="errors"
+                            :success="valid"
+                            :items="provinceListItems"
+                            label="State/Province"
+                            v-model="form_fields.t_state_id"
+                            item-value="id"
+                            item-text="name"
+                            outlined
+                            dense
+                            prepend-inner-icon="mdi-map-legend"
+                          ></v-autocomplete>
+                        </validation-provider>
+                      </v-col>
                     </v-row>
                     <v-row>
                       <v-col cols="6" sm="1" md="12">
@@ -569,15 +553,15 @@
                       </v-col>
                     </v-row>
                     <v-row>
-                       <v-col cols="6" sm="1" md="12">
-                      <v-text-field
-                        outlined
-                        label="Municipality"
-                        prepend-inner-icon="mdi-home-city-outline"
-                        dense
-                        v-model="form_fields.t_municipality"
-                      ></v-text-field>
-                       </v-col>
+                      <v-col cols="6" sm="1" md="12">
+                        <v-text-field
+                          outlined
+                          label="Municipality"
+                          prepend-inner-icon="mdi-home-city-outline"
+                          dense
+                          v-model="form_fields.t_municipality"
+                        ></v-text-field>
+                      </v-col>
                     </v-row>
                     <v-row>
                       <v-col cols="6" sm="1" md="12">
@@ -618,23 +602,21 @@
                           name="Street address"
                           v-slot="{ errors, valid }"
                         >
-                      
-                            <v-text-field
-                              :error-messages="errors"
-                              :success="valid"
-                              label="Tole/Street"
-                              prepend-inner-icon="mdi-road-variant"
-                              v-model="form_fields.t_village_name"
-                              required
-                              outlined
-                              dense
-                              counter="50"
-                              v-on:keypress="restrictOverValue($event, 50)"
-                             
-                            >
-                            </v-text-field>
-                          </validation-provider>
-                       </v-col>
+                          <v-text-field
+                            :error-messages="errors"
+                            :success="valid"
+                            label="Tole/Street"
+                            prepend-inner-icon="mdi-road-variant"
+                            v-model="form_fields.t_village_name"
+                            required
+                            outlined
+                            dense
+                            counter="50"
+                            v-on:keypress="restrictOverValue($event, 50)"
+                          >
+                          </v-text-field>
+                        </validation-provider>
+                      </v-col>
                     </v-row>
                   </v-card-text>
                 </v-card>
@@ -682,14 +664,13 @@
                   <v-text-field
                     :error-messages="errors"
                     :success="valid"
-                  outlined
-                  clearable
-                  label="Contact No."
-                   v-model="form_fields.fathers_phone_no"
-                  prepend-inner-icon="mdi-phone"
-                  dense
-                  
-                   v-on:keypress="
+                    outlined
+                    clearable
+                    label="Contact No."
+                    v-model="form_fields.fathers_phone_no"
+                    prepend-inner-icon="mdi-phone"
+                    dense
+                    v-on:keypress="
                       restrictOverValue($event, 10) | isNumber($event)
                     "
                   ></v-text-field>
@@ -732,13 +713,13 @@
                   <v-text-field
                     :error-messages="errors"
                     :success="valid"
-                  outlined
-                  clearable
-                  label="Contact No."
-                  prepend-inner-icon="mdi-phone"
-                  dense
-                   v-model="form_fields.mothers_phone_no"
-                   v-on:keypress="
+                    outlined
+                    clearable
+                    label="Contact No."
+                    prepend-inner-icon="mdi-phone"
+                    dense
+                    v-model="form_fields.mothers_phone_no"
+                    v-on:keypress="
                       restrictOverValue($event, 10) | isNumber($event)
                     "
                   ></v-text-field>
@@ -751,7 +732,14 @@
             <v-row class="mt-5">
               <strong class="title"
                 >Working Experience:
-                <v-btn class="mx-2" fab dark x-small color="indigo"  @click="addwork_experience">
+                <v-btn
+                  class="mx-2"
+                  fab
+                  dark
+                  x-small
+                  color="indigo"
+                  @click="addwork_experience"
+                >
                   <v-icon dark> mdi-plus </v-icon>
                 </v-btn></strong
               >
@@ -768,26 +756,42 @@
                       <th class="text-left sybtitle-2">Renmarks</th>
                       <th class="text-left sybtitle-2"></th>
                     </tr>
-                    <tr v-for="(experience, index) in work_experience" :key="index">  
-                  <td class="text-left sybtitle-2">
-                        {{index+1}}
-                  </td>
-                   <td class="text-left sybtitle-2">
-                        <v-text-field v-model="experience.organization_name"></v-text-field>
-                  </td>
-                   <td class="text-left sybtitle-2">
-                        <v-text-field v-model="experience.designation"></v-text-field>
-                  </td>
-                   <td class="text-left sybtitle-2">
+                    <tr
+                      v-for="(experience, index) in work_experience"
+                      :key="index"
+                    >
+                      <td class="text-left sybtitle-2">
+                        {{ index + 1 }}
+                      </td>
+                      <td class="text-left sybtitle-2">
+                        <v-text-field
+                          v-model="experience.organization_name"
+                        ></v-text-field>
+                      </td>
+                      <td class="text-left sybtitle-2">
+                        <v-text-field
+                          v-model="experience.designation"
+                        ></v-text-field>
+                      </td>
+                      <td class="text-left sybtitle-2">
                         <v-text-field v-model="experience.years"></v-text-field>
-                  </td>
-                  <td class="text-left sybtitle-2">
-                        <v-text-field v-model="experience.remarks"></v-text-field>
-                  </td>
-                  <td class="text-left sybtitle-2">
-                        <v-btn  class="mx-2" fab dark x-small color="error" @click="deletework_experience(index)"><v-icon dark> mdi-minus </v-icon></v-btn>
-                  </td>
-                      
+                      </td>
+                      <td class="text-left sybtitle-2">
+                        <v-text-field
+                          v-model="experience.remarks"
+                        ></v-text-field>
+                      </td>
+                      <td class="text-left sybtitle-2">
+                        <v-btn
+                          class="mx-2"
+                          fab
+                          dark
+                          x-small
+                          color="error"
+                          @click="deletework_experience(index)"
+                          ><v-icon dark> mdi-minus </v-icon></v-btn
+                        >
+                      </td>
                     </tr>
                   </thead>
                 </v-simple-table>
@@ -799,7 +803,14 @@
             <v-row class="mt-5">
               <strong class="title"
                 >Qualification Details:
-                <v-btn class="mx-2" fab dark x-small color="indigo" @click="addQualification">
+                <v-btn
+                  class="mx-2"
+                  fab
+                  dark
+                  x-small
+                  color="indigo"
+                  @click="addQualification"
+                >
                   <v-icon dark> mdi-plus </v-icon>
                 </v-btn></strong
               >
@@ -818,30 +829,50 @@
                       <th class="text-left sybtitle-2">Grade/%</th>
                       <th class="text-left sybtitle-2">Completed Year</th>
                     </tr>
-                     <tr v-for="(qualification, index) in qualifications" :key="index">  
-                  <td class="text-left sybtitle-2">
-                        {{index+1}}
-                  </td>
-                  
-                   <td class="text-left sybtitle-2">
-                        <v-text-field v-model="qualification.univerisity_board"></v-text-field>
-                  </td>
-                   <td class="text-left sybtitle-2">
-                        <v-text-field v-model="qualification.level"></v-text-field>
-                  </td>
-                   <td class="text-left sybtitle-2">
-                        <v-text-field v-model="qualification.degree"></v-text-field>
-                  </td>
-                  <td class="text-left sybtitle-2">
-                        <v-text-field v-model="qualification.grade"></v-text-field>
-                  </td>
-                  <td class="text-left sybtitle-2">
-                        <v-text-field v-model="qualification.completed_year"></v-text-field>
-                  </td>
-                  <td class="text-left sybtitle-2">
-                        <v-btn  class="mx-2" fab dark x-small color="error" @click="deleteQualification(index)"><v-icon dark> mdi-minus </v-icon></v-btn>
-                  </td>
-                      
+                    <tr
+                      v-for="(qualification, index) in qualifications"
+                      :key="index"
+                    >
+                      <td class="text-left sybtitle-2">
+                        {{ index + 1 }}
+                      </td>
+
+                      <td class="text-left sybtitle-2">
+                        <v-text-field
+                          v-model="qualification.univerisity_board"
+                        ></v-text-field>
+                      </td>
+                      <td class="text-left sybtitle-2">
+                        <v-text-field
+                          v-model="qualification.level"
+                        ></v-text-field>
+                      </td>
+                      <td class="text-left sybtitle-2">
+                        <v-text-field
+                          v-model="qualification.degree"
+                        ></v-text-field>
+                      </td>
+                      <td class="text-left sybtitle-2">
+                        <v-text-field
+                          v-model="qualification.grade"
+                        ></v-text-field>
+                      </td>
+                      <td class="text-left sybtitle-2">
+                        <v-text-field
+                          v-model="qualification.completed_year"
+                        ></v-text-field>
+                      </td>
+                      <td class="text-left sybtitle-2">
+                        <v-btn
+                          class="mx-2"
+                          fab
+                          dark
+                          x-small
+                          color="error"
+                          @click="deleteQualification(index)"
+                          ><v-icon dark> mdi-minus </v-icon></v-btn
+                        >
+                      </td>
                     </tr>
                   </thead>
                 </v-simple-table>
@@ -853,7 +884,14 @@
             <v-row class="mt-5">
               <strong class="title"
                 >Special Trainings (If Any):
-                <v-btn class="mx-2" fab dark x-small color="indigo" @click="addTraining">
+                <v-btn
+                  class="mx-2"
+                  fab
+                  dark
+                  x-small
+                  color="indigo"
+                  @click="addTraining"
+                >
                   <v-icon dark> mdi-plus </v-icon>
                 </v-btn></strong
               >
@@ -872,30 +910,41 @@
                       <th class="text-left sybtitle-2">Grade/%</th>
                       <th class="text-left sybtitle-2">Completed Year</th>
                     </tr>
-                    <tr v-for="(training, index) in trainings" :key="index">  
-                  <td class="text-left sybtitle-2">
-                        {{index+1}}
-                  </td>
-                  
-                   <td class="text-left sybtitle-2">
-                        <v-text-field v-model="training.univerisity_board"></v-text-field>
-                  </td>
-                   <td class="text-left sybtitle-2">
+                    <tr v-for="(training, index) in trainings" :key="index">
+                      <td class="text-left sybtitle-2">
+                        {{ index + 1 }}
+                      </td>
+
+                      <td class="text-left sybtitle-2">
+                        <v-text-field
+                          v-model="training.univerisity_board"
+                        ></v-text-field>
+                      </td>
+                      <td class="text-left sybtitle-2">
                         <v-text-field v-model="training.level"></v-text-field>
-                  </td>
-                   <td class="text-left sybtitle-2">
+                      </td>
+                      <td class="text-left sybtitle-2">
                         <v-text-field v-model="training.degree"></v-text-field>
-                  </td>
-                  <td class="text-left sybtitle-2">
+                      </td>
+                      <td class="text-left sybtitle-2">
                         <v-text-field v-model="training.grade"></v-text-field>
-                  </td>
-                  <td class="text-left sybtitle-2">
-                        <v-text-field v-model="training.completed_year"></v-text-field>
-                  </td>
-                  <td class="text-left sybtitle-2">
-                        <v-btn  class="mx-2" fab dark x-small color="error" @click="deleteTraining(index)"><v-icon dark> mdi-minus </v-icon></v-btn>
-                  </td>
-                      
+                      </td>
+                      <td class="text-left sybtitle-2">
+                        <v-text-field
+                          v-model="training.completed_year"
+                        ></v-text-field>
+                      </td>
+                      <td class="text-left sybtitle-2">
+                        <v-btn
+                          class="mx-2"
+                          fab
+                          dark
+                          x-small
+                          color="error"
+                          @click="deleteTraining(index)"
+                          ><v-icon dark> mdi-minus </v-icon></v-btn
+                        >
+                      </td>
                     </tr>
                   </thead>
                 </v-simple-table>
@@ -938,31 +987,20 @@
               condition there of and I promise to abide by the said rules and
               regulation.
             </v-row>
-           
-        <v-row align="center"
-    justify="space-around">
-        <v-divider></v-divider>
-        
-        <v-card-actions class="justify-end mt-3 ">
-       
-          <v-btn
-           @click="apply"
-            color="primary"
-            :loading="loading"
-          >
-            Apply
-            <v-icon right>mdi-content-save</v-icon>
-          </v-btn>
-            <v-btn
-      depressed
-      color="error"
-      @click="checkloader"
-    >
-      Cancle
-    </v-btn>
-        </v-card-actions>
-        </v-row>
-          
+
+            <v-row align="center" justify="space-around">
+              <v-divider></v-divider>
+
+              <v-card-actions class="justify-end mt-3">
+                <v-btn @click="apply" color="primary" :loading="loading">
+                  Apply
+                  <v-icon right>mdi-content-save</v-icon>
+                </v-btn>
+                <v-btn depressed color="error" @click="checkloader">
+                  Cancel
+                </v-btn>
+              </v-card-actions>
+            </v-row>
           </v-card-text>
         </v-card>
       </v-card-text>
@@ -978,76 +1016,95 @@ import Conversions from "../../utils/conversions";
 export default {
   data() {
     return {
-      activePicker:"",
-      checkbox:false,
+      activePicker: "",
+      checkbox: false,
       date: null,
       menu: false,
-      name:"",
-      countryList:[],
-      provinceListItems:[],
-      districtListItems:[],
-      membershiptypeList:[],
-      training:[],
-       row_count: 0,
-       
-        designation:[],
-        years:[],
-        remarks:[],
-        work_experience:[{
-            organization_name:"",designation:"",years:"",remarks:""
-        }],
-        qualifications:[{ univerisity_board:"",level:"", degree:"",grade:"",completed_year:"",is_training:false
-        }],
-        trainings:[{ univerisity_board:"",level:"", degree:"",grade:"",completed_year:"",is_training:true
-        }],
-        
-         
-      form_fields:{
-        is_aproved:false,
-        first_name_en:"",
-        last_name_en:"",
-        last_name_en:"",
-        dob_bs:"",
-        dob_ad:"",
-        gender:"",
-        religion:"",
-        nationality:"",
-        country_code:"",
-        mobile:"",
-        aux_mobile:"",
-        email:"",
-        website:"",
-        image:"",
-        p_state_id:"",
-        p_district_id:"",
-        p_municipality:"",
-        p_ward_no:"",
-        p_village_name:"",
-        t_state_id:"",
-        t_district_id:"",
-        t_municipality:"",
-        t_ward_no:"",
-        t_village_name:"",
-        is_same_address:false,
-        fathers_name:"",
-        fathers_phone_no:"",
-        fathers_occupation:"",
-        fathers_designation:"",
-        mothers_name:"",
-        mothers_phone_no:"",
-        mothers_occupation:"",
-        mothers_designation:"",
-        acheivements:"",
+      name: "",
+      countryList: [],
+      provinceListItems: [],
+      districtListItems: [],
+      membershiptypeList: [],
+      training: [],
+      row_count: 0,
+
+      designation: [],
+      years: [],
+      remarks: [],
+      work_experience: [
+        {
+          organization_name: "",
+          designation: "",
+          years: "",
+          remarks: "",
+        },
+      ],
+      qualifications: [
+        {
+          univerisity_board: "",
+          level: "",
+          degree: "",
+          grade: "",
+          completed_year: "",
+          is_training: false,
+        },
+      ],
+      trainings: [
+        {
+          univerisity_board: "",
+          level: "",
+          degree: "",
+          grade: "",
+          completed_year: "",
+          is_training: true,
+        },
+      ],
+
+      form_fields: {
+        is_aproved: false,
+        first_name_en: "",
+        last_name_en: "",
+        last_name_en: "",
+        dob_bs: "",
+        dob_ad: "",
+        gender: "",
+        religion: "",
+        nationality: "",
+        country_code: "",
+        mobile: "",
+        aux_mobile: "",
+        email: "",
+        website: "",
+        image: "",
+        p_state_id: "",
+        p_district_id: "",
+        p_municipality: "",
+        p_ward_no: "",
+        p_village_name: "",
+        t_state_id: "",
+        t_district_id: "",
+        t_municipality: "",
+        t_ward_no: "",
+        t_village_name: "",
+        is_same_address: false,
+        fathers_name: "",
+        fathers_phone_no: "",
+        fathers_occupation: "",
+        fathers_designation: "",
+        mothers_name: "",
+        mothers_phone_no: "",
+        mothers_occupation: "",
+        mothers_designation: "",
+        acheivements: "",
       },
-     
+
       // members_work_experience:{
       //   organization_name:"",
       //   designation:"",
       //   years:"",
       //   remark:"",
       // },
-      
-  
+
       wardnoRules: [
         (v) => (v && v >= 1) || "Ward no. cannot be 0",
         (v) => (v && v <= 100) || "Max should not be above 100",
@@ -1061,15 +1118,14 @@ export default {
       val && setTimeout(() => (this.activePicker = "YEAR"));
     },
   },
-  created(){
-const self = this;
+  created() {
+    const self = this;
     self.loadProvinces();
     self.loadDistrict();
     self.loadMembershipType();
     self.loadCountry();
   },
   mounted() {
-    
     console.log("User component mounted.");
   },
   methods: {
@@ -1081,12 +1137,11 @@ const self = this;
       console.log("Testing phase");
       self.$store.commit("showSnackbar", {
         message: "Please select the classroom...",
-        
       });
     },
     loadProvinces() {
       const self = this;
-     
+
       axios
         .get("get-state-data")
         .then(function (response) {
@@ -1096,7 +1151,7 @@ const self = this;
           console.log(error);
         });
     },
-     loadCountry() {
+    loadCountry() {
       const self = this;
       axios
         .get("get-country-data")
@@ -1120,7 +1175,7 @@ const self = this;
           console.log(error);
         });
     },
-     loadMembershipType() {
+    loadMembershipType() {
       const self = this;
       axios
         .get("get-membership-type-data")
@@ -1132,63 +1187,81 @@ const self = this;
           console.log(error);
         });
     },
-    checkloader(){
+    checkloader() {
       //   this.$store.commit("showSnackbar", {
-      //   message: "loading",   
+      //   message: "loading",
       //  });
       console.log("Testing");
     },
 
     addwork_experience() {
       const self = this;
-        self.work_experience.push({ organization_name:"",designation:"",years:"",remarks:"" });
-        console.log(self.work_experience);
+      self.work_experience.push({
+        organization_name: "",
+        designation: "",
+        years: "",
+        remarks: "",
+      });
+      console.log(self.work_experience);
     },
-     deletework_experience(index) {
+    deletework_experience(index) {
       const self = this;
       self.work_experience.splice(index, 1);
-        if(index===0) self.work_experience();
+      if (index === 0) self.work_experience();
     },
-    
-     addQualification() {
+
+    addQualification() {
       const self = this;
-        self.qualifications.push({ univerisity_board:"",level:"", degree:"",grade:"",completed_year:"",is_training:false });
-        console.log(self.qualifications);
+      self.qualifications.push({
+        univerisity_board: "",
+        level: "",
+        degree: "",
+        grade: "",
+        completed_year: "",
+        is_training: false,
+      });
+      console.log(self.qualifications);
     },
-     deleteQualification(index) {
+    deleteQualification(index) {
       const self = this;
       self.qualifications.splice(index, 1);
-        if(index===0) self.qualifications();
+      if (index === 0) self.qualifications();
     },
 
     addTraining() {
       const self = this;
-        self.trainings.push({ univerisity_board:"",level:"", degree:"",grade:"",completed_year:"",is_training:true });
-        console.log(self.trainings);
+      self.trainings.push({
+        univerisity_board: "",
+        level: "",
+        degree: "",
+        grade: "",
+        completed_year: "",
+        is_training: true,
+      });
+      console.log(self.trainings);
     },
-     deleteTraining(index) {
+    deleteTraining(index) {
       const self = this;
       self.trainings.splice(index, 1);
-        if(index===0) self.trainings();
+      if (index === 0) self.trainings();
     },
-    
 
-    async apply(){
+    async apply() {
       const self = this;
-      
+
       self.url = "/members/apply";
       let membership = {
-          member_details:self.form_fields,
-          work_experiences:self.work_experience,
-          qualifications:self.qualifications,
-          trainings:self.trainings,
+        member_details: self.form_fields,
+        work_experiences: self.work_experience,
+        qualifications: self.qualifications,
+        trainings: self.trainings,
       };
-       let response = await axios.post(`${self.url}`, membership);
-       console.log("membership application data..");
-       console.log(membership);  
+      let response = await axios.post(`${self.url}`, membership);
+      console.log("membership application data..");
+      console.log(membership);
     },
 
-     restrictOverValue(e, data) {
+    restrictOverValue(e, data) {
       if (e.target.value.length >= data) e.preventDefault();
     },
     isNumber: function (evt) {
