@@ -1,113 +1,124 @@
 <template>
   <div class="pa-5">
     <v-card class="mt-3" rounded="lg">
-      <v-card-title>
-        <v-row>
-          <v-col cols="12" sm="3" md="3">
-            <v-img
-              lazy-src="/saarc_logo.jpg"
-              max-height="150"
-              max-width="250"
-              contain
-              src="/saarc_logo.jpg"
-            ></v-img>
-          </v-col>
-          <v-spacer></v-spacer>
-          <v-col cols="12" sm="12" md="4">
-            <v-card flat>
-              <v-card-text class="px-5">
-                <v-row>
-                  <v-icon left> mdi-map-marker </v-icon> Tinkune-32, Kathmandu
-                  (Raja Janak Marg Road)
-                </v-row>
+      <v-row class="d-flex">
+        <v-col sm="4" md="4" class="mt-5">
+          <v-img
+            lazy-src="/saarc_logo.jpg"
+            max-height="150"
+            max-width="250"
+            contain
+            src="/saarc_logo.jpg"
+          ></v-img>
+        </v-col>
+        <v-col md="3" lg="4" sm="1"> </v-col>
+        <v-col sm="7" md="5" lg="4">
+          <v-card flat>
+            <v-card-text class="px-5">
+              <p>
+                <v-icon left> mdi-map-marker </v-icon> Tinkune-32, Kathmandu
+                (Raja Janak Marg Road)
+              </p>
 
-                <v-row class="mt-5">
-                  <v-icon left> mdi-phone </v-icon>Phone:
-                  <a href="tel: 01-4279626" style="text-decoration: none"
-                    >01-4279626</a
-                  >
-                </v-row>
+              <p>
+                <v-icon left> mdi-phone </v-icon>Phone:
+                <a href="tel: 01-4279626" style="text-decoration: none"
+                  >01-4279626</a
+                >
+              </p>
 
-                <v-row class="mt-5">
-                  <v-icon left> mdi-email </v-icon>Email:
-                  <a
-                    href="mailto: info.saarcmacoop@gmail.com"
-                    style="text-decoration: none"
-                    >info.saarcmacoop@gmail.com</a
-                  >
-                </v-row>
+              <p>
+                <v-icon left> mdi-email </v-icon>Email:
+                <a
+                  href="mailto: info.saarcmacoop@gmail.com"
+                  style="text-decoration: none"
+                  >info.saarcmacoop@gmail.com</a
+                >
+              </p>
 
-                <v-row class="mt-5">
-                  <v-icon left> mdi-web </v-icon> Web:
-                  <a href="www.saarcmc.org" style="text-decoration: none"
-                    >www.saarcmc.org</a
-                  >
-                </v-row>
-              </v-card-text>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-card-title>
+              <p>
+                <v-icon left> mdi-web </v-icon> Web:
+                <a href="www.saarcmc.org" style="text-decoration: none"
+                  >www.saarcmc.org</a
+                >
+              </p>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+
       <v-divider></v-divider>
-      <v-card-title class="justify-center title text-decoration-underline">
+      <v-card-title class="justify-center title">
+        <v-icon left> mdi-form-select </v-icon>
         Membership Sheet
       </v-card-title>
       <v-card-text class="mt-3">
-        <v-row>
-          <v-col cols="12" sm="12" md="4">
-            <v-text-field
-              outlined
-              clearable
-              prepend-inner-icon="mdi-newspaper-variant-outline"
-              label="Application Number"
-              type="number"
-              dense
-            ></v-text-field
-          ></v-col>
-
-          <v-col cols="12" sm="12" md="4">
-            <v-autocomplete
-              :items="membershiptypeList"
-              item-value="id"
-              item-text="name"
-              v-model="form_fields.membership_type"
-              label="Membership Type"
-              dense
-              outlined
-              clearable
-              prepend-inner-icon="mdi-account-stare"
-            ></v-autocomplete>
-          </v-col>
-          <v-spacer></v-spacer>
-          <v-col cols="12" sm="12" md="4">
-            <v-card flat>
-              <v-card-subtitle class="text-center">
-                <v-avatar class="profile" color="grey" size="164" tile>
-                  <v-img
-                    src="https://www.pngitem.com/pimgs/m/4-47626_art-beard-no-male-avatar-clipart-hd-png.png"
-                  ></v-img>
-                </v-avatar>
-              </v-card-subtitle>
-              <v-card-subtitle class="text-center">
-                <v-btn small rounded class="primary">
-                  <v-icon left dark> mdi-camera </v-icon>
-                  Choose your photo
-                </v-btn>
-              </v-card-subtitle>
-            </v-card></v-col
-          >
-        </v-row>
-
-        <v-card elevation="5" rounded="xl">
-          <v-card-title class="ml-3 font-weight-medium">
-            Personal Details
-          </v-card-title>
-          <v-divider></v-divider>
-          <v-card-text class="mt-3 px-10">
+        <v-card
+          flat
+          outlined
+          rounded="lg"
+          elevation="3"
+          class="mt-3 py-10 px-15"
+        >
+          <v-card-text>
             <v-row>
-              <strong>Full Name (In Block Letters)</strong>
+              <v-col cols="12" sm="12" md="4">
+                <v-text-field
+                  outlined
+                  clearable
+                  prepend-inner-icon="mdi-newspaper-variant-outline"
+                  label="Application Number"
+                  type="number"
+                  dense
+                ></v-text-field
+              ></v-col>
+
+              <v-col cols="12" sm="12" md="4">
+                <v-autocomplete
+                  :items="membershiptypeList"
+                  item-value="id"
+                  item-text="name"
+                  v-model="form_fields.membership_type"
+                  label="Membership Type"
+                  dense
+                  outlined
+                  clearable
+                  prepend-inner-icon="mdi-account-star"
+                ></v-autocomplete>
+              </v-col>
+
+              <v-col cols="12" sm="12" md="4">
+                <v-card flat>
+                  <v-card-subtitle class="text-center">
+                    <v-avatar class="profile" color="grey" size="164" tile>
+                      <v-img
+                        src="https://www.pngitem.com/pimgs/m/4-47626_art-beard-no-male-avatar-clipart-hd-png.png"
+                      ></v-img>
+                    </v-avatar>
+                  </v-card-subtitle>
+                  <v-card-subtitle class="text-center">
+                    <v-btn small rounded class="primary">
+                      <v-icon left dark> mdi-camera </v-icon>
+                      Choose your photo
+                    </v-btn>
+                  </v-card-subtitle>
+                </v-card></v-col
+              >
             </v-row>
-            <v-row>
+          </v-card-text>
+        </v-card>
+
+        <v-card flat outlined rounded="lg" elevation="3" class="mt-5">
+          <v-card-title>
+            <strong class="title">
+              <v-icon color="primary" class="ma-2">mdi-account-circle</v-icon>
+              Personal Details:</strong
+            >
+          </v-card-title>
+
+          <v-card-text class="px-5">
+            <strong>Full Name (In Block Letters)</strong>
+            <v-row class="mt-3">
               <v-col cols="12" md="4">
                 <validation-provider
                   :rules="{
@@ -187,10 +198,8 @@
                 </validation-provider>
               </v-col>
             </v-row>
-            <v-row>
-              <strong>Date of Birth</strong>
-            </v-row>
-            <v-row>
+            <strong>Date of Birth</strong>
+            <v-row class="mt-3">
               <v-col cols="12" md="4">
                 <v-menu
                   ref="menu"
@@ -282,12 +291,18 @@
                 ></v-text-field>
               </v-col>
             </v-row>
-            <v-row>
-              <v-divider></v-divider>
-            </v-row>
-            <v-row class="mt-5">
-              <strong class="title">Contact Details:</strong>
-            </v-row>
+          </v-card-text>
+        </v-card>
+
+        <v-card flat outlined rounded="lg" elevation="3" class="mt-5">
+          <v-card-title>
+            <strong class="title">
+              <v-icon color="primary" class="ma-2">mdi-phone</v-icon>
+              Contact Details:</strong
+            >
+          </v-card-title>
+
+          <v-card-text class="px-5">
             <v-row>
               <v-col cols="12" md="4">
                 <validation-provider
@@ -378,15 +393,20 @@
                 ></v-text-field>
               </v-col>
             </v-row>
+          </v-card-text>
+        </v-card>
+
+        <v-card flat outlined rounded="lg" elevation="3" class="mt-5">
+          <v-card-title>
+            <strong class="title ml-2">
+              <v-icon color="primary" class="ma-2">mdi-home-circle</v-icon>
+              Address:</strong
+            >
+          </v-card-title>
+          <v-card-text class="px-5">
             <v-row>
-              <v-divider></v-divider>
-            </v-row>
-            <v-row class="mt-5">
-              <strong class="title">Address:</strong>
-            </v-row>
-            <v-row class="mt-5">
               <v-col cols="12" md="6">
-                <v-card outlined elevation="3" class="px-5">
+                <v-card outlined rounded="xl" flat class="px-5">
                   <v-card-title> Permanent Address </v-card-title>
 
                   <v-card-text class="mt-3">
@@ -504,7 +524,7 @@
               </v-col>
 
               <v-col cols="12" md="6">
-                <v-card outlined elevation="3" class="px-5">
+                <v-card outlined flat rounded="xl" class="px-5">
                   <v-card-title> Temporary Address </v-card-title>
 
                   <v-card-text class="mt-3">
@@ -622,12 +642,17 @@
                 </v-card>
               </v-col>
             </v-row>
-            <v-row>
-              <v-divider></v-divider>
-            </v-row>
-            <v-row class="mt-5">
-              <strong class="title">Family Details:</strong>
-            </v-row>
+          </v-card-text>
+        </v-card>
+
+        <v-card flat outlined rounded="lg" elevation="3" class="mt-5">
+          <v-card-title>
+            <strong class="title">
+              <v-icon color="primary" class="ma-2">mdi-family-tree</v-icon>
+              Family Details:</strong
+            >
+          </v-card-title>
+          <v-card-text class="px-5">
             <v-row>
               <v-col cols="12" md="8">
                 <v-text-field
@@ -726,24 +751,27 @@
                 </validation-provider>
               </v-col>
             </v-row>
-            <v-row>
-              <v-divider></v-divider>
-            </v-row>
-            <v-row class="mt-5">
-              <strong class="title"
-                >Working Experience:
-                <v-btn
-                  class="mx-2"
-                  fab
-                  dark
-                  x-small
-                  color="indigo"
-                  @click="addwork_experience"
-                >
-                  <v-icon dark> mdi-plus </v-icon>
-                </v-btn></strong
+          </v-card-text>
+        </v-card>
+
+        <v-card flat outlined rounded="lg" elevation="3" class="mt-5">
+          <v-card-title>
+            <strong class="title">
+              <v-icon color="primary" class="ma-2">mdi-account-clock</v-icon>
+              Working Experience:
+              <v-btn
+                class="mx-2"
+                fab
+                dark
+                x-small
+                color="indigo"
+                @click="addwork_experience"
               >
-            </v-row>
+                <v-icon dark> mdi-plus </v-icon>
+              </v-btn></strong
+            >
+          </v-card-title>
+          <v-card-text>
             <v-row>
               <v-col cols="12">
                 <v-simple-table>
@@ -797,24 +825,27 @@
                 </v-simple-table>
               </v-col>
             </v-row>
-            <v-row>
-              <v-divider></v-divider>
-            </v-row>
-            <v-row class="mt-5">
-              <strong class="title"
-                >Qualification Details:
-                <v-btn
-                  class="mx-2"
-                  fab
-                  dark
-                  x-small
-                  color="indigo"
-                  @click="addQualification"
-                >
-                  <v-icon dark> mdi-plus </v-icon>
-                </v-btn></strong
+          </v-card-text>
+        </v-card>
+
+        <v-card flat outlined rounded="lg" elevation="3" class="mt-5">
+          <v-card-title>
+            <strong class="title">
+              <v-icon color="primary" class="ma-2">mdi-school</v-icon>
+              Qualification Details:
+              <v-btn
+                class="mx-2"
+                fab
+                dark
+                x-small
+                color="indigo"
+                @click="addQualification"
               >
-            </v-row>
+                <v-icon dark> mdi-plus </v-icon>
+              </v-btn></strong
+            >
+          </v-card-title>
+          <v-card-text>
             <v-row>
               <v-col cols="12">
                 <v-simple-table>
@@ -878,24 +909,27 @@
                 </v-simple-table>
               </v-col>
             </v-row>
-            <v-row>
-              <v-divider></v-divider>
-            </v-row>
-            <v-row class="mt-5">
-              <strong class="title"
-                >Special Trainings (If Any):
-                <v-btn
-                  class="mx-2"
-                  fab
-                  dark
-                  x-small
-                  color="indigo"
-                  @click="addTraining"
-                >
-                  <v-icon dark> mdi-plus </v-icon>
-                </v-btn></strong
+          </v-card-text>
+        </v-card>
+
+        <v-card flat outlined rounded="lg" elevation="3" class="mt-5">
+          <v-card-title>
+            <strong class="title">
+              <v-icon color="primary" class="ma-2">mdi-bullseye-arrow</v-icon>
+              Special Trainings (If Any):
+              <v-btn
+                class="mx-2"
+                fab
+                dark
+                x-small
+                color="indigo"
+                @click="addTraining"
               >
-            </v-row>
+                <v-icon dark> mdi-plus </v-icon>
+              </v-btn></strong
+            >
+          </v-card-title>
+          <v-card-text>
             <v-row>
               <v-col cols="12">
                 <v-simple-table>
@@ -950,59 +984,56 @@
                 </v-simple-table>
               </v-col>
             </v-row>
-            <v-row class="mt-5">
+
+            <v-card-text>
               <strong>
                 Achievements if any, in School/ College or Working Organizations
               </strong>
-            </v-row>
-            <v-row class="mt-5">
               <v-textarea
                 solo
+                class="mt-3"
                 name="input-7-4"
                 label="Enter details if any......."
                 v-model="form_fields.acheivements"
               ></v-textarea>
-            </v-row>
-            <v-row class="mt-5">
-              <strong class="text-decoration-underline"> Declaration </strong>
-            </v-row>
-            <v-row>
-              <v-checkbox v-model="checkbox">
-                <template v-slot:label>
-                  <div class="mt-4">
-                    I declare that I have read all instruction provided by
-                    SAARCMC and the information provided by me is true and
-                    complete in every part. I understand, that is my
-                    responsibility to provide all necessary documents to support
-                    my application.
-                  </div>
-                </template>
-              </v-checkbox>
-            </v-row>
-            <v-row>
-              I acknowledge that the SAARC Medical Cooperation (SAARCMC)
-              management reserve the right to verify or reserve any decision
-              regarding my Membership. I have read and understood the SAARCMC
-              rules and regulation and stated in the rules book and the
-              condition there of and I promise to abide by the said rules and
-              regulation.
-            </v-row>
-
-            <v-row align="center" justify="space-around">
-              <v-divider></v-divider>
-
-              <v-card-actions class="justify-end mt-3">
-                <v-btn @click="apply" color="primary" :loading="loading">
-                  Apply
-                  <v-icon right>mdi-content-save</v-icon>
-                </v-btn>
-                <v-btn depressed color="error" @click="checkloader">
-                  Cancel
-                </v-btn>
-              </v-card-actions>
-            </v-row>
+            </v-card-text>
           </v-card-text>
         </v-card>
+
+        <v-card-text>
+          <strong class="text-decoration-underline"> Declaration </strong>
+
+          <v-row>
+            <v-checkbox v-model="checkbox">
+              <template v-slot:label>
+                <div class="mt-4">
+                  I declare that I have read all instruction provided by SAARCMC
+                  and the information provided by me is true and complete in
+                  every part. I understand, that is my responsibility to provide
+                  all necessary documents to support my application.
+                </div>
+              </template>
+            </v-checkbox>
+          </v-row>
+          <v-row>
+            I acknowledge that the SAARC Medical Cooperation (SAARCMC)
+            management reserve the right to verify or reserve any decision
+            regarding my Membership. I have read and understood the SAARCMC
+            rules and regulation and stated in the rules book and the condition
+            there of and I promise to abide by the said rules and regulation.
+          </v-row>
+        </v-card-text>
+
+        <v-card-actions class="justify-end mt-3">
+          <v-btn @click="apply" color="primary" :loading="loading">
+            Apply
+            <v-icon right>mdi-content-save</v-icon>
+          </v-btn>
+          <v-btn depressed color="error" @click="checkloader">
+            Cancel
+            <v-icon right>mdi-close-circle-outline</v-icon>
+          </v-btn>
+        </v-card-actions>
       </v-card-text>
     </v-card>
     <VueFbCustomerChat />

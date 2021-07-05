@@ -7,8 +7,11 @@
       ></v-avatar>
 
       <v-tabs centered class="ml-n9" color="grey darken-1">
-        <v-tab> Dashboard </v-tab>
-        <v-tab @click="logout"> Logout </v-tab>
+        <v-tab> <v-icon left> mdi-view-dashboard </v-icon> Dashboard </v-tab>
+        <v-tab @click="logout">
+          <v-icon left> mdi-logout-variant </v-icon>
+          Logout
+        </v-tab>
       </v-tabs>
 
       <v-avatar
@@ -20,17 +23,15 @@
       </v-avatar>
     </v-app-bar>
 
-    <v-main class="grey lighten-3">
-      <v-container>
-        <v-row>
-          <v-col>
-            <v-sheet min-height="70vh" rounded="lg">
-              <!--  -->
-              <Home />
-            </v-sheet>
-          </v-col>
-        </v-row>
-      </v-container>
+    <v-main class="grey lighten-3 px-5">
+      <v-row>
+        <v-col>
+          <v-sheet min-height="70vh" rounded="lg">
+            <!--  -->
+            <Home />
+          </v-sheet>
+        </v-col>
+      </v-row>
     </v-main>
   </v-app>
 </template>
