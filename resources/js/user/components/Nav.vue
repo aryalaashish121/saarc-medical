@@ -7,9 +7,8 @@
       ></v-avatar>
 
       <v-tabs centered class="ml-n9" color="grey darken-1">
-        <v-tab v-for="link in links" :key="link">
-          {{ link }}
-        </v-tab>
+        <v-tab> Dashboard </v-tab>
+        <v-tab @click="logout"> Logout </v-tab>
       </v-tabs>
 
       <v-avatar
@@ -42,8 +41,24 @@ export default {
   components: {
     Home,
   },
-  data: () => ({
-    links: ["Dashboard", "Messages", "Profile", "Updates"],
-  }),
+  data() {},
+  methods: {
+    logout(evt) {
+      if (confirm("Are you sure you want to log out?")) {
+        axios
+          .get("logout")
+          .then((response) => {
+            localStorage.removeItem("auth_token");
+            delete axios.defaults.headers.common["Authorization"];
+            this.$router.go("/login");
+          })
+          .catch((error) => {
+            localStorage.removeItem("auth_token");
+            delete axios.defaults.headers.common["Authorization"];
+            this.$router.go("/login");
+          });
+      }
+    },
+  },
 };
 </script>
