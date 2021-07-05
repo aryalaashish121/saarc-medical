@@ -12,7 +12,25 @@ const routes = [
         path: '/dashboard',
         name: 'admin.dashboard',
         component: require('./admin/dashboard/Home').default
-    }
+    },
+    {
+        path: '/admin/members',
+        name: 'admin.members',
+        component: require('./admin/members/Members').default
+    },
+    {
+        path: '/admin/trash',
+        name: 'admin.trash',
+        component: require('./admin/members/Trash').default
+    },
+
+    {
+        path: '/admin/logout',
+        name: 'admin.logout',
+        component: require('./admin/dashboard/logout').default
+    },
+
+
 ];
 const router = new Router({
     routes,

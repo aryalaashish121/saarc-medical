@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Nav />
+
     <ViewMembers ref="viewMembers"></ViewMembers>
 
     <v-data-table
@@ -138,7 +138,7 @@
 import axios from "axios";
 import ViewMembers from "./View.vue";
 export default {
-  name: "Trash",
+ 
   components: { ViewMembers },
   data() {
     return {

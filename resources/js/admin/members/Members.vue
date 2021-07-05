@@ -1,8 +1,5 @@
 <template>
-
   <div>
-    <Nav />
-    <router-link to="/trash">Trash</router-link>
     <ViewMembers ref="viewMembers"></ViewMembers>
 
     <v-snackbar v-model="snackbar" :timeout="5000">

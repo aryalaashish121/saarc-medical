@@ -10,16 +10,16 @@ const routes = [
     {
         path: '/dashboard',
         name: 'admin.dashboard',
-        component: require('./Admin.vue').default
+        component: require('./members/Members.vue').default
     },
     {
-        path: '/members',
-        name: 'Members',
+        path: '/admin/members',
+        name: 'admin.members',
         component: require('./members/Members.vue').default
     },
     {
         path: '/admin/trash',
-        name: 'Trash',
+        name: 'admin.trash',
         component: require('./members/Trash.vue').default
     },
 ];

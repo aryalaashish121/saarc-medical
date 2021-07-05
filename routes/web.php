@@ -53,4 +53,4 @@ Route::get('/get-district-data',[DistrictController::class,'index']);
 Route::get('/get-membership-type-data',[MembershipTypeController::class,'index']);
 
 Route::post('/members/apply',[Membercontroller::class,'store']);
-Route::get('logout', [LogoutController::class,'logout']);
+Route::get('/logout', [LogoutController::class,'logout']);
