@@ -1,31 +1,32 @@
 <template>
-  <div>
+  <div class="px-2">
+    <v-card outlined class="px-5" rounded="lg" elevation="4">
+      <ViewMembers ref="viewMembers"></ViewMembers>
 
-    <ViewMembers ref="viewMembers"></ViewMembers>
+      <v-data-table
+        :headers="headers"
+        :loading="isLoading"
+        :items="trashmembersList"
+        item-key="id"
+        :server-items-length="trashtotalMembers"
+        show-select
+        :options.sync="options"
+        :items-per-page="15"
+        class="elevation-0 mt-4 rounded-lg p-6"
+        loading-text="Loading members requests data .."
+        :footer-props="{
+          showFirstLastPage: true,
+          firstIcon: 'mdi-arrow-collapse-left',
+          lastIcon: 'mdi-arrow-collapse-right',
+          itemsPerPageOptions: [5, 10, 15],
+        }"
+      >
+        <template v-slot:top>
+          <v-toolbar flat>
+            <v-toolbar-title> Rejected Memberships </v-toolbar-title>
+            <v-divider class="mx-4" inset vertical></v-divider>
 
-    <v-data-table
-      :headers="headers"
-      :loading="isLoading"
-      :items="trashmembersList"
-      item-key="id"
-      :server-items-length="trashtotalMembers"
-      show-select
-      :options.sync="options"
-      :items-per-page="15"
-      class="elevation-0 mt-4 rounded-lg p-6"
-      loading-text="Loading members requests data .."
-      :footer-props="{
-        showFirstLastPage: true,
-        firstIcon: 'mdi-arrow-collapse-left',
-        lastIcon: 'mdi-arrow-collapse-right',
-        itemsPerPageOptions: [5, 10, 15],
-      }"
-    >
-      <template v-slot:top>
-        <v-toolbar flat>
-          <v-row no-gutters> Members Trash </v-row>
-          <v-row no-gutters>
-            <v-col cols="12" md="2">
+            <v-col cols="12" md="2" sm="2">
               <v-text-field
                 class="flex mr-2 mt-6"
                 outlined
@@ -35,7 +36,7 @@
               ></v-text-field>
             </v-col>
 
-            <v-col cols="12" md="3">
+            <v-col cols="12" md="2" sm="2">
               <v-text-field
                 class="flex mr-2 mt-6"
                 outlined
@@ -45,7 +46,7 @@
               ></v-text-field>
             </v-col>
 
-            <v-col cols="12" md="2">
+            <v-col cols="12" md="2" sm="2">
               <v-autocomplete
                 class="ml-2 mt-6"
                 outlined
@@ -59,7 +60,7 @@
                 :clearable="true"
               ></v-autocomplete>
             </v-col>
-            <v-col cols="12" md="2">
+            <v-col cols="12" md="2" sm="2">
               <v-autocomplete
                 class="ml-2 mt-6"
                 outlined
@@ -73,72 +74,81 @@
                 :clearable="true"
               ></v-autocomplete>
             </v-col>
-          </v-row>
 
-          <v-spacer></v-spacer>
+            <v-spacer></v-spacer>
+
+            <v-btn
+              fab
+              dark
+              x-small
+              class="ml-2 orange elevation-1"
+              @click="loadMembers"
+            >
+              <v-icon>mdi-refresh</v-icon>
+            </v-btn>
+
+            <v-btn fab dark x-small class="ml-2 green elevation-1">
+              <v-icon>mdi-export-variant</v-icon>
+            </v-btn>
+          </v-toolbar>
+        </template>
+        <template v-slot:[`item.full_name`]="{ item }">
+          {{ item.first_name_en }} {{ item.last_name_en }}
+        </template>
+        <template v-slot:[`item.address`]="{ item }">
+          {{ item.p_municipality }}-{{ item.p_ward_no }},
+          {{ item.p_village_name }}
+        </template>
+        <template v-slot:[`item.is_aproved`]="{ item }">
+          <v-switch
+            v-model="item.status"
+            color="green"
+            readonly
+            inset
+          ></v-switch>
+        </template>
+        <template v-slot:[`item.status`]="{ item }">
+          <v-switch
+            v-model="item.status"
+            color="green"
+            readonly
+            inset
+          ></v-switch>
+        </template>
+
+        <template v-slot:[`item.actions`]="{ item }">
+          <v-btn
+            @click="viewMemberDetails(item.id)"
+            outlined
+            small
+            color="primary"
+            icon
+          >
+            <v-icon small dark> mdi-eye-outline </v-icon>
+          </v-btn>
 
           <v-btn
-            fab
-            dark
-            x-small
-            class="ml-2 orange elevation-1"
-            @click="loadMembers"
+            @click="restorMember(item.id)"
+            outlined
+            small
+            color="success"
+            icon
           >
-            <v-icon>mdi-refresh</v-icon>
+            <v-icon small dark> mdi-pencil-outline </v-icon>
           </v-btn>
 
-          <v-btn fab dark x-small class="ml-2 green elevation-1">
-            <v-icon>mdi-export-variant</v-icon>
+          <v-btn outlined small icon color="error">
+            <v-icon dark small> mdi-delete-outline </v-icon>
           </v-btn>
-        </v-toolbar>
-      </template>
-      <template v-slot:[`item.full_name`]="{ item }">
-        {{ item.first_name_en }} {{ item.last_name_en }}
-      </template>
-      <template v-slot:[`item.address`]="{ item }">
-        {{ item.p_municipality }}-{{ item.p_ward_no }},
-        {{ item.p_village_name }}
-      </template>
-      <template v-slot:[`item.is_aproved`]="{ item }">
-        <v-switch v-model="item.status" color="green" readonly inset></v-switch>
-      </template>
-      <template v-slot:[`item.status`]="{ item }">
-        <v-switch v-model="item.status" color="green" readonly inset></v-switch>
-      </template>
-
-      <template v-slot:[`item.actions`]="{ item }">
-        <v-btn
-          @click="viewMemberDetails(item.id)"
-          outlined
-          small
-          color="primary"
-          icon
-        >
-          <v-icon small dark> mdi-eye-outline </v-icon>
-        </v-btn>
-
-        <v-btn
-          @click="restorMember(item.id)"
-          outlined
-          small
-          color="success"
-          icon
-        >
-          <v-icon small dark> mdi-pencil-outline </v-icon>
-        </v-btn>
-
-        <v-btn outlined small icon color="error">
-          <v-icon dark small> mdi-delete-outline </v-icon>
-        </v-btn>
-      </template>
-    </v-data-table>
+        </template>
+      </v-data-table>
+    </v-card>
   </div>
 </template>
 <script>
 import axios from "axios";
 import ViewMembers from "./View.vue";
 export default {
- 
   components: { ViewMembers },
   data() {
     return {
