@@ -6,22 +6,22 @@ Vue.use(Router);
 const routes = [
     {
         path: '/',
-        redirect: '/home'
+        redirect: '/dashboard'
     },
     {
-        path: '/home',
-        name: 'admin.dashboard',
+        path: '/dashboard',
+        name: 'user.dashboard',
         component: require('./user/dashboard/Home').default
     },
     {
-        path: '/admin/members',
-        name: 'admin.members',
-        component: require('./admin/members/Members').default
+        path: '/user/apply',
+        name: 'user.apply',
+        component: require('./user/Membership/Apply').default
     },
     {
-        path: '/admin/trash',
-        name: 'admin.trash',
-        component: require('./admin/members/Trash').default
+        path: '/user/reapply',
+        name: 'membership.edit',
+        component: require('./user/Membership/Edit').default
     },
 
 
@@ -30,8 +30,6 @@ const routes = [
 ];
 const router = new Router({
     routes,
-    mode: 'history',
-
 });
 
 export default router;

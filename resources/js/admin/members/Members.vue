@@ -68,7 +68,7 @@
                 :clearable="true"
               ></v-autocomplete>
             </v-col>
-            <v-col cols="12" md="2">
+            <!-- <v-col cols="12" md="2">
               <v-autocomplete
                 class="ml-2 mt-6"
                 outlined
@@ -81,23 +81,7 @@
                 :allow-overflow="false"
                 :clearable="true"
               ></v-autocomplete>
-            </v-col>
-
-            <!-- 
-              <v-col cols="12" md="2">
-                <v-autocomplete
-                  class="ml-2 mt-6"
-                  outlined
-                  v-model="filters.section"
-                  :items="sectionList"
-                  item-text="name"
-                  item-value="id"
-                  dense
-                  label="Section"
-                  :allow-overflow="false"
-                  :clearable="true"
-                ></v-autocomplete>
-              </v-col> -->
+            </v-col> -->
           </v-row>
 
           <v-spacer></v-spacer>
@@ -212,7 +196,7 @@ export default {
         name: "",
         status: "",
         application_no: "",
-        memberstatus: "",
+        memberstatus: true,
       },
       filterStatusItems: [
         { text: "Active", value: true },

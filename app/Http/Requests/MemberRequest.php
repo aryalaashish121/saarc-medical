@@ -35,7 +35,7 @@ class MemberRequest extends FormRequest
         'member_details.religion'=>'required',
         'member_details.nationality'=>'required',
         'member_details.country_code'=>'required',
-        'member_details.mobile'=>'required',
+        'member_details.mobile'=>'required|unique:members,mobile,except,id',
         'member_details.aux_mobile'=>'',
         'member_details.email'=>'required',
         'member_details.website'=>'',

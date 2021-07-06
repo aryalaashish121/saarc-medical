@@ -1,8 +1,9 @@
 <template>
   <div>
+ 
     <ViewMembers ref="viewMembers"></ViewMembers>
 
-    <v-snackbar v-model="snackbar" :timeout="5000">
+    <!-- <v-snackbar v-model="snackbar" :timeout="5000">
       {{ snackbar_text }}
 
       <template v-slot:action="{ attrs }">
@@ -10,9 +11,11 @@
           Close
         </v-btn>
       </template>
-    </v-snackbar>
-   
-
+    </v-snackbar> -->
+     
+<v-btn @click="snackbarcheck">check snackbar </v-btn>
+ <Report />
+ 
     <v-data-table
       :headers="headers"
       :loading="isLoading"
@@ -31,9 +34,11 @@
         itemsPerPageOptions: [5, 10, 15],
       }"
     >
+   
       <template v-slot:top>
         <v-toolbar flat>
-          <v-row no-gutters> Members </v-row>
+         <v-toolbar-title>Members</v-toolbar-title>
+        <v-spacer></v-spacer>
           <v-row no-gutters>
             <v-col cols="12" md="2">
               <v-text-field
@@ -83,22 +88,6 @@
                 :clearable="true"
               ></v-autocomplete>
             </v-col>
-
-            <!-- 
-              <v-col cols="12" md="2">
-                <v-autocomplete
-                  class="ml-2 mt-6"
-                  outlined
-                  v-model="filters.section"
-                  :items="sectionList"
-                  item-text="name"
-                  item-value="id"
-                  dense
-                  label="Section"
-                  :allow-overflow="false"
-                  :clearable="true"
-                ></v-autocomplete>
-              </v-col> -->
           </v-row>
 
           <v-spacer></v-spacer>
@@ -171,16 +160,17 @@
   </div>
 </template>
 <script >
+import Report from './Report.vue';
 import axios from "axios";
 import ViewMembers from "../members/View.vue";
 import _ from 'lodash';
 export default {
   name: "Members",
-  components: { ViewMembers },
+  components: { ViewMembers , Report},
   data() {
     return {
-      snackbar: false,
-      snackbar_text: "",
+      // snackbar: false,
+      // snackbar_text: "",
       membersList: [],
       isLoading: false,
       options: {},
@@ -328,6 +318,7 @@ export default {
       const self = this;
       console.log("Delete data...");
       self.url = "/members";
+
       let response = await axios.delete(`${self.url}/${_id}`);
       console.log(response);
       self.loadMembers();
@@ -336,7 +327,12 @@ export default {
       const self = this;
       self.$refs.viewMembers.view(_id);
     },
-   
+   snackbarcheck(){
+     self.$store.commit("showSnackbar", {
+          message: "Testing snackbar...",
+          color: true,
+        });
+   }
     //    async save() {
     //   const self = this;
     //   self.loading = false;

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MemberRequest;
 use App\Models\Member;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -83,34 +84,43 @@ class Membercontroller extends Controller
      */
     public function store(MemberRequest $request)
     {
-        $work_experiences = $request->work_experiences;
-        $qualifications=$request->qualifications;
-        $trainings = $request->trainings;
-        $data_to_insert = [];
-        $data_to_insert = $request->member_details;
-        $data_to_insert['application_no'] = 55115;
-        $data_to_insert['created_at']=Carbon::now();
-        $member_request = Member::create($data_to_insert);
+        try{
+        DB::beginTransaction();
+            $work_experiences = $request->work_experiences;
+            $qualifications=$request->qualifications;
+            $trainings = $request->trainings;
+            $data_to_insert = [];
+            $data_to_insert = $request->member_details;
+            $data_to_insert['application_no'] = 52125;
+            $data_to_insert['created_at']=Carbon::now();
+            $member_request = Member::create($data_to_insert);
 
-        foreach($work_experiences as $experience){
-        //validation
-        //Store
-        $experience['member_id'] = $member_request->id;
-        DB::table('members_work_experience')->insert($experience);
-        }
-        foreach($qualifications as $qualification){
-        //validation
-        //Store
-        $qualification['member_id'] = $member_request->id;
-        DB::table('members_qualifications')->insert($qualification);
-        }
-        foreach($trainings as $training){
-        //validation
-        //Store
-        $training['member_id'] = $member_request->id;
-        $training['is_training'] = true;
-        DB::table('members_qualifications')->insert($training);
-        }
+            foreach($work_experiences as $experience){
+            //validation
+            //Store
+            $experience['member_id'] = $member_request->id;
+            DB::table('members_work_experience')->insert($experience);
+            }
+            foreach($qualifications as $qualification){
+            //validation
+            //Store
+            $qualification['member_id'] = $member_request->id;
+            DB::table('members_qualifications')->insert($qualification);
+            }
+            foreach($trainings as $training){
+            //validation
+            //Store
+            $training['member_id'] = $member_request->id;
+            $training['is_training'] = true;
+            DB::table('members_qualifications')->insert($training);
+            }
+           DB::commit();
+           return ['message'=>'Membership application recevied.'];
+
+           }catch(Exception $err){
+           DB::rollBack();
+           return $err;
+           }
     }
 
     /**

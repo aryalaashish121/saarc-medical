@@ -33,6 +33,7 @@ Vue.use(VueProgressBar, {
     inverse: false
 })
 
+
 const admin = new Vue({
     eventBus,
     router,

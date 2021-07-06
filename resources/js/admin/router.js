@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+window.Vue = Vue;
 Vue.use(Router);
 
 const routes = [
@@ -10,28 +11,30 @@ const routes = [
     {
         path: '/dashboard',
         name: 'admin.dashboard',
-        component: require('./members/Members.vue').default
-    },
-    {
-        path: '/home',
-        name: 'admin.dashboard',
-        component: require('./members/Members.vue').default
+        component: require('./dashboard/Home').default
     },
     {
         path: '/admin/members',
         name: 'admin.members',
-        component: require('./members/Members.vue').default
+        component: require('./members/Members').default
     },
     {
         path: '/admin/trash',
         name: 'admin.trash',
-        component: require('./members/Trash.vue').default
+        component: require('./members/Trash').default
     },
+    {
+        path: '/admin/membership/request',
+        name: 'admin.member-request',
+        component: require('./members/Request').default
+    },
+
+
 ];
 const router = new Router({
     routes,
-    mode: 'history',
-    base: process.env.BASE_URL,
+    // mode: 'history',
+    // base: process.env.BASE_URL,
     // mode: 'history',
 
 });

@@ -20,6 +20,15 @@
               </v-list-item-content>
               
           </v-list-item>
+          <v-list-item link exact :to="{ name: 'admin.member-request' }">
+            
+            <v-list-item-action>
+                <v-icon>mdi-account-group</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+                <v-list-item-title>Members Request</v-list-item-title>
+            </v-list-item-content>
+        </v-list-item>
           <v-list-item link exact :to="{ name: 'admin.members' }">
             
               <v-list-item-action>
