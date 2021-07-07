@@ -115,7 +115,7 @@ class Membercontroller extends Controller
             DB::table('members_qualifications')->insert($training);
             }
            DB::commit();
-           return ['message'=>'Membership application recevied.'];
+           return ['status'=>true,'message'=>'Membership application recevied.'];
 
            }catch(Exception $err){
            DB::rollBack();
@@ -147,9 +147,25 @@ class Membercontroller extends Controller
      * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function edit(Member $member)
+    public function edit($id)
     {
-        //
+       $check = Member::findOrFail($id);
+       if($check){
+       $data = [];
+       $data = Member::where('id',$id)->first();
+       $data['experiences'] = DB::table('members_work_experience')
+       ->get();
+
+       $data['qualifications'] = DB::table('members_qualifications')
+       ->where('member_id',$id)->where('id',$id)->where(['is_training'=>false])->get();
+
+       $data['trainings'] = DB::table('members_qualifications')
+       ->where('member_id',$id)
+       ->where(['is_training'=>true])->get();
+
+       return ['status'=>true,'data'=>$data];
+       }
+       return ['status'=>false,'message'=>"Membership application not found.."];
     }
 
     /**
@@ -159,9 +175,9 @@ class Membercontroller extends Controller
      * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Member $member)
+    public function update(Request $request, $id)
     {
-        //
+        // return ['status'=>true,'message'=>"Checking for update"];
     }
 
     /**

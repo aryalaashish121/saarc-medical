@@ -1,5 +1,9 @@
+<?php
+$checkmembership = App\Models\Member::where('user_id',Auth::user()->id)->get()->first();
+?>
 <div id="app">
     <template>
+   
         <v-app id="inspire">
             <v-app-bar app color="white" flat>
                 <v-avatar :color="$vuetify.breakpoint.smAndDown ? 'grey darken-1' : 'transparent'" size="32"></v-avatar>
@@ -9,10 +13,12 @@
                         <v-icon left> mdi-view-dashboard </v-icon>
                         Dashboard
                     </v-tab>
-                    <v-tab link exact :to="{ name: 'user.apply' }">
+                    @if(!$checkmembership)
+                    <v-tab link exact :to="{ name: 'user.apply' }" >
                         <v-icon left> mdi-account-check </v-icon>
                         Apply
                     </v-tab>
+                    @endif
                     <v-tab link @click="clickLogout('{{ route('logout') }}','{{ url('/login') }}')">
                         <v-icon left> mdi-logout-variant </v-icon>
                         Logout

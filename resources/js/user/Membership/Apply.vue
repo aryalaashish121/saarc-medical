@@ -1104,6 +1104,7 @@ export default {
       ],
 
       form_fields: {
+        membership_type:"",
         is_aproved: false,
         first_name_en: "",
         last_name_en: "",

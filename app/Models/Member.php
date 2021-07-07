@@ -10,7 +10,7 @@ class Member extends Model
     use HasFactory;
     protected $table = 'members';
     protected $fillable = [
-        'application_no','is_aproved',
+        'application_no','is_aproved','membership_type',
         'first_name_en','middle_name_en','last_name_en','dob_bs','dob_ad',
         'gender','religion','nationality','country_code','mobile','aux_mobile',
         'email','website','image',

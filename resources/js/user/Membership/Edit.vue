@@ -1,6 +1,14 @@
 <template>
+     <v-dialog
+          v-model="dialog"
+          fullscreen
+          persistent
+          scrollable
+          hide-overlay
+          transition="dialog-bottom-transition"
+        >
+
   <div class="pa-5">
- 
     <v-card class="mt-3" rounded="lg">
       <v-card-title>
         <v-row>
@@ -58,10 +66,12 @@
           <v-col cols="12" sm="12" md="4">
             <v-text-field
               outlined
-              clearable
+             
               prepend-inner-icon="mdi-newspaper-variant-outline"
+              v-model="form_fields.application_no"
               label="Application Number"
               type="number"
+              readonly
               dense
             ></v-text-field
           ></v-col>
@@ -806,25 +816,26 @@
                       <th class="text-left sybtitle-2">Grade/%</th>
                       <th class="text-left sybtitle-2">Completed Year</th>
                     </tr>
-                     <tr v-for="(qualification, index) in qualifications" :key="index">  
+                     <tr v-for="(qualification, index) in qualifications" 
+                     :key="qualification.id">  
                   <td class="text-left sybtitle-2">
                         {{index+1}}
                   </td>
                   
                    <td class="text-left sybtitle-2">
-                        <v-text-field v-model="qualification.univerisity_board"></v-text-field>
+                        <v-text-field v-model="qualifications[index].univerisity_board"></v-text-field>
                   </td>
                    <td class="text-left sybtitle-2">
-                        <v-text-field v-model="qualification.level"></v-text-field>
+                        <v-text-field v-model="qualifications[index].level"></v-text-field>
                   </td>
                    <td class="text-left sybtitle-2">
-                        <v-text-field v-model="qualification.degree"></v-text-field>
+                        <v-text-field v-model="qualifications[index].degree"></v-text-field>
                   </td>
                   <td class="text-left sybtitle-2">
-                        <v-text-field v-model="qualification.grade"></v-text-field>
+                        <v-text-field v-model="qualifications[index].grade"></v-text-field>
                   </td>
                   <td class="text-left sybtitle-2">
-                        <v-text-field v-model="qualification.completed_year"></v-text-field>
+                        <v-text-field v-model="qualifications[index].completed_year"></v-text-field>
                   </td>
                   <td class="text-left sybtitle-2">
                         <v-btn  class="mx-2" fab dark x-small color="error" @click="deleteQualification(index)"><v-icon dark> mdi-minus </v-icon></v-btn>
@@ -934,7 +945,7 @@
         <v-card-actions class="justify-end mt-3 ">
        
           <v-btn
-           @click="apply"
+           @click="update(form_fields.id)"
             color="primary"
             :loading="loading"
           >
@@ -944,7 +955,7 @@
             <v-btn
       depressed
       color="error"
-      @click="checkloader"
+      @click="dialog=false"
     >
       Cancle
     </v-btn>
@@ -955,8 +966,10 @@
         </v-card>
       </v-card-text>
     </v-card>
-    <VueFbCustomerChat />
+    
   </div>
+
+    </v-dialog>
 </template>
 
 <script>
@@ -971,11 +984,12 @@ export default {
       date: null,
       menu: false,
       name:"",
-     
+      dialog:false,
       provinceListItems:[],
       districtListItems:[],
       membershiptypeList:[],
       training:[],
+      form_fields:[],
        row_count: 0,
        
         designation:[],
@@ -989,44 +1003,51 @@ export default {
         trainings:[{ univerisity_board:"",level:"", degree:"",grade:"",completed_year:"",is_training:true
         }],
         
-         
-      form_fields:{
-        is_aproved:false,
-        first_name_en:"",
-        last_name_en:"",
-        last_name_en:"",
-        dob_bs:"",
-        dob_ad:"",
-        gender:"",
-        religion:"",
-        nationality:"",
-        country_code:"",
-        mobile:"",
-        aux_mobile:"",
-        email:"",
-        website:"",
-        image:"",
-        p_state_id:"",
-        p_district_id:"",
-        p_municipality:"",
-        p_ward_no:"",
-        p_village_name:"",
-        t_state_id:"",
-        t_district_id:"",
-        t_municipality:"",
-        t_ward_no:"",
-        t_village_name:"",
-        is_same_address:false,
-        fathers_name:"",
-        fathers_phone_no:"",
-        fathers_occupation:"",
-        fathers_designation:"",
-        mothers_name:"",
-        mothers_phone_no:"",
-        mothers_occupation:"",
-        mothers_designation:"",
-        acheivements:"",
-      },
+         row_count:0,
+           qualification_count:0,
+           training_count : 0,
+           experience_count: 0,
+      // form_fields:{
+      //   application_no:"",
+      //   membership_type:"",
+      //   is_aproved:false,
+      //   first_name_en:"",
+      //   last_name_en:"",
+      //   last_name_en:"",
+      //   dob_bs:"",
+      //   dob_ad:"",
+      //   gender:"",
+      //   religion:"",
+      //   nationality:"",
+      //   country_code:"",
+      //   mobile:"",
+      //   aux_mobile:"",
+      //   email:"",
+      //   website:"",
+      //   image:"",
+      //   p_state_id:"",
+      //   p_district_id:"",
+      //   p_municipality:"",
+      //   p_ward_no:"",
+      //   p_village_name:"",
+      //   t_state_id:"",
+      //   t_district_id:"",
+      //   t_municipality:"",
+      //   t_ward_no:"",
+      //   t_village_name:"",
+      //   is_same_address:false,
+      //   fathers_name:"",
+      //   fathers_phone_no:"",
+      //   fathers_occupation:"",
+      //   fathers_designation:"",
+      //   mothers_name:"",
+      //   mothers_phone_no:"",
+      //   mothers_occupation:"",
+      //   mothers_designation:"",
+      //   acheivements:"",
+      //   experiences:{},
+      //   qualifications:{},
+      // },
      
       // members_work_experience:{
       //   organization_name:"",
@@ -1035,7 +1056,7 @@ export default {
       //   remark:"",
       // },
       
-  
+
       wardnoRules: [
         (v) => (v && v >= 1) || "Ward no. cannot be 0",
         (v) => (v && v <= 100) || "Max should not be above 100",
@@ -1049,17 +1070,35 @@ export default {
       val && setTimeout(() => (this.activePicker = "YEAR"));
     },
   },
-  created(){
-const self = this;
-    self.loadProvinces();
-    self.loadDistrict();
-    self.loadMembershipType();
+  
+  async created(){
+    const self = this;
+    await self.loadProvinces();
+    await self.loadDistrict();
+    await self.loadMembershipType();
   },
   mounted() {
-    
     console.log("User component mounted.");
   },
   methods: {
+    edit(_id){
+    const self = this;
+    self.url = '/members'
+    self.dialog = true;
+
+    axios.get(`${self.url}/${_id}/edit`).then((res)=>{
+        self.form_fields = res.data.data;
+        self.work_experience = res.data.data.experiences;
+       
+        self.qualifications = res.data.data.qualifications;
+          self.row_count = self.qualifications.length;
+        self.trainings = res.data.data.trainings;
+        console.log(self.form_fields);
+    }).catch((err)=>{
+        console.log(err);
+    });
+    console.log(_id);
+  },
     save(date) {
       this.$refs.menu.save(date);
     },
@@ -1068,12 +1107,11 @@ const self = this;
       console.log("Testing phase");
       self.$store.commit("showSnackbar", {
         message: "Please select the classroom...",
-        
       });
     },
+
     loadProvinces() {
       const self = this;
-     
       axios
         .get("get-state-data")
         .then(function (response) {
@@ -1123,15 +1161,20 @@ const self = this;
       const self = this;
       self.work_experience.splice(index, 1);
         if(index===0) self.work_experience();
+       
     },
     
      addQualification() {
       const self = this;
+        self.qualification_count = self.row_count+1;
         self.qualifications.push({ univerisity_board:"",level:"", degree:"",grade:"",completed_year:"",is_training:false });
-        console.log(self.qualifications);
+        console.log(self.qualifications[self.row_count]);
+    
+      
     },
      deleteQualification(index) {
       const self = this;
+      self.row_count = self.row_count - 1;
       self.qualifications.splice(index, 1);
         if(index===0) self.qualifications();
     },
@@ -1145,20 +1188,28 @@ const self = this;
       const self = this;
       self.trainings.splice(index, 1);
         if(index===0) self.trainings();
+         console.log("after deleted value");
+        console.log(self.trainings);
     },
     
 
-    async apply(){
+    async update(_id){
       const self = this;
       
-      self.url = "/members/apply";
+      self.url = "/members/edit";
       let membership = {
           member_details:self.form_fields,
           work_experiences:self.work_experience,
           qualifications:self.qualifications,
           trainings:self.trainings,
       };
-       let response = await axios.post(`${self.url}`, membership);
+       await axios.put(`${self.url}/${_id}`, membership)
+       .then((response)=>{
+         console.log(response)
+         alert(response.data.message);
+       }).catch((err)=>{
+         console.log(err);
+       })
        console.log("membership application data..");
        console.log(membership);  
     },
