@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule as ValidationRule;
 
 class MemberRequest extends FormRequest
 {
@@ -24,6 +25,7 @@ class MemberRequest extends FormRequest
     public function rules()
     {
         return [
+        'member_details.membership_type'=>'',
         'member_details.application_no'=>'',
         'member_details.is_aproved'=>'',
         'member_details.first_name_en'=>'required',
@@ -35,7 +37,7 @@ class MemberRequest extends FormRequest
         'member_details.religion'=>'required',
         'member_details.nationality'=>'required',
         'member_details.country_code'=>'required',
-        'member_details.mobile'=>'required|unique:members,mobile,except,id',
+        'member_details.mobile'=>'required',
         'member_details.aux_mobile'=>'',
         'member_details.email'=>'required',
         'member_details.website'=>'',

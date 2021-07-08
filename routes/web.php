@@ -7,6 +7,7 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\Membercontroller;
 use App\Http\Controllers\MembershipTypeController;
 use App\Http\Controllers\StateController;
+use App\Http\Controllers\UserController;
 use App\Models\Member;
 use App\Models\MembershipType;
 use Illuminate\Support\Facades\Auth;
@@ -44,6 +45,7 @@ Route::get('/members',[Membercontroller::class, 'index']);
 Route::get('/members/trash',[Membercontroller::class, 'trash']);
 Route::get('/members/{id}',[Membercontroller::class, 'show']);
 Route::get('members/restore/{id}',[Membercontroller::class,'restore']);
+Route::get('/members/{id}/edit',[Membercontroller::class,'edit']);
 
 Route::post('/members/manage', [Membercontroller::class,'manageMemberRequest'] );
 Route::post('update-member-status',[Membercontroller::class,'updateStatus']);
@@ -56,4 +58,7 @@ Route::get('/get-district-data',[DistrictController::class,'index']);
 Route::get('/get-membership-type-data',[MembershipTypeController::class,'index']);
 
 Route::post('/members/apply',[Membercontroller::class,'store']);
+Route::put('/members/edit/{id}',[Membercontroller::class,'update']);
+
 Route::get('/logout', [LogoutController::class,'logout']);
+Route::get('check-user',[UserController::class,'index']);
