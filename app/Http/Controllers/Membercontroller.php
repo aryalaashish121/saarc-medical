@@ -93,9 +93,10 @@ class Membercontroller extends Controller
             $qualifications=$request->qualifications;
             $trainings = $request->trainings;
             $data_to_insert = [];
-            $data_to_insert = $request->member_details;
-            $data_to_insert['application_no'] = 52125;
+            $data_to_insert = $request->validated();
+            $data_to_insert['application_no'] = 577255;
             $data_to_insert['created_at']=Carbon::now();
+            $data_to_insert['user_id']= Auth::user()->id;
             $member_request = Member::create($data_to_insert);
 
             foreach($work_experiences as $experience){
@@ -122,7 +123,8 @@ class Membercontroller extends Controller
 
            }catch(Exception $err){
            DB::rollBack();
-           return $err;
+           return ['status'=>false,'message'=>'Membership application could not be added. Please try
+           again!','errmsg'=>$err];
            }
     }
 

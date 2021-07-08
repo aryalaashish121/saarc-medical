@@ -1,7 +1,7 @@
 <template>
-  <div class="mt-5">
+  <div class="mt-3">
     <v-container class="py-10">
-      <v-card flat class="px-10 py-10">
+      <v-card flat class="px-10 py-2">
         <v-card-title
           class="justify-center display-1 font-weight-bold blue-grey--text"
         >

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-container class="mt-5">
+    <v-container class="mt-3">
       <v-card flat class="py-5">
         <v-row>
           <v-col cols="12" sm="12" md="6" lg="4">

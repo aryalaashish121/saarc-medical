@@ -39,6 +39,7 @@
         "vue-fb-customer-chat": "^0.2.0",
         "vue-progressbar": "^0.7.5",
         "vue-router": "^3.5.2",
+        "vue-toast-notification": "^0.6.2",
         "vuetify": "^2.5.6",
         "vuex": "^3.6.2"
     }

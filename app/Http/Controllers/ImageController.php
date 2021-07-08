@@ -27,4 +27,8 @@ class ImageController extends Controller
             return ['status'=>false,'message'=>"Failed to upload file...",'errmsg'=>$ex->getMessage()];
         }
     }
+    public function handleUpload(Request $request){
+    $image_path = $request->file('image')->store('images','public');
+    return $image_path;
+    }
 }

@@ -18,6 +18,10 @@ Vue.use(VueFbCustomerChat, {
     theme_color: '#333333', // theme color in HEX
     locale: 'en_US', // default 'en_US'
 })
+import VueToast from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-sugar.css';
+Vue.use(VueToast,
+    { position: 'top' });
 
 Vue.use(VueProgressBar, {
     color: '#42B883',

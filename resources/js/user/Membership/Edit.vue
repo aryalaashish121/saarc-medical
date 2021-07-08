@@ -92,22 +92,8 @@
           </v-col>
           <v-spacer></v-spacer>
           <v-col cols="12" sm="12" md="4">
-            <v-card flat>
-              <v-card-subtitle class="text-center">
-                <v-avatar class="profile" color="grey" size="164" tile>
-                  <v-img
-                    src="https://www.pngitem.com/pimgs/m/4-47626_art-beard-no-male-avatar-clipart-hd-png.png"
-                  ></v-img>
-                </v-avatar>
-              </v-card-subtitle>
-              <v-card-subtitle class="text-center">
-                  <upload-files></upload-files>
-                <v-btn small rounded class="primary">
-                  <v-icon left dark> mdi-camera </v-icon>
-                  Choose your photo
-                </v-btn>
-              </v-card-subtitle>
-            </v-card></v-col
+            <upload-profile></upload-profile>
+            </v-col
           >
         </v-row>
 
@@ -284,13 +270,16 @@
                 </validation-provider>
               </v-col>
               <v-col cols="12" md="4">
-                <v-text-field
-                  outlined
-                  label="Nationality"
-                  prepend-inner-icon="mdi-earth"
-                  dense
-                  v-model="form_fields.nationality"
-                ></v-text-field>
+                <v-autocomplete
+                    outlined
+                    :items="nationalityList"
+                    item-value="id"
+                    item-text="name"
+                    label="Nationality"
+                    prepend-inner-icon="mdi-earth"
+                    dense
+                    v-model="form_fields.nationality"
+                  ></v-autocomplete>
               </v-col>
               <v-col cols="12" md="4">
                 <v-text-field
@@ -414,21 +403,41 @@
                        <v-col cols="6" sm="1" md="12">
                      <validation-provider
                             rules="required"
-                            name="State "
+                            name="Country "
                             v-slot="{ errors, valid }"
                           >
                             <v-autocomplete
                               :error-messages="errors"
                               :success="valid"
-                              :items="provinceListItems"
-                              label="State/Province"
+                              :items="countryList"
+                              label="Country"
                               item-text="name"
                               item-value="id"
-                              v-model="form_fields.p_state_id"
+                              v-model="form_fields.p_country"
                               outlined
                               dense
                               prepend-inner-icon="mdi-map-legend"
                             ></v-autocomplete>
+                          </validation-provider>
+                       </v-col>
+                    </v-row>
+                    <v-row>
+                       <v-col cols="6" sm="1" md="12">
+                     <validation-provider
+                            rules="required"
+                            name="State "
+                            v-slot="{ errors, valid }"
+                          >
+                            <v-text-field
+                              :error-messages="errors"
+                              :success="valid"
+                             
+                              label="State/Province"
+                              v-model="form_fields.p_state"
+                              outlined
+                              dense
+                              prepend-inner-icon="mdi-map-legend"
+                            ></v-text-field>
                           </validation-provider>
                        </v-col>
                     </v-row>
@@ -439,18 +448,15 @@
                           name="District"
                           v-slot="{ errors, valid }"
                         >
-                          <v-autocomplete
+                          <v-text-field
                             :error-messages="errors"
                             :success="valid"
-                            :items="districtListItems"
                             label="District"
-                            item-value="id"
-                            item-text="name"
-                            v-model="form_fields.p_district_id"
+                            v-model="form_fields.p_district"
                             outlined
                             dense
                             prepend-inner-icon="mdi-map-marker-radius-outline"
-                          ></v-autocomplete>
+                          ></v-text-field>
                         </validation-provider>
                       </v-col>
                     </v-row>
@@ -530,48 +536,63 @@
 
                   <v-card-text class="mt-3">
                     <v-row>
-                      
-                       <v-col cols="6" sm="1" md="12">
+                      <v-col cols="6" sm="1" md="12">
                      <validation-provider
-                            rules=""
-                            name="Temporary provinance"
+                            rules="required"
+                            name="Country "
                             v-slot="{ errors, valid }"
                           >
                             <v-autocomplete
                               :error-messages="errors"
                               :success="valid"
-                              :items="provinceListItems"
-                              label="State/Province"
-                              v-model="form_fields.t_state_id"
-                              item-value="id"
+                              :items="countryList"
+                              label="Country"
                               item-text="name"
+                              item-value="id"
+                              v-model="form_fields.t_country"
                               outlined
                               dense
                               prepend-inner-icon="mdi-map-legend"
-                             
                             ></v-autocomplete>
-                     </validation-provider>
+                          </validation-provider>
+                       </v-col>
+                    </v-row>
+                    <v-row>
+                       <v-col cols="6" sm="1" md="12">
+                     <validation-provider
+                            rules="required"
+                            name="State "
+                            v-slot="{ errors, valid }"
+                          >
+                            <v-text-field
+                              :error-messages="errors"
+                              :success="valid"
+                             
+                              label="State/Province"
+                              v-model="form_fields.t_state"
+                              outlined
+                              dense
+                              prepend-inner-icon="mdi-map-legend"
+                            ></v-text-field>
+                          </validation-provider>
                        </v-col>
                     </v-row>
                     <v-row>
                       <v-col cols="6" sm="1" md="12">
                         <validation-provider
-                          rules=""
-                          name="Current district"
+                          rules="required"
+                          name="District"
                           v-slot="{ errors, valid }"
                         >
-                          <v-autocomplete
+                          <v-text-field
                             :error-messages="errors"
                             :success="valid"
-                            :items="districtListItems"
                             label="District"
-                            item-text="name"
-                            item-value="id"
-                            v-model="form_fields.t_district_id"
+                            v-model="form_fields.t_district"
                             outlined
                             dense
                             prepend-inner-icon="mdi-map-marker-radius-outline"
-                          ></v-autocomplete>
+                          ></v-text-field>
                         </validation-provider>
                       </v-col>
                     </v-row>
@@ -985,10 +1006,12 @@ import _ from "lodash";
 import UploadFiles from "../../components/UploadFiles.vue";
 import axios from "axios";
 import Conversions from "../../utils/conversions";
+import UploadProfile from '../../components/uploadProfile.vue';
 
 export default {
   components:{
-      'upload-files':UploadFiles,
+   
+    UploadProfile,
     },
   data() {
     
@@ -1097,11 +1120,11 @@ export default {
     await self.loadCountry();
   },
   mounted() {
-    self.$eventBus.$on("updateFileDetail", (data) => {
-      self.form_fields.file_name = data.file_name;
-    });
+    // self.$eventBus.$on("updateFileDetail", (data) => {
+    //   self.form_fields.file_name = data.file_name;
+    // });
     console.log("User component mounted.");
-    console.log( self.form_fields.file_name);
+  
   },
   methods: {
     edit(_id){
