@@ -101,6 +101,7 @@
                 </v-avatar>
               </v-card-subtitle>
               <v-card-subtitle class="text-center">
+                  <upload-files></upload-files>
                 <v-btn small rounded class="primary">
                   <v-icon left dark> mdi-camera </v-icon>
                   Choose your photo
@@ -311,21 +312,30 @@
               <v-col cols="12" md="4">
                  <validation-provider
                               :rules="{
-                               
                                required:true,
                               }"
                               name="Country code"
                               v-slot="{ errors, valid }"
                             >
-                <v-text-field
-                 :error-messages="errors"
-                 :success="valid"
-                  outlined
-                  label="Country Code"
-                  prepend-inner-icon="mdi-earth"
-                  dense
-                  v-model="form_fields.country_code"
-                ></v-text-field>
+                 <v-autocomplete
+                      :error-messages="errors"
+                      :success="valid"
+                      :items="countryList"
+                      label="Country Code"
+                      item-text="country_code"
+                      item-value="id"
+                      v-model="form_fields.country_code"
+                      outlined
+                      dense
+                      prepend-inner-icon="mdi-map-legend"
+                    >
+                      <template slot="selection" slot-scope="data">
+                        {{ data.item.code }} {{ data.item.name }}
+                      </template>
+                      <template slot="item" slot-scope="data">
+                        {{ data.item.code }} {{ data.item.name }}
+                      </template>
+                    </v-autocomplete>
                  </validation-provider>
               </v-col>
               <v-col cols="12" md="4">
@@ -972,10 +982,16 @@
 
 <script>
 import _ from "lodash";
+import UploadFiles from "../../components/UploadFiles.vue";
 import axios from "axios";
 import Conversions from "../../utils/conversions";
+
 export default {
+  components:{
+      'upload-files':UploadFiles,
+    },
   data() {
+    
     return {
       activePicker:"",
       checkbox:false,
@@ -986,6 +1002,7 @@ export default {
       provinceListItems:[],
       districtListItems:[],
       membershiptypeList:[],
+      countryList:[],
       training:[],
       form_fields:[],
        row_count: 0,
@@ -1077,9 +1094,14 @@ export default {
     await self.loadProvinces();
     await self.loadDistrict();
     await self.loadMembershipType();
+    await self.loadCountry();
   },
   mounted() {
+    self.$eventBus.$on("updateFileDetail", (data) => {
+      self.form_fields.file_name = data.file_name;
+    });
     console.log("User component mounted.");
+    console.log( self.form_fields.file_name);
   },
   methods: {
     edit(_id){
@@ -1094,7 +1116,7 @@ export default {
         self.work_experience = res.data.data.experiences;
        
         self.qualifications = res.data.data.qualifications;
-          self.row_count = self.qualifications.length;
+        self.row_count = self.qualifications.length;
          self.trainings = res.data.data.trainings;
         console.log(self.form_fields);
     }).catch((err)=>{
@@ -1104,6 +1126,18 @@ export default {
   },
     save(date) {
       this.$refs.menu.save(date);
+    },
+    loadCountry() {
+      const self = this;
+      axios
+        .get("get-country-data")
+        .then(function (response) {
+          self.countryList = response.data;
+          console.log(self.countryList);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     },
     checkLoader() {
       const self = this;
@@ -1221,6 +1255,7 @@ export default {
          deleted_experiences:self.deleted_experiences,
 
       };
+      console.log(self.form_fields);
        await axios.put(`${self.url}/${_id}`, self.form_fields)
        .then((response)=>{
          console.log(response)
