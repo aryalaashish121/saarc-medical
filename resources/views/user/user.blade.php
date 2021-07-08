@@ -6,7 +6,9 @@ $checkmembership = App\Models\Member::where('user_id',Auth::user()->id)->get()->
    
         <v-app id="inspire">
             <v-app-bar app color="white" flat>
-                <v-avatar :color="$vuetify.breakpoint.smAndDown ? 'grey darken-1' : 'transparent'" size="32"></v-avatar>
+                <v-avatar :color=" $vuetify.breakpoint.smAndDown ? 'grey darken-1' : 'transparent'" size=" 32">
+                    <v-img src="/saarc_logo.jpg"> </v-img>
+                </v-avatar>
 
                 <v-tabs centered class="ml-n9" color="grey darken-1">
                     <v-tab link exact :to="{ name: 'user.dashboard' }">
@@ -19,6 +21,14 @@ $checkmembership = App\Models\Member::where('user_id',Auth::user()->id)->get()->
                         Apply
                     </v-tab>
                     @endif
+                    <v-tab link exact :to="{ name: 'user.resources' }">
+                        <v-icon left> mdi-hammer-screwdriver </v-icon>
+                        Resources
+                    </v-tab>
+                    <v-tab link exact :to="{ name: 'user.contactUs' }">
+                        <v-icon left> mdi-phone </v-icon>
+                        Contact Us
+                    </v-tab>
                     <v-tab link @click="clickLogout('{{ route('logout') }}','{{ url('/login') }}')">
                         <v-icon left> mdi-logout-variant </v-icon>
                         Logout

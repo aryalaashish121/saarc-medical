@@ -23,10 +23,16 @@ const routes = [
         name: 'membership.edit',
         component: require('./user/Membership/Edit').default
     },
-
-
-
-
+    {
+        path: '/user/resources',
+        name: 'user.resources',
+        component: require('./user/resources/Resources').default
+    },
+    {
+        path: '/user/contactUs',
+        name: 'user.contactUs',
+        component: require('./user/resources/ContactUs').default
+    }
 ];
 const router = new Router({
     routes,
