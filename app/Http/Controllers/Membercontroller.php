@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MemberRequest;
+use App\Http\Requests\MemberUpdateRequest;
 use App\Models\Member;
+use App\services\MemberService;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -157,7 +160,8 @@ class Membercontroller extends Controller
        ->get();
 
        $data['qualifications'] = DB::table('members_qualifications')
-       ->where('member_id',$id)->where('id',$id)->where(['is_training'=>false])->get();
+       ->where('member_id',$id)
+       ->where(['is_training'=>false])->get();
 
        $data['trainings'] = DB::table('members_qualifications')
        ->where('member_id',$id)
@@ -175,8 +179,28 @@ class Membercontroller extends Controller
      * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MemberUpdateRequest $request, $id,MemberService $memberService)
     {
+        try{
+        DB::beginTransaction();
+        $work_experiences =
+        $memberService->addExperiences($request->deleted_experiences,$request->work_experiences,$id);
+        $qualifications =
+        $memberService->addQualifications($request->deleted_qualifications,$request->final_qualifications,$id);
+        $update_data = [];
+        $update_data = $request->validated();
+
+        $update_application = Member::where('id',$id)
+        ->update($update_data);
+
+        if($update_application){
+        DB::commit();
+        return ['status'=>true,'message'=>"Membership application updated sucessfully"];
+        }
+        }catch(Exception $err){
+        return ['status'=>false,'message'=>"Could not Update you member application
+        request..",'errormsg'=>$err->getMessage()];
+        }
         // return ['status'=>true,'message'=>"Checking for update"];
     }
 
