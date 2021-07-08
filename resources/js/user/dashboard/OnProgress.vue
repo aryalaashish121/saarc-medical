@@ -11,7 +11,7 @@
       >
         <v-card-text>
           <v-card color="white">
-            <v-img src="/images/onProgress.jpg" contain height="350px"></v-img>
+            <v-img src="/images/progress.jpg" contain height="350px"></v-img>
           </v-card>
         </v-card-text>
         <v-card-title
