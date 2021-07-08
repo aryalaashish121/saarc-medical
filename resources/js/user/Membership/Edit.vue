@@ -1042,7 +1042,7 @@ export default {
         }],
         trainings:[{ univerisity_board:"",level:"", degree:"",grade:"",completed_year:"",is_training:true
         }],
-        
+         nationalityList:['Nepalese','Indian','Sri Lankan','Bhutanese','Bangladeshis','Pakistani ','Afganiese'],
          row_count:0,
            qualification_count:0,
            training_count : 0,

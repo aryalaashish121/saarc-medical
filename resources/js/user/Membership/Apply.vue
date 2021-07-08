@@ -940,7 +940,7 @@
                           <validation-provider
                     :rules="{
                   
-                      required: false,
+                      required: true,
                       
                     }"
                     name="Organization name"
@@ -960,7 +960,7 @@
                            <validation-provider
                     :rules="{
                   
-                      required: false,
+                      required: true,
                       
                     }"
                     name="Designation"
@@ -1334,7 +1334,7 @@
               Apply
               <v-icon right>mdi-content-save</v-icon>
             </v-btn>
-            <v-btn depressed color="error" @click="checkloader">
+            <v-btn depressed color="error" link exact :to="{ name: 'user.dashboard' }" >
               Cancel
               <v-icon right>mdi-close-circle-outline</v-icon>
             </v-btn>
@@ -1427,18 +1427,11 @@ export default {
   },
   mounted() {
     console.log("User component mounted.");
-    Vue.$toast.open('Howdy!');
+    Vue.$toast.info('Fillup the application form with your vaild details!');
   },
   methods: {
     save(date) {
       this.$refs.menu.save(date);
-    },
-    checkLoader() {
-      const self = this;
-      console.log("Testing phase");
-      self.$store.commit("showSnackbar", {
-        message: "Please select the classroom...",
-      });
     },
     loadProvinces() {
       const self = this;
@@ -1488,12 +1481,7 @@ export default {
           console.log(error);
         });
     },
-    checkloader() {
-      //   this.$store.commit("showSnackbar", {
-      //   message: "loading",
-      //  });
-      console.log("Testing");
-    },
+   
 
     addwork_experience() {
       const self = this;
@@ -1565,6 +1553,7 @@ export default {
           console.log("responsing from serve..")
           console.log(response);
           if(response.data.status===true){
+
             Vue.$toast.success(response.data.message, {
                  position: 'top'
            })
