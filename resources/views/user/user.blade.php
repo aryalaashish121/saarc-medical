@@ -15,12 +15,12 @@ $checkmembership = App\Models\Member::where('user_id',Auth::user()->id)->get()->
                         <v-icon left> mdi-view-dashboard </v-icon>
                         Dashboard
                     </v-tab>
-                    @if(!$checkmembership)
+                    {{-- @if(!$checkmembership)
                     <v-tab link exact :to="{ name: 'user.apply' }" >
                         <v-icon left> mdi-account-check </v-icon>
                         Apply
                     </v-tab>
-                    @endif
+                    @endif --}}
                     <v-tab link exact :to="{ name: 'user.resources' }">
                         <v-icon left> mdi-hammer-screwdriver </v-icon>
                         Resources

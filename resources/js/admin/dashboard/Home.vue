@@ -2,7 +2,7 @@
   <div class="px-2">
     <ViewMembers ref="viewMembers"></ViewMembers>
 
-    <!-- <v-snackbar v-model="snackbar" :timeout="5000">
+    <v-snackbar v-model="snackbar" :timeout="5000">
       {{ snackbar_text }}
 
       <template v-slot:action="{ attrs }">
@@ -10,7 +10,7 @@
           Close
         </v-btn>
       </template>
-    </v-snackbar> -->
+    </v-snackbar>
 
     <v-card class="px-5" outlined elevation="4" rounded="lg">
       <v-btn class="ma-10" @click="snackbarcheck">check snackbar </v-btn>
@@ -175,8 +175,8 @@ export default {
   components: { ViewMembers, Report },
   data() {
     return {
-      // snackbar: false,
-      // snackbar_text: "",
+      snackbar: true,
+      snackbar_text: "Welcome Admin!",
       membersList: [],
       isLoading: false,
       options: {},

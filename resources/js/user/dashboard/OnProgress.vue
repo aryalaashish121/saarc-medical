@@ -1,5 +1,6 @@
 <template>
   <div>
+     <edit-membership ref="editMembership"></edit-membership>
     <v-container class="py-8">
       <v-card
         class="mx-auto"
@@ -27,28 +28,49 @@
 
         <v-row align="center" justify="space-around">
           <v-btn
-            @click="goToResources"
+            @click="editMembershipForm(user_data.id)"
             color="white"
             class="ma-5 indigo--text"
             rounded
             large
           >
             <v-icon left dark> mdi-magnify </v-icon>
-            Explore
+            Edit Application
           </v-btn>
+         
         </v-row>
       </v-card>
     </v-container>
   </div>
 </template>
 <script>
+import EditMembership from "../Membership/Edit.vue";
 export default {
+   components: {
+    "edit-membership": EditMembership,
+  },
   data() {
-    return {};
+    
+    return {
+       user_data: [],
+    };
+  },
+   created() {
+    const self = this;
+    axios.get("/check-user").then((res) => {
+      self.is_applied_membership = self.user_data.status;
+      self.user_data = res.data.data;
+      console.log(self.user_data);
+    });
   },
   methods: {
     goToResources() {
       this.$router.push("/user/resources");
+    },
+     editMembershipForm(_id) {
+      const self = this;
+      console.log("editing membership application");
+      self.$refs.editMembership.edit(_id);
     },
   },
 };

@@ -21,14 +21,14 @@ class CreateMembersTable extends Migration
             $table->string('first_name_en',20);
             $table->string('middle_name_en', 20)->nullable();
             $table->string('last_name_en', 20);
-            $table->string('dob_bs', 10);
-            $table->date('dob_ad');
+            $table->string('dob_bs', 10)->nullable();
+            $table->date('dob_ad')->nullable();
             $table->string('gender',10);
             $table->string('religion')->nullable();
             $table->string('nationality');
-            $table->string('country_code')->nullable();
-            $table->string('mobile', 10)->unique()->nullable();
-            $table->string('aux_mobile', 10)->unique()->nullable();
+            $table->string('country_code');
+            $table->string('mobile', 10)->unique();
+            $table->string('aux_mobile', 10)->nullable();
             $table->string('email')->unique()->nullable();
             $table->string('website')->unique()->nullable();
             $table->string('image')->nullable();
@@ -41,13 +41,13 @@ class CreateMembersTable extends Migration
             $table->string('p_ward_no');
             $table->string('p_village_name');
 
-            $table->unsignedBigInteger('t_country');
+            $table->unsignedBigInteger('t_country')->nullable();
             $table->foreign('t_country')->references('id')->on('country')->onDelete('cascade');
-            $table->string('t_state');
-            $table->string('t_district');
-            $table->string('t_municipality');
-            $table->string('t_ward_no');
-            $table->string('t_village_name');
+            $table->string('t_state')->nullable();
+            $table->string('t_district')->nullable();
+            $table->string('t_municipality')->nullable();
+            $table->string('t_ward_no')->nullable();
+            $table->string('t_village_name')->nullable();
 
             $table->boolean('is_same_address')->default(false);
 
@@ -64,7 +64,7 @@ class CreateMembersTable extends Migration
             
             //work experience 
             $table->string('acheivements')->nullable();
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->boolean('is_aproved')->default(false);
             $table->timestamp('approved_at')->nullable();

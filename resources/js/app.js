@@ -67,56 +67,7 @@ const app = new Vue({
                 }
             });
         },
-        dialogOk() {
-            store.commit('dialogOk');
-        },
-        dialogCancel() {
-            store.commit('dialogCancel');
-        }
+
     },
-    computed: {
 
-        showDialog: {
-            get() {
-                return store.getters.showDialog;
-            },
-            set(val) {
-                if (!val) store.commit('hideDialog');
-            }
-        },
-        dialogTitle() {
-            return store.getters.dialogTitle;
-        },
-        dialogMessage() {
-            return store.getters.dialogMessage;
-        },
-        dialogType() {
-            return store.getters.dialogType;
-        },
-        dialogIcon() {
-            return store.getters.dialogIcon;
-        },
-        showSnackbar: {
-            get() {
-                return store.getters.showSnackbar;
-            },
-            set(val) {
-                if (!val) store.commit('hideSnackbar');
-            }
-        },
-        snackbarDuration() {
-            return store.getters.snackbarDuration;
-        },
-        snackbarColor() {
-            return store.getters.snackbarColor;
-        },
-        snackbarMessage() {
-            return store.getters.snackbarMessage;
-        },
-        showLoader() {
-            return store.getters.showLoader;
-        },
-
-
-    }
 });

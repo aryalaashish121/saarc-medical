@@ -276,7 +276,7 @@
                   >
                   <v-autocomplete
                   :error-messages="errors"
-                  :success-messages="valid"
+                  :success="valid"
                     outlined
                     :items="nationalityList"
                     item-text="name"
@@ -298,7 +298,7 @@
                   >
                   <v-text-field
                   :error-messages="errors"
-                  :success-messages="valid"
+                  :success="valid"
                     outlined
                     label="Religion"
                     prepend-inner-icon="mdi-plus"
@@ -807,7 +807,7 @@
                   >
                     <v-text-field
                       :error-messages="errors"
-                      :success-messages="valid"
+                      :success="valid"
                       outlined
                       clearable
                       label="Contact No."
@@ -860,7 +860,7 @@
                   >
                   <v-text-field
                   :error-messages="errors"
-                  :success-messages="valid"
+                  :success="valid"
                     outlined
                     clearable
                     label="Mothers's Occupation"
@@ -988,7 +988,7 @@
                           :success="valid"
                             v-model="experience.years"
                             v-on:keypress="isNumber($event)"
-                          
+
                           ></v-text-field>
                           </validation-provider>
                         </td>
@@ -1547,13 +1547,13 @@ export default {
       console.log(self.form_fields);
        self.$refs.observer.validate().then(async (result) => {
          if(result===false){
-        Vue.$toast.error("Please enter all the required fields..");
+         Vue.$toast.error("Please enter all the required fields..");
          }
         await axios.post(`${self.url}`,self.form_fields).then((response)=>{
           console.log("responsing from serve..")
           console.log(response);
           if(response.data.status===true){
-
+          this.$router.push("/");
             Vue.$toast.success(response.data.message, {
                  position: 'top'
            })
