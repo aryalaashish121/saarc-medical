@@ -200,20 +200,9 @@ class Membercontroller extends Controller
      */
     public function update(MemberUpdateRequest $request, $id,MemberService $memberService)
     {
-        $explode = explode(',',$request->image);
-        $decode = base64_decode($explode[1]);
-        if(str_contains($explode[0],'jpeg')){
-        $extension = 'jpeg';
-        } elseif(str_contains($explode[0],'png')){
-        $extension = 'png';
-        }else{
-        return ['status'=>false,'message'=>'Please select only jpeg or png image'];
-        }
-        $file_name = time().'.'.$extension;
+        $file_name = $memberService->uploadProfile($request->image);
 
-        $path = public_path().'/images/'.$file_name;
-        file_put_contents($path,$decode);
-
+        $payment_slip_picture = $memberService->UploadPaymentSlip($request->payment_slip);
         try{
         DB::beginTransaction();
         $work_experiences =
@@ -223,6 +212,7 @@ class Membercontroller extends Controller
         $update_data = [];
         $update_data = $request->validated();
         $update_data['image']=$file_name;
+        $update_data['payment_slip']=$payment_slip_picture;
         $img = null;
         $update_application = Member::where('id',$id)
         ->update($update_data);

@@ -1245,6 +1245,92 @@
                   </v-simple-table>
                 </v-col>
               </v-row>
+              <v-row>
+                <v-divider></v-divider>
+              </v-row>
+              <v-row class="mt-5">
+                <strong class="title">Payment Details</strong>
+              </v-row>
+               <v-row>
+                <v-col cols="12" md="6">
+                  <validation-provider
+                    :rules="{
+                      required: false,
+                    }"
+                    name="Bank Name"
+                    v-slot="{ errors, valid }"
+                  >
+                    <v-text-field
+                      :error-messages="errors"
+                      :success="valid"
+                      outlined
+                      clearable
+                      label="Bank Name"
+                      prepend-inner-icon="mdi-format-text"
+                      v-model="form_fields.bank_name"
+                      dense
+                      v-on:keypress="isName($event)"
+                    ></v-text-field>
+                  </validation-provider>
+                </v-col>
+                 <v-col cols="12" md="6">
+                  <validation-provider
+                    :rules="{
+                      required: false,
+                    }"
+                    name="Branch Name"
+                    v-slot="{ errors, valid }"
+                  >
+                    <v-text-field
+                      :error-messages="errors"
+                      :success="valid"
+                      outlined
+                      clearable
+                      label="Bank branch "
+                      prepend-inner-icon="mdi-format-text"
+                      v-model="form_fields.bank_branch"
+                      dense
+                      v-on:keypress="isName($event)"
+                    ></v-text-field>
+                  </validation-provider>
+                </v-col>
+              </v-row>
+               <v-row>
+                <v-col cols="12" md="6">
+                  <validation-provider
+                    :rules="{
+                      required: false,
+                    }"
+                    name="Payment Account No. "
+                    v-slot="{ errors, valid }"
+                  >
+                    <v-text-field
+                      :error-messages="errors"
+                      :success="valid"
+                      outlined
+                      clearable
+                      label="Payment Account No."
+                      prepend-inner-icon="mdi-format-text"
+                      v-model="form_fields.bank_account_no"
+                      dense
+                      v-on:keypress="isName($event)"
+                    ></v-text-field>
+                  </validation-provider>
+                </v-col>
+                 <v-col cols="12" md="6">
+                   <v-card flat>
+                <v-card-subtitle class="text-center">
+                  <v-avatar class="profile" color="grey" size="164" tile>
+                    <v-img :src="`images/${form_fields.payment_slip}`"></v-img>
+                  </v-avatar>
+                </v-card-subtitle>
+                <v-card-subtitle class="text-center">
+                  <input type="file" @change="paymentSlipChange" />
+                </v-card-subtitle>
+              </v-card>
+                 
+                </v-col>
+              </v-row>
               <v-row class="mt-5">
                 <strong>
                   Achievements if any, in School/ College or Working
@@ -1319,6 +1405,7 @@ import UploadService from "../../utils/UploadFileService";
 export default {
   data() {
     return {
+      payment_slip_image:"",
       preview_image_default:
         "https://www.pngitem.com/pimgs/m/4-47626_art-beard-no-male-avatar-clipart-hd-png.png",
       members_data: [],
@@ -1597,6 +1684,7 @@ export default {
       const self = this;
       
       self.url = "/members/edit";
+      self.form_fields['payment_slip'] = this.payment_slip_image;
       self.form_fields['image'] = this.profile_image;
       self.form_fields["work_experiences"] = self.work_experience;
       self.form_fields["final_qualifications"] = [
@@ -1636,6 +1724,16 @@ export default {
         console.log(e);
         this.profile_image = e.target.result;
         console.log(this.profile_image);
+      };
+    },
+    paymentSlipChange(e){
+      let _image = e.target.files[0];
+      let fileReader = new FileReader();
+      fileReader.readAsDataURL(_image);
+      fileReader.onload = (e) => {
+        console.log(e);
+        this.payment_slip_image = e.target.result;
+        console.log(this.payment_slip_image);
       };
     },
     restrictOverValue(e, data) {
