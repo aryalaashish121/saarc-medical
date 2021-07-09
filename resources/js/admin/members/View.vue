@@ -20,7 +20,7 @@
       <v-card> 
         <v-toolbar color="primary" dark>
           <v-btn icon dark><v-icon>mdi-account-outline</v-icon></v-btn>
-          <v-toolbar-title> Student Details </v-toolbar-title>
+          <v-toolbar-title> Membership Details </v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
             <v-btn dark icon @click="dialog = false"
@@ -81,13 +81,13 @@
                             <v-col sm="6" md="3">
                               <v-icon small class="pb-1"> mdi-counter </v-icon>
                               <strong class="ml-2 studentDetailHeader">
-                                Roll No
+                               Application no.
                               </strong>
                             </v-col>
 
                             <v-col sm="6" md="9">
                               <span class="studentDetail">
-                                : {{ form_fields.roll_no }}
+                                : {{ form_fields.application_no }}
                               </span>
                             </v-col>
                           </v-row>
@@ -142,36 +142,6 @@
                           <v-row>
                             <v-col sm="6" md="3">
                               <v-icon small class="pb-1">
-                                mdi-blood-bag
-                              </v-icon>
-                              <strong class="ml-2 studentDetailHeader">
-                                Blood Group
-                              </strong>
-                            </v-col>
-
-                            <v-col sm="6" md="9">
-                              <span class="studentDetail">
-                                : {{ form_fields.blood_group }}
-                              </span>
-                            </v-col>
-                          </v-row>
-                          <v-row>
-                            <v-col sm="6" md="3">
-                              <v-icon small class="pb-1"> mdi-calendar </v-icon>
-                              <strong class="ml-2 studentDetailHeader">
-                                Academic Year
-                              </strong>
-                            </v-col>
-
-                            <v-col sm="6" md="9">
-                              <span class="studentDetail">
-                                : {{ form_fields.academic_year }}
-                              </span>
-                            </v-col>
-                          </v-row>
-                          <v-row>
-                            <v-col sm="6" md="3">
-                              <v-icon small class="pb-1">
                                 mdi-home-circle
                               </v-icon>
                               <strong class="ml-2 studentDetailHeader">
@@ -179,12 +149,12 @@
                               </strong>
                             </v-col>
 
-                            <v-col sm="6" md="9">
+                            <v-col sm="6" md="9" v-if="form_fields.t_village_name">
                               <span class="studentDetail">
-                                : {{ form_fields.temporary_province }}, &nbsp;{{
-                                  form_fields.temporary_city
+                                : {{ form_fields.t_state }}, &nbsp;{{
+                                  form_fields.t_district
                                 }}, &nbsp;{{
-                                  form_fields.temporary_street_address
+                                  form_fields.t_village_name
                                 }}
                               </span>
                             </v-col>
@@ -201,10 +171,10 @@
 
                             <v-col sm="6" md="9">
                               <span class="studentDetail">
-                                : {{ form_fields.permanent_province }}, &nbsp;{{
-                                  form_fields.permanent_city
+                                  : {{ form_fields.p_state }}, &nbsp;{{
+                                  form_fields.p_district
                                 }}, &nbsp;{{
-                                  form_fields.permanent_street_address
+                                  form_fields.p_village_name
                                 }}
                               </span>
                             </v-col>
@@ -264,7 +234,7 @@
                                   <v-icon class="mr-2" color="pink">
                                     mdi-school
                                   </v-icon>
-                                  Student
+                                  Personal
                                 </v-card-title>
                                 <v-card-text>
                                   <h2 style="font-size: 16px">
@@ -317,40 +287,7 @@
                                 </v-card-text>
                               </v-card>
                             </v-col>
-                            <v-col sm="12" md="4">
-                              <v-card outlined rounded="xl" elevation="3">
-                                <v-card-title
-                                  class="primary--text font-weight-bold"
-                                  style="font-size: 16px"
-                                >
-                                  <v-icon class="mr-2" color="pink">
-                                    mdi-ambulance
-                                  </v-icon>
-                                  Emergency Contact
-                                </v-card-title>
-                                <v-card-text>
-                                  <h2 style="font-size: 16px">
-                                    <v-icon small left class="pb-1">
-                                      mdi-account
-                                    </v-icon>
-                                    <strong>
-                                      {{ form_fields.emergency_contact_name }}
-                                    </strong>
-                                  </h2>
-                                  <br />
-                                  <h2 style="font-size: 16px">
-                                    <v-icon small left class="pb-1">
-                                      mdi-phone-classic
-                                    </v-icon>
-                                    <strong>
-                                      {{
-                                        form_fields.emergency_contact_phone_no
-                                      }}
-                                    </strong>
-                                  </h2>
-                                </v-card-text>
-                              </v-card>
-                            </v-col>
+                           
                           </v-row>
                         </v-card-text>
                       </v-card>
@@ -375,11 +312,15 @@
                       </v-tab>
                       <v-tab>
                         <v-icon left>mdi-school </v-icon>
-                        Previous School Details
+                        Work Experience
                       </v-tab>
                       <v-tab>
-                        <v-icon left>mdi-ambulance</v-icon>
-                        Emergency Contact Details
+                        <v-icon left>mdi-engineering</v-icon>
+                        Qualifications
+                      </v-tab>
+                      <v-tab>
+                        <v-icon left>mdi-model_training</v-icon>
+                        Special Training
                       </v-tab>
                     </v-tabs>
                   </v-card-title>
@@ -433,32 +374,17 @@
                                         mdi-account-tie
                                       </v-icon>
                                       <strong class="ml-2 studentDetailHeader">
-                                        Designation
+                                        Contact no.
                                       </strong>
                                     </v-col>
 
                                     <v-col sm="6" md="6">
                                       <span class="studentDetail">
-                                        : {{ form_fields.fathers_designation }}
+                                        : {{ form_fields.fathers_phone_no }}
                                       </span>
                                     </v-col>
                                   </v-row>
-                                  <v-row>
-                                    <v-col sm="6" md="6">
-                                      <v-icon small class="pb-1">
-                                        mdi-home-circle
-                                      </v-icon>
-                                      <strong class="ml-2 studentDetailHeader">
-                                        Address
-                                      </strong>
-                                    </v-col>
-
-                                    <v-col sm="6" md="6">
-                                      <span class="studentDetail">
-                                        : {{ form_fields.fathers_address }}
-                                      </span>
-                                    </v-col>
-                                  </v-row>
+                               
                                 </v-card-text>
                               </v-card>
                             </v-col>
@@ -507,32 +433,17 @@
                                         mdi-account-tie
                                       </v-icon>
                                       <strong class="ml-2 studentDetailHeader">
-                                        Designation
+                                        Contact no. 
                                       </strong>
                                     </v-col>
 
                                     <v-col sm="6" md="6">
                                       <span class="studentDetail">
-                                        : {{ form_fields.mothers_designation }}
+                                        : {{ form_fields.mothers_phone_no }}
                                       </span>
                                     </v-col>
                                   </v-row>
-                                  <v-row>
-                                    <v-col sm="6" md="6">
-                                      <v-icon small class="pb-1">
-                                        mdi-home-circle
-                                      </v-icon>
-                                      <strong class="ml-2 studentDetailHeader">
-                                        Address
-                                      </strong>
-                                    </v-col>
-
-                                    <v-col sm="6" md="6">
-                                      <span class="studentDetail">
-                                        : {{ form_fields.mothers_address }}
-                                      </span>
-                                    </v-col>
-                                  </v-row>
+                                 
                                 </v-card-text>
                               </v-card>
                             </v-col>
@@ -544,70 +455,25 @@
                           <v-row>
                             <v-col cols="12" md="6" sm="12">
                               <v-card-text>
-                                <v-row>
-                                  <v-col sm="6" md="6">
-                                    <v-icon small class="pb-1">
-                                      mdi-domain
-                                    </v-icon>
-                                    <strong class="ml-2 studentDetailHeader">
-                                      Name
-                                    </strong>
-                                  </v-col>
-
-                                  <v-col sm="6" md="6">
-                                    <span class="studentDetail">
-                                      : {{ form_fields.past_school }}
-                                    </span>
-                                  </v-col>
-                                </v-row>
-                                <v-row>
-                                  <v-col sm="6" md="6">
-                                    <v-icon small class="pb-1">
-                                      mdi-map-marker
-                                    </v-icon>
-                                    <strong class="ml-2 studentDetailHeader">
-                                      Address
-                                    </strong>
-                                  </v-col>
-
-                                  <v-col sm="6" md="6">
-                                    <span class="studentDetail">
-                                      : {{ form_fields.past_school_address }}
-                                    </span>
-                                  </v-col>
-                                </v-row>
-                                <v-row>
-                                  <v-col sm="6" md="6">
-                                    <v-icon small class="pb-1">
-                                      mdi-shield-star
-                                    </v-icon>
-                                    <strong class="ml-2 studentDetailHeader">
-                                      Grade
-                                    </strong>
-                                  </v-col>
-
-                                  <v-col sm="6" md="6">
-                                    <span class="studentDetail">
-                                      : {{ form_fields.past_grade }}
-                                    </span>
-                                  </v-col>
-                                </v-row>
-                                <v-row>
-                                  <v-col sm="6" md="6">
-                                    <v-icon small class="pb-1">
-                                      mdi-percent
-                                    </v-icon>
-                                    <strong class="ml-2 studentDetailHeader">
-                                      Percenatage
-                                    </strong>
-                                  </v-col>
-
-                                  <v-col sm="6" md="6">
-                                    <span class="studentDetail">
-                                      : {{ form_fields.past_percentage }}
-                                    </span>
-                                  </v-col>
-                                </v-row>
+                               <v-col cols="12">
+                  <v-simple-table>
+                    <thead>
+                      <tr>
+                        <th class="text-left sybtitle-2">S.N.</th>
+                        <th class="text-left sybtitle-2">
+                          University/Board Name
+                        </th>
+                        <th class="text-left sybtitle-2">Level</th>
+                        <th class="text-left sybtitle-2">Degree Name</th>
+                        <th class="text-left sybtitle-2">Grade/%</th>
+                        <th class="text-left sybtitle-2">Completed Year</th>
+                      </tr>
+                    </thead>
+                      <tbody>
+                        <td ></td>
+                      </tbody>
+                      </v-simple-table>
+                               </v-col>
                               </v-card-text>
                             </v-col>
                           </v-row>
@@ -712,11 +578,11 @@
 export default {
   data() {
     return {
-      snackbar_text:"",
-      snackbar:false,
+      snackbar_text: "",
+      snackbar: false,
       dialog: false,
       form_fields: [],
-    
+
       tabs: "",
     };
   },
@@ -729,43 +595,42 @@ export default {
     async view(_id) {
       const self = this;
       self.form_fields = [];
-       let response = await axios.get(`${"/members"}/${_id}`);
-      
+      let response = await axios.get(`${"/members"}/${_id}`);
+
       //  let response = await self.show(_id);
       self.form_fields = response.data;
       self.radios = response.data.radios;
 
-       console.log(_id);
+      console.log(_id);
       self.dialog = true;
     },
 
-   async manageMemberRequest(_id,data){
+    async manageMemberRequest(_id, data) {
       const self = this;
       self.url = "/members/manage";
       console.log(data);
-       let params = {
+      let params = {
         status: data,
         id: _id,
       };
       try {
-        await axios.post(`${self.url}`, params).then((response)=>{
-          if(response.data.status){
+        await axios
+          .post(`${self.url}`, params)
+          .then((response) => {
+            if (response.data.status) {
+              self.snackbar_text = response.data.message;
+              self.snackbar = true;
+            }
             self.snackbar_text = response.data.message;
             self.snackbar = true;
-           
-          }
-          self.snackbar_text = response.data.message;
-          self.snackbar = true;
-        }).catch((err)=>{
-          console.log(err);
-        })
-        
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       } catch (err) {
         console.log(err);
       }
     },
-
-    
   },
 };
 </script>
