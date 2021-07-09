@@ -3,11 +3,16 @@
     <v-card outlined elevation="4" rounded="lg" class="px-5">
       <ViewMembers ref="viewMembers"></ViewMembers>
 
-      <v-snackbar v-model="snackbar" :timeout="5000">
+      <v-snackbar v-model="snackbar" absolute
+      centered
+     
+      elevation="24"
+       top
+        :timeout="5000">
         {{ snackbar_text }}
 
         <template v-slot:action="{ attrs }">
-          <v-btn color="blue" text v-bind="attrs" @click="snackbar = false">
+          <v-btn color="blue" text v-bind="attrs"  @click="snackbar = false">
             Close
           </v-btn>
         </template>
@@ -277,7 +282,7 @@ export default {
         };
       }
 
-     await axios.get("/members", { params }).then((response)=>{
+     await axios.get("/members/data", { params }).then((response)=>{
     
         self.membersList = response.data.data;
         self.totalMembers = response.total;

@@ -1,5 +1,21 @@
 <template>
   <div class="px-2">
+     <v-snackbar v-model="snackbar" absolute
+      centered
+     
+      elevation="24"
+       top
+        :timeout="5000">
+        {{ snackbar_text }}
+
+        <template v-slot:action="{ attrs }">
+          <v-btn color="blue" text v-bind="attrs"  @click="snackbar = false" >
+            close
+          </v-btn>
+        </template>
+      </v-snackbar>
+
+
     <v-card outlined class="px-5" rounded="lg" elevation="4">
       <ViewMembers ref="viewMembers"></ViewMembers>
 
@@ -134,10 +150,10 @@
             color="success"
             icon
           >
-            <v-icon small dark> mdi-pencil-outline </v-icon>
+            <v-icon small dark> mdi-restore </v-icon>
           </v-btn>
 
-          <v-btn outlined small icon color="error">
+          <v-btn outlined small icon color="error" @click="deletePermanently(item.id)">
             <v-icon dark small> mdi-delete-outline </v-icon>
           </v-btn>
         </template>
@@ -152,6 +168,9 @@ export default {
   components: { ViewMembers },
   data() {
     return {
+      snackbar_text:"",
+      snackbar:false,
+  
       trashmembersList: [],
       isLoading: false,
       options: {},
@@ -271,6 +290,8 @@ export default {
       try {
         await axios.get(`${"/members/restore"}/${_id}`).then((response)=>{
         self.loadMembers();
+        self.snackbar = true;
+        self.snackbar_text = response.data.message;
         console.log(response);
         }).catch((err)=>{
           console.log(err);
@@ -285,9 +306,14 @@ export default {
       const self = this;
       console.log("Delete data...");
       self.url = "/members/trash";
-      let response = await axios.delete(`${self.url}/${_id}`);
-      console.log(response);
-      self.loadMembers();
+      await axios.delete(`${self.url}/${_id}`).then((response)=>{
+        self.snackbar = true;
+        self.snackbar_text = response.data.message;
+       self.loadMembers();
+      }).catch((err)=>{
+        console.log(err);
+      })
+     
     },
 
     viewMemberDetails(_id) {

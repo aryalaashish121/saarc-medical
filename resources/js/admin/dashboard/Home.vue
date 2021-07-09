@@ -2,7 +2,7 @@
   <div class="px-2">
     <ViewMembers ref="viewMembers"></ViewMembers>
 
-    <v-snackbar v-model="snackbar" :timeout="5000">
+    <v-snackbar v-model="snackbar" top :timeout="5000">
       {{ snackbar_text }}
 
       <template v-slot:action="{ attrs }">
@@ -279,7 +279,7 @@ export default {
         };
       }
 
-      await axios.get("/members", { params }).then((response)=>{
+      await axios.get("/members/data", { params }).then((response)=>{
         self.membersList = response.data.data;
         self.totalMembers = response.total;
         console.log(response.data.data[0]);

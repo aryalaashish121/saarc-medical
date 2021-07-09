@@ -1512,13 +1512,6 @@ export default {
         qualifications: {},
       },
 
-      // members_work_experience:{
-      //   organization_name:"",
-      //   designation:"",
-      //   years:"",
-      //   remark:"",
-      // },
-
       wardnoRules: [
         (v) => (v && v >= 1) || "Ward no. cannot be 0",
         (v) => (v && v <= 100) || "Max should not be above 100",
@@ -1710,7 +1703,14 @@ export default {
         .put(`${self.url}/${_id}`, self.form_fields)
         .then((response) => {
           console.log(response);
-          alert(response.data.message);
+          Vue.$toast.success(response.data.message, {
+                 position: 'top'
+           })
+            self.dialog = false;
+          if(response.data.status===false){
+             Vue.$toast.error(response.data.message, {
+                 position: 'top'
+           });}
         })
         .catch((err) => {
           console.log(err);

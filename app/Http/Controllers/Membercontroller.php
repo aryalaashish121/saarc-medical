@@ -200,6 +200,7 @@ class Membercontroller extends Controller
      */
     public function update(MemberUpdateRequest $request, $id,MemberService $memberService)
     {
+        // dd($request->all());
         $file_name = $memberService->uploadProfile($request->image);
 
         $payment_slip_picture = $memberService->UploadPaymentSlip($request->payment_slip);
@@ -243,9 +244,9 @@ class Membercontroller extends Controller
     $member->is_deleted = true;
     $member->save();
     if($member){
-    return "Deleted Sucessfully";
+    return ['status'=>true,'message'=>"Deleted sucessfully"];
     }
-    return "Could not delete";
+    return ['status'=>true,'message'=>"Failed to delete! Try again."];
 
     }
 
@@ -258,9 +259,9 @@ class Membercontroller extends Controller
     $member->is_deleted = false;
     $member->save();
     if($member){
-    return "Restored Sucessfully";
+    return ['status'=>true,'message'=>"Members restored.."];
     }
-    return "Could not restore";
+    return ['status'=>false,'message'=>"Members couldnot restore.."];
 
     }
 
@@ -278,9 +279,9 @@ class Membercontroller extends Controller
     $update_status = Member::where("id", $id)->update($member_data_update);
 
     if ($update_status) {
-    return "Student Status Updated successfully";
+    return ['status'=>true,'message'=>"Status updated.."];
     } else {
-    return "Student Status Not Updated. Please try Again.";
+    return ['status'=>false,'message'=>"Members status could not update.."];
     }
     }
     /**
@@ -294,9 +295,9 @@ class Membercontroller extends Controller
     if($checkiD){
     $result = Member::where('id',$request->id)->update(['is_aproved'=>$request->status]);
     if($request->status){
-    return "Accepted updated";
+    return ['status'=>true,'message'=>"Membership request approved ! "];
     }else{
-    return "Rejected Sucessfully";
+    return ['status'=>false,'message'=>"Membership request Rejected ! "];
     }
     }
     }
@@ -359,8 +360,8 @@ class Membercontroller extends Controller
     public function deletePermanently($id){
     $checkiD = Member::findOrFail($id);
     if($checkiD->delete()){
-    return "Deleted Permanently";
+    return ['status'=>true,'message'=>"Deleted Permanently"];
     }
-    return "Could not delete";
+    return ['status'=>false,'message'=>"Something went wrong! Try again."];
     }
 }

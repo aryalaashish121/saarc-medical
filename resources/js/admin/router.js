@@ -28,15 +28,9 @@ const routes = [
         name: 'admin.member-request',
         component: require('./members/Request').default
     },
-
-
 ];
 const router = new Router({
     routes,
-    // mode: 'history',
-    // base: process.env.BASE_URL,
-    // mode: 'history',
-
 });
 
 export default router;

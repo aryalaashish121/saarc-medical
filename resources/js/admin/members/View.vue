@@ -8,6 +8,15 @@
       hide-overlay
       transition="dialog-bottom-transition"
     >
+     <v-snackbar v-model="snackbar" top :timeout="5000">
+      {{ snackbar_text }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn color="blue" text v-bind="attrs" @click="snackbar = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
       <v-card> 
         <v-toolbar color="primary" dark>
           <v-btn icon dark><v-icon>mdi-account-outline</v-icon></v-btn>
@@ -60,11 +69,11 @@
                               <v-btn
                               
                                 color="primary"
-                              @click="manageMemberRequest(form_fields.id,true)">
+                                   @click="manageMemberRequest(form_fields.id,true)">
                                 Approve</v-btn>
                                  <v-btn
                                  color="error"
-                              @click="manageMemberRequest(form_fields.id,false)">
+                                    @click="manageMemberRequest(form_fields.id,false)">
                                 Reject</v-btn>
                             </v-col>
                           </v-row>
@@ -213,8 +222,8 @@
                             tile
                           >
                             <v-img
-                              :src="`/storage/students/` + form_fields.image"
-                              alt="student_image"
+                             :src="`images/${form_fields.image}`"
+                              alt="Members image"
                             />
                           </v-avatar>
                           <br />
@@ -703,6 +712,8 @@
 export default {
   data() {
     return {
+      snackbar_text:"",
+      snackbar:false,
       dialog: false,
       form_fields: [],
     
@@ -737,8 +748,18 @@ export default {
         id: _id,
       };
       try {
-        let response = await axios.post(`${self.url}`, params);
-        console.log(response);
+        await axios.post(`${self.url}`, params).then((response)=>{
+          if(response.data.status){
+            self.snackbar_text = response.data.message;
+            self.snackbar = true;
+           
+          }
+          self.snackbar_text = response.data.message;
+          self.snackbar = true;
+        }).catch((err)=>{
+          console.log(err);
+        })
+        
       } catch (err) {
         console.log(err);
       }

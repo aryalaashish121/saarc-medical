@@ -70,45 +70,6 @@
     </transition>
   </v-container>
 </v-main>
-
-<v-snackbar
-:timeout="snackbarDuration"
-:color="snackbarColor"
-top
-centered
-class="mr-30 mb-5"
-v-model="showSnackbar">
-@{{ snackbarMessage }}
-</v-snackbar>
-<!-- Snackbar ends -->
-
-<!-- confirm dialog -->
-<v-dialog persistent v-model="showDialog" absolute max-width="450px">
- <v-card>
-     <v-card-title class="primary white--text">
-         <v-icon dark class="mr-3" v-if="dialogIcon" medium>@{{dialogIcon}}</v-icon>
-         <span>@{{dialogTitle}}</span>
-     </v-card-title>
-
-     <v-card-text>
-        @{{dialogMessage}}
-     </v-card-text>
-
-     <v-card-actions v-if="dialogType == 'confirm'">
-         <v-spacer></v-spacer>
-         <v-btn text dark color="error" @click.native="dialogCancel">Cancel</v-btn>
-         <v-btn text dark color="primary" @click.native="dialogOk">Ok</v-btn>
-     </v-card-actions>
- </v-card>
-</v-dialog>
-
-<!-- confirm dialog ends -->
-
-   <!-- loader -->
-   <div v-if="showLoader" class="wask_loader bg_half_transparent">
-          <scale-loader position="fixed" color="white"></scale-loader>
-    </div>
-
      <!-- the progress bar -->
      <vue-progress-bar></vue-progress-bar>
 

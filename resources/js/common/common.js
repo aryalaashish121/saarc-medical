@@ -6,8 +6,6 @@ import Vue from 'vue';
 import { ValidationProvider, ValidationObserver, extend } from "vee-validate";
 import { email, max, min, length, regex } from "vee-validate/dist/rules";
 
-import cruds from "./cruds";
-
 Vue.component("validation-provider", ValidationProvider);
 Vue.component("validation-observer", ValidationObserver);
 
@@ -48,8 +46,6 @@ extend("regex", {
     ...regex,
     message: 'This field is invalid'
 })
-
-Vue.mixin(cruds);
 
 Vue.filter('formatDate', function (value) {
     if (!value) return '';

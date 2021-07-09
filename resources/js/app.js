@@ -34,7 +34,6 @@ Vue.use(VueProgressBar, {
     autoRevert: true,
     inverse: false
 })
-
 const app = new Vue({
     eventBus,
     router,
@@ -48,7 +47,6 @@ const app = new Vue({
             path: "/dashboard",
         };
     },
-
     methods: {
 
         clickLogout(logoutUrl, redirectLogoutUrl) {
@@ -65,7 +63,5 @@ const app = new Vue({
                 }
             });
         },
-
     },
-
 });
