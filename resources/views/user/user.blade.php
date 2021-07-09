@@ -16,21 +16,12 @@ $checkmembership = App\Models\Member::where('user_id', Auth::user()->id)
                         <v-icon left> mdi-view-dashboard </v-icon>
                         Dashboard
                     </v-tab>
-<<<<<<< HEAD
-                    @if (!$checkmembership)
-                        <v-tab link exact :to="{ name: 'user.apply' }">
-                            <v-icon left> mdi-account-check </v-icon>
-                            Apply
-                        </v-tab>
-                    @endif
-=======
                     {{-- @if(!$checkmembership)
                     <v-tab link exact :to="{ name: 'user.apply' }" >
                         <v-icon left> mdi-account-check </v-icon>
                         Apply
                     </v-tab>
                     @endif --}}
->>>>>>> 92a671e818a2c9605c004c2609cab5470c3b00f8
                     <v-tab link exact :to="{ name: 'user.resources' }">
                         <v-icon left> mdi-hammer-screwdriver </v-icon>
                         Resources
