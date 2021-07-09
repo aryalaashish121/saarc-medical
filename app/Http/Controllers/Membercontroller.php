@@ -184,7 +184,20 @@ class Membercontroller extends Controller
      */
     public function update(MemberUpdateRequest $request, $id,MemberService $memberService)
     {
-        dd($request->all());
+        $explode = explode(',',$request->image);
+        $decode = base64_decode($explode[1]);
+        if(str_contains($explode[0],'jpeg')){
+        $extension = 'jpeg';
+        } elseif(str_contains($explode[0],'png')){
+        $extension = 'png';
+        }else{
+        return ['status'=>false,'message'=>'Please select only jpeg or png image'];
+        }
+        $file_name = time().'.'.$extension;
+
+        $path = public_path().'/images/'.$file_name;
+        file_put_contents($path,$decode);
+
         try{
         DB::beginTransaction();
         $work_experiences =
@@ -193,7 +206,8 @@ class Membercontroller extends Controller
         $memberService->addQualifications($request->deleted_qualifications,$request->final_qualifications,$id);
         $update_data = [];
         $update_data = $request->validated();
-
+        $update_data['image']=$file_name;
+        $img = null;
         $update_application = Member::where('id',$id)
         ->update($update_data);
 

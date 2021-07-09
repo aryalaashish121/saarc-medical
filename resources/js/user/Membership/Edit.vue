@@ -1382,7 +1382,7 @@ export default {
       qualification_count: 0,
       training_count: 0,
       experience_count: 0,
-
+      profile_image: "",
       form_fields: {
         application_no: "",
         membership_type: "",
@@ -1595,9 +1595,9 @@ export default {
 
     async update(_id) {
       const self = this;
-
+      
       self.url = "/members/edit";
-
+      self.form_fields['image'] = this.profile_image;
       self.form_fields["work_experiences"] = self.work_experience;
       self.form_fields["final_qualifications"] = [
         ...self.qualifications,
@@ -1629,9 +1629,14 @@ export default {
       console.log(self.form_fields);
     },
     changeImage(e) {
-     
-      console.log(self.form_fields);
-      console.log(e.target.files[0]);
+      let _image = e.target.files[0];
+      let fileReader = new FileReader();
+      fileReader.readAsDataURL(_image);
+      fileReader.onload = (e) => {
+        console.log(e);
+        this.profile_image = e.target.result;
+        console.log(this.profile_image);
+      };
     },
     restrictOverValue(e, data) {
       if (e.target.value.length >= data) e.preventDefault();

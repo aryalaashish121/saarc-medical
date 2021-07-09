@@ -40,7 +40,6 @@ class MemberRequest extends FormRequest
             'aux_mobile'=>'',
             'email'=>'required',
             'website'=>'',
-            'image'=>'',
             'p_country'=>'required',
             'p_state'=>'required',
             'p_district'=>'required',
