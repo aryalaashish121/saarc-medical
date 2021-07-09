@@ -84,7 +84,7 @@
               <v-spacer></v-spacer>
               <v-col cols="12" sm="12" md="3">
                 <v-card flat>
-                  <v-card-subtitle class="text-center">
+                  <!-- <v-card-subtitle class="text-center">
                     <v-avatar class="profile" color="grey" size="164" tile>
                       <v-img
                         src="https://www.pngitem.com/pimgs/m/4-47626_art-beard-no-male-avatar-clipart-hd-png.png"
@@ -96,7 +96,8 @@
                       <v-icon left dark> mdi-camera </v-icon>
                       Choose your photo
                     </v-btn>
-                  </v-card-subtitle>
+                  </v-card-subtitle> -->
+                   <input type="file" @change="changeImage" />
                 </v-card></v-col
               >
             </v-row>
@@ -1358,6 +1359,7 @@ export default {
   },
   data() {
     return {
+       profile_image: "",
       notify: true,
       notify_message: "notify now",
       activePicker: "",
@@ -1539,6 +1541,7 @@ export default {
       const self = this;
 
       self.url = "/members/apply";
+      self.form_fields['image'] = this.profile_image;
       self.form_fields['work_experiences'] = self.work_experience;
       self.form_fields['qualifications'] = self.qualifications;
       self.form_fields['trainings'] = self.trainings;
@@ -1569,6 +1572,16 @@ export default {
         })
       console.log("membership application data..");
        });
+    },
+    changeImage(e) {
+      let _image = e.target.files[0];
+      let fileReader = new FileReader();
+      fileReader.readAsDataURL(_image);
+      fileReader.onload = (e) => {
+        console.log(e);
+        this.profile_image = e.target.result;
+        console.log(this.profile_image);
+      };
     },
 
     restrictOverValue(e, data) {

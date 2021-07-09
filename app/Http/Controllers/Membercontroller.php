@@ -87,6 +87,20 @@ class Membercontroller extends Controller
      */
     public function store(MemberRequest $request,MemberService $memberService)
     {
+        $explode = explode(',',$request->image);
+        $decode = base64_decode($explode[1]);
+        if(str_contains($explode[0],'jpeg')){
+        $extension = 'jpeg';
+        } elseif(str_contains($explode[0],'png')){
+        $extension = 'png';
+        }else{
+        return ['status'=>false,'message'=>'Please select only jpeg or png image'];
+        }
+        $file_name = time().'.'.$extension;
+
+        $path = public_path().'/images/'.$file_name;
+        file_put_contents($path,$decode);
+
         try{
             DB::beginTransaction();
             $work_experiences = $request->work_experiences;
@@ -97,6 +111,8 @@ class Membercontroller extends Controller
             $data_to_insert['application_no'] =
             $memberService->getApplicationNumber($request->country_code,$request->membership_type);
             $data_to_insert['created_at']=Carbon::now();
+            $data_to_insert['image']=$file_name;
+
             $data_to_insert['user_id']= Auth::user()->id;
             $member_request = Member::create($data_to_insert);
 
