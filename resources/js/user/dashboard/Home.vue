@@ -13,13 +13,13 @@
 
     <div v-else>
       <OnProgress />
-      <v-btn @click="editMembershipForm(user_data.id)">Edit</v-btn>
     </div>
   </div>
 </template>
 <script>
 import axios from "axios";
 import EditMembership from "../Membership/Edit.vue";
+
 import ApplyNow from "./ApplyNow.vue";
 import OnProgress from "./OnProgress.vue";
 import MembershipApproved from "./MembershipApproved.vue";

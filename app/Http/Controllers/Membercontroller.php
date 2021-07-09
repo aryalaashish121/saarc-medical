@@ -74,9 +74,9 @@ class Membercontroller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(MemberService $memberService)
     {
-        //
+    // return $memberService->getApplicationNumber();
     }
 
     /**
@@ -85,17 +85,35 @@ class Membercontroller extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MemberRequest $request)
+    public function store(MemberRequest $request,MemberService $memberService)
     {
+        $explode = explode(',',$request->image);
+        $decode = base64_decode($explode[1]);
+        if(str_contains($explode[0],'jpeg')){
+        $extension = 'jpeg';
+        } elseif(str_contains($explode[0],'png')){
+        $extension = 'png';
+        }else{
+        return ['status'=>false,'message'=>'Please select only jpeg or png image'];
+        }
+        $file_name = time().'.'.$extension;
+
+        $path = public_path().'/images/'.$file_name;
+        file_put_contents($path,$decode);
+
         try{
-        DB::beginTransaction();
+            DB::beginTransaction();
             $work_experiences = $request->work_experiences;
             $qualifications=$request->qualifications;
             $trainings = $request->trainings;
             $data_to_insert = [];
-            $data_to_insert = $request->member_details;
-            $data_to_insert['application_no'] = 52125;
+            $data_to_insert = $request->validated();
+            $data_to_insert['application_no'] =
+            $memberService->getApplicationNumber($request->country_code,$request->membership_type);
             $data_to_insert['created_at']=Carbon::now();
+            $data_to_insert['image']=$file_name;
+
+            $data_to_insert['user_id']= Auth::user()->id;
             $member_request = Member::create($data_to_insert);
 
             foreach($work_experiences as $experience){
@@ -122,7 +140,8 @@ class Membercontroller extends Controller
 
            }catch(Exception $err){
            DB::rollBack();
-           return $err;
+           return ['status'=>false,'message'=>'Membership application could not be added. Please try
+           again!','errmsg'=>$err->getMessage()];
            }
     }
 
@@ -181,6 +200,20 @@ class Membercontroller extends Controller
      */
     public function update(MemberUpdateRequest $request, $id,MemberService $memberService)
     {
+        $explode = explode(',',$request->image);
+        $decode = base64_decode($explode[1]);
+        if(str_contains($explode[0],'jpeg')){
+        $extension = 'jpeg';
+        } elseif(str_contains($explode[0],'png')){
+        $extension = 'png';
+        }else{
+        return ['status'=>false,'message'=>'Please select only jpeg or png image'];
+        }
+        $file_name = time().'.'.$extension;
+
+        $path = public_path().'/images/'.$file_name;
+        file_put_contents($path,$decode);
+
         try{
         DB::beginTransaction();
         $work_experiences =
@@ -189,7 +222,8 @@ class Membercontroller extends Controller
         $memberService->addQualifications($request->deleted_qualifications,$request->final_qualifications,$id);
         $update_data = [];
         $update_data = $request->validated();
-
+        $update_data['image']=$file_name;
+        $img = null;
         $update_application = Member::where('id',$id)
         ->update($update_data);
 

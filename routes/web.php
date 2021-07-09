@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DistrictController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\Membercontroller;
 use App\Http\Controllers\MembershipTypeController;
@@ -62,3 +63,8 @@ Route::put('/members/edit/{id}',[Membercontroller::class,'update']);
 
 Route::get('/logout', [LogoutController::class,'logout']);
 Route::get('check-user',[UserController::class,'index']);
+Route::post('/media', [ImageController::class,'store']);
+Route::post('/uploadImage', [ImageController::class,'handleUpload']);
+
+Route::get('/test',[Membercontroller::class,'create']);
+Route::get('/getmedia',[ImageController::class,'getMedia']);
