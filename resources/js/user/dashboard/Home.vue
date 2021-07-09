@@ -3,7 +3,6 @@
     <edit-membership ref="editMembership"></edit-membership>
     <div v-if="is_applied_membership === false">
       <ApplyNow />
-     
     </div>
     <div v-else-if="user_data.is_aproved">
       <MembershipApproved />
