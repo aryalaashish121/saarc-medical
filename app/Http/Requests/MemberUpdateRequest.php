@@ -47,7 +47,7 @@ class MemberUpdateRequest extends FormRequest
             'p_municipality'=>'required',
             'p_ward_no'=>'required',
             'p_village_name'=>'required',
-            't_country'=>'required',
+            't_country'=>'',
             't_state'=>'',
             't_district'=>'',
             't_municipality'=>'',

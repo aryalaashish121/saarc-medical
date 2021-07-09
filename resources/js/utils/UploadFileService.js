@@ -12,7 +12,7 @@ const UploadFileService = {
     });
   },
   getFiles() {
-    return axios.get("/media");
+    return axios.get("/getmedia");
   }
 }
 

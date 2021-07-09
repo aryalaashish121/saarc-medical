@@ -68,7 +68,6 @@
                 prepend-inner-icon="mdi-newspaper-variant-outline"
                 v-model="form_fields.application_no"
                 label="Application Number"
-                type="number"
                 readonly
                 dense
               ></v-text-field
@@ -102,26 +101,11 @@
               <v-card flat>
                 <v-card-subtitle class="text-center">
                   <v-avatar class="profile" color="grey" size="164" tile>
-                    <v-img :src="preview_image_default"></v-img>
+                    <v-img :src="`images/${form_fields.image}`"></v-img>
                   </v-avatar>
                 </v-card-subtitle>
                 <v-card-subtitle class="text-center">
-                  <v-file-input
-                    ref="uploadImage"
-                    v-model="image_name"
-                    show-size
-                    label="Profile Image"
-                    @change="handleOnChange($event)"
-                    prepend-icon=""
-                    prepend-inner-icon="mdi-camera"
-                    outlined
-                    class="mb-2"
-                  ></v-file-input>
-
-                  <v-btn small rounded class="primary">
-                    <v-icon left dark> mdi-camera </v-icon>
-                    Choose your photo
-                  </v-btn>
+                  <input type="file" @change="changeImage" />
                 </v-card-subtitle>
               </v-card>
             </v-col>
@@ -1330,11 +1314,11 @@
 import _ from "lodash";
 import axios from "axios";
 import Conversions from "../../utils/conversions";
+import UploadService from "../../utils/UploadFileService";
 
 export default {
   data() {
     return {
-      image_name: "",
       preview_image_default:
         "https://www.pngitem.com/pimgs/m/4-47626_art-beard-no-male-avatar-clipart-hd-png.png",
       members_data: [],
@@ -1399,47 +1383,47 @@ export default {
       training_count: 0,
       experience_count: 0,
 
-      // form_fields:{
-      //   application_no:"",
-      //   membership_type:"",
-      //   is_aproved:false,
-      //   first_name_en:"",
-      //   last_name_en:"",
-      //   last_name_en:"",
-      //   dob_bs:"",
-      //   dob_ad:"",
-      //   gender:"",
-      //   religion:"",
-      //   nationality:"",
-      //   country_code:"",
-      //   mobile:"",
-      //   aux_mobile:"",
-      //   email:"",
-      //   website:"",
-      //   image:"",
-      //   p_state_id:"",
-      //   p_district_id:"",
-      //   p_municipality:"",
-      //   p_ward_no:"",
-      //   p_village_name:"",
-      //   t_state_id:"",
-      //   t_district_id:"",
-      //   t_municipality:"",
-      //   t_ward_no:"",
-      //   t_village_name:"",
-      //   is_same_address:false,
-      //   fathers_name:"",
-      //   fathers_phone_no:"",
-      //   fathers_occupation:"",
-      //   fathers_designation:"",
-      //   mothers_name:"",
-      //   mothers_phone_no:"",
-      //   mothers_occupation:"",
-      //   mothers_designation:"",
-      //   acheivements:"",
-      //   experiences:{},
-      //   qualifications:{},
-      // },
+      form_fields: {
+        application_no: "",
+        membership_type: "",
+        is_aproved: false,
+        first_name_en: "",
+        last_name_en: "",
+        last_name_en: "",
+        dob_bs: "",
+        dob_ad: "",
+        gender: "",
+        religion: "",
+        nationality: "",
+        country_code: "",
+        mobile: "",
+        aux_mobile: "",
+        email: "",
+        website: "",
+        image: "",
+        p_state_id: "",
+        p_district_id: "",
+        p_municipality: "",
+        p_ward_no: "",
+        p_village_name: "",
+        t_state_id: "",
+        t_district_id: "",
+        t_municipality: "",
+        t_ward_no: "",
+        t_village_name: "",
+        is_same_address: false,
+        fathers_name: "",
+        fathers_phone_no: "",
+        fathers_occupation: "",
+        fathers_designation: "",
+        mothers_name: "",
+        mothers_phone_no: "",
+        mothers_occupation: "",
+        mothers_designation: "",
+        acheivements: "",
+        experiences: {},
+        qualifications: {},
+      },
 
       // members_work_experience:{
       //   organization_name:"",
@@ -1469,12 +1453,7 @@ export default {
     await self.loadMembershipType();
     await self.loadCountry();
   },
-  mounted() {
-    // self.$eventBus.$on("updateFileDetail", (data) => {
-    //   self.form_fields.file_name = data.file_name;
-    // });
-    console.log("User component mounted.");
-  },
+  mounted() {},
   methods: {
     edit(_id) {
       const self = this;
@@ -1551,7 +1530,7 @@ export default {
     addwork_experience() {
       const self = this;
       self.work_experience.push({
-        id:"",
+        id: "",
         organization_name: "",
         designation: "",
         years: "",
@@ -1571,7 +1550,7 @@ export default {
       const self = this;
       self.qualification_count = self.row_count + 1;
       self.qualifications.push({
-        id:"",
+        id: "",
         univerisity_board: "",
         level: "",
         degree: "",
@@ -1593,7 +1572,7 @@ export default {
     addTraining() {
       const self = this;
       self.trainings.push({
-        id:"",
+        id: "",
         univerisity_board: "",
         level: "",
         degree: "",
@@ -1636,6 +1615,7 @@ export default {
         deleted_experiences: self.deleted_experiences,
       };
       console.log(self.form_fields);
+
       await axios
         .put(`${self.url}/${_id}`, self.form_fields)
         .then((response) => {
@@ -1648,18 +1628,10 @@ export default {
       console.log("membership application data..");
       console.log(self.form_fields);
     },
-    handleOnChange(event) {
-      this.image_name = event.target.files[0];
-      this.upload();
-    },
-    upload(e) {
-      e.preventDefault();
-      let formData = new FormData();
-      formData.set("image", this.image_name);
-
-      axios.post("/uploadImage", formData).then((res) => {
-        console.log(res);
-      });
+    changeImage(e) {
+     
+      console.log(self.form_fields);
+      console.log(e.target.files[0]);
     },
     restrictOverValue(e, data) {
       if (e.target.value.length >= data) e.preventDefault();

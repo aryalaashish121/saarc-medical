@@ -24,11 +24,32 @@ class ImageController extends Controller
             return ['status'=>true,'message'=>"File Uploaded successfully",'file_name' => $file_name];
         }
         catch(Exception $ex) {
-            return ['status'=>false,'message'=>"Failed to upload file...",'errmsg'=>$ex->getMessage()];
+        return ['status'=>false,'message'=>"Failed to upload file...",'errmsg'=>$ex->getMessage()];
         }
     }
+    public function getMedia(){
+    //get media
+    }
     public function handleUpload(Request $request){
-    $image_path = $request->file('image')->store('images','public');
-    return $image_path;
+        // dd($request->all());
+        $request->validate([
+        'image_name' => 'required|max:3072|mimes:jpg,png,jpeg'
+        ]);
+
+        try {
+
+        $file = $request->file('image_name');
+
+        $file_name = time() . '-' . $file->getClientOriginalName();
+        $file_extension = $file->getClientOriginalExtension();
+        $path = $file->storeAs('members', $file_name);
+        $request->file('image_name')->move('members', $path);
+        // $path = $file->move(public_path('images', $file_name));
+
+        return ['status'=>true,'message'=>"File Uploaded successfully",'file_name' => $path];
+        }
+        catch(Exception $ex) {
+        return ['status'=>false,'message'=>"Failed to upload file...",'errmsg'=>$ex->getMessage()];
+        }
     }
 }

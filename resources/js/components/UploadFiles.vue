@@ -86,13 +86,15 @@ export default {
         this.progress = Math.round((100 * event.loaded) / event.total);
       })
         .then((response) => {
-          this.$store.commit("showSnackbar", {
-            message: response.data.message,
-            color: response.data.success,
+          Vue.$toast.success(response.data.message, {
+            position: "top",
           });
+
           this.progessBar = undefined;
           this.$eventBus.$emit("updateFileDetail", response.data);
           this.filename = response.data.file_name;
+          console.log("file name here...")
+          console.log(this.filename);
           return getFiles();
         })
         .then((files) => {
@@ -100,15 +102,20 @@ export default {
           this.progessBar = undefined;
         })
         .catch((err) => {
-          let response = err.response;
-          for (let index in response.data.errors.file) {
-            this.$store.commit("showSnackbar", {
-              message: response.data.errors.file[index],
-              color: response.data.success,
-            });
-          }
-          this.progress = 0;
-          this.progessBar = undefined;
+         
+            let response = err.response;
+            console.log("Response dataa");
+            console.log(response);
+            for (let index in response.data.errors.file) {
+              Vue.$toast.success(response.data.errors.file[index], {
+                position: "top",
+              });
+              console.log("Response dataa 2");
+              console.log(response.data.errors.file[index]);
+            }
+            this.progress = 0;
+            this.progessBar = undefined;
+         
         });
     },
   },

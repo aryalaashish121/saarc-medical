@@ -65,3 +65,6 @@ Route::get('/logout', [LogoutController::class,'logout']);
 Route::get('check-user',[UserController::class,'index']);
 Route::post('/media', [ImageController::class,'store']);
 Route::post('/uploadImage', [ImageController::class,'handleUpload']);
+
+Route::get('/test',[Membercontroller::class,'create']);
+Route::get('/getmedia',[ImageController::class,'getMedia']);

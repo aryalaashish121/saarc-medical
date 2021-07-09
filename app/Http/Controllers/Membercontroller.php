@@ -74,9 +74,9 @@ class Membercontroller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(MemberService $memberService)
     {
-        //
+    // return $memberService->getApplicationNumber();
     }
 
     /**
@@ -85,16 +85,17 @@ class Membercontroller extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MemberRequest $request)
+    public function store(MemberRequest $request,MemberService $memberService)
     {
         try{
-        DB::beginTransaction();
+            DB::beginTransaction();
             $work_experiences = $request->work_experiences;
             $qualifications=$request->qualifications;
             $trainings = $request->trainings;
             $data_to_insert = [];
             $data_to_insert = $request->validated();
-            $data_to_insert['application_no'] = 577255;
+            $data_to_insert['application_no'] =
+            $memberService->getApplicationNumber($request->country_code,$request->membership_type);
             $data_to_insert['created_at']=Carbon::now();
             $data_to_insert['user_id']= Auth::user()->id;
             $member_request = Member::create($data_to_insert);
@@ -124,7 +125,7 @@ class Membercontroller extends Controller
            }catch(Exception $err){
            DB::rollBack();
            return ['status'=>false,'message'=>'Membership application could not be added. Please try
-           again!','errmsg'=>$err];
+           again!','errmsg'=>$err->getMessage()];
            }
     }
 
@@ -183,6 +184,7 @@ class Membercontroller extends Controller
      */
     public function update(MemberUpdateRequest $request, $id,MemberService $memberService)
     {
+        dd($request->all());
         try{
         DB::beginTransaction();
         $work_experiences =

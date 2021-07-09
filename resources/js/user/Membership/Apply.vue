@@ -940,7 +940,7 @@
                           <validation-provider
                     :rules="{
                   
-                      required: true,
+                      required: false,
                       
                     }"
                     name="Organization name"
@@ -960,7 +960,7 @@
                            <validation-provider
                     :rules="{
                   
-                      required: true,
+                      required: false,
                       
                     }"
                     name="Designation"
