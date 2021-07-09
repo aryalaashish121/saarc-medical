@@ -86,10 +86,7 @@
             </v-col> -->
 
             <v-spacer></v-spacer>
-            <v-btn dark fab x-small class="primary elevation-1">
-              <v-icon>mdi-plus</v-icon>
-            </v-btn>
-
+            
             <v-btn
               fab
               dark
@@ -100,9 +97,6 @@
               <v-icon>mdi-refresh</v-icon>
             </v-btn>
 
-            <v-btn fab dark x-small class="ml-2 green elevation-1">
-              <v-icon>mdi-export-variant</v-icon>
-            </v-btn>
           </v-toolbar>
         </template>
         <template v-slot:[`item.full_name`]="{ item }">
@@ -139,14 +133,6 @@
           >
             <v-icon small dark> mdi-eye-outline </v-icon>
           </v-btn>
-
-          <v-btn @click="check(item)" outlined small color="success" icon>
-            <v-icon small dark> mdi-pencil-outline </v-icon>
-          </v-btn>
-          <v-btn @click="test(item)" outlined small color="success" icon>
-            <v-icon small dark> mdi-pencil-outline </v-icon>
-          </v-btn>
-
           <v-btn
             @click="deleteMember(item.id)"
             outlined
@@ -287,7 +273,7 @@ export default {
      })
      
     },
-    check(_id) {},
+   
     async onStatusChange(e, _id) {
       const self = this;
       let params = {

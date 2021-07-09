@@ -103,9 +103,6 @@
               <v-icon>mdi-refresh</v-icon>
             </v-btn>
 
-            <v-btn fab dark x-small class="ml-2 green elevation-1">
-              <v-icon>mdi-export-variant</v-icon>
-            </v-btn>
           </v-toolbar>
         </template>
         <template v-slot:[`item.full_name`]="{ item }">

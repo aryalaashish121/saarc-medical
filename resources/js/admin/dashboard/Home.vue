@@ -1,7 +1,9 @@
 <template>
   <div class="px-2">
     <ViewMembers ref="viewMembers"></ViewMembers>
-
+    <AddMember ref="addMembership"></AddMember>
+     <edit-membership ref="editMembership"></edit-membership>
+    <!-- <edit-membership ref="editMembership"></edit-membership> -->
     <v-snackbar v-model="snackbar" top :timeout="5000">
       {{ snackbar_text }}
 
@@ -88,7 +90,7 @@
             </v-col>
 
             <v-spacer></v-spacer>
-            <v-btn dark fab x-small class="primary elevation-1">
+            <v-btn dark fab x-small class="primary elevation-1" @click="addMembershipDetails">
               <v-icon>mdi-plus</v-icon>
             </v-btn>
 
@@ -142,12 +144,10 @@
             <v-icon small dark> mdi-eye-outline </v-icon>
           </v-btn>
 
-          <v-btn @click="check(item)" outlined small color="success" icon>
+          <v-btn  @click="editMembershipForm(item.id)" outlined small color="success" icon>
             <v-icon small dark> mdi-pencil-outline </v-icon>
           </v-btn>
-          <v-btn @click="test(item)" outlined small color="success" icon>
-            <v-icon small dark> mdi-pencil-outline </v-icon>
-          </v-btn>
+         
 
           <v-btn
             @click="deleteMember(item.id)"
@@ -164,13 +164,15 @@
   </div>
 </template>
 <script >
+import EditMembership from "../../user/Membership/Edit.vue";
+import AddMember from "../members/Apply.vue";
 import Report from "./Report.vue";
 import axios from "axios";
 import ViewMembers from "../members/View.vue";
 import _ from "lodash";
 export default {
   name: "Members",
-  components: { ViewMembers, Report },
+  components: {"edit-membership": EditMembership, ViewMembers, Report, AddMember },
   data() {
     return {
       snackbar: true,
@@ -318,6 +320,15 @@ export default {
     viewMemberDetails(_id) {
       const self = this;
       self.$refs.viewMembers.view(_id);
+    },
+    addMembershipDetails() {
+      const self = this;
+      self.$refs.addMembership.add();
+    },
+      editMembershipForm(_id) {
+      const self = this;
+      console.log("editing membership application");
+      self.$refs.editMembership.edit(_id);
     },
  
   },
