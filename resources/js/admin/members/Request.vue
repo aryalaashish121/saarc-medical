@@ -245,12 +245,7 @@ export default {
     this.loadMembers();
   },
   methods: {
-    test() {
-      self.$store.commit("showSnackbar", {
-        message: "chall dekha",
-        color: false,
-      });
-    },
+   
     async loadMembers() {
       const self = this;
       self.isLoading = true;
@@ -282,21 +277,16 @@ export default {
         };
       }
 
-      let response = await axios.get("/members", { params });
-      if (response) {
+     await axios.get("/members", { params }).then((response)=>{
+    
         self.membersList = response.data.data;
         self.totalMembers = response.total;
         console.log(response.data.data[0]);
         self.isLoading = false;
-      }
-
-      //   await axios.get("/members",{params}).then((res) => {
-      //     console.log("Members data here.....");
-      //     console.log(res.data);
-      //     console.log(res.data);
-      //    self.membersList = res.data;
-      //    self.isLoading = false;
-      // });
+     
+     }).catch((err)=>{
+       console.log(err);
+     })
     },
     check(_id) {},
     async onStatusChange(e, _id) {

@@ -13,8 +13,6 @@
     </v-snackbar>
 
     <v-card class="px-5" outlined elevation="4" rounded="lg">
-      <v-btn class="ma-10" @click="snackbarcheck">check snackbar </v-btn>
-
       <Report />
 
       <v-data-table
@@ -250,12 +248,6 @@ export default {
     this.loadMembers();
   },
   methods: {
-    test() {
-      self.$store.commit("showSnackbar", {
-        message: "chall dekha",
-        color: false,
-      });
-    },
     async loadMembers() {
       const self = this;
       self.isLoading = true;
@@ -287,21 +279,15 @@ export default {
         };
       }
 
-      let response = await axios.get("/members", { params });
-      if (response) {
+      await axios.get("/members", { params }).then((response)=>{
         self.membersList = response.data.data;
         self.totalMembers = response.total;
         console.log(response.data.data[0]);
         self.isLoading = false;
-      }
-
-      //   await axios.get("/members",{params}).then((res) => {
-      //     console.log("Members data here.....");
-      //     console.log(res.data);
-      //     console.log(res.data);
-      //    self.membersList = res.data;
-      //    self.isLoading = false;
-      // });
+      }).catch((err)=>{
+        console.log(err);
+      })
+      
     },
     check(_id) {},
     async onStatusChange(e, _id) {
@@ -310,14 +296,14 @@ export default {
         status: e,
         id: _id,
       };
-      try {
-        await axios.post("update-member-status", params);
+     
+        await axios.post("update-member-status", params).then((response)=>{
         self.loadMembers();
         self.snackbar_text = "Status updated sucessfully";
         self.snackbar = true;
-      } catch (err) {
-        console.log(err);
-      }
+        }).catch((err)=>{
+          console.log(err);
+        })
     },
 
     async deleteMember(_id) {
@@ -333,47 +319,7 @@ export default {
       const self = this;
       self.$refs.viewMembers.view(_id);
     },
-    snackbarcheck() {
-      self.$store.commit("showSnackbar", {
-        message: "Testing snackbar...",
-        color: true,
-      });
-    },
-    //    async save() {
-    //   const self = this;
-    //   self.loading = false;
-    //   const form = _.pick(self.form_fields, [
-    //     "school_name",
-    //     "registration_no",
-    //     "pan",
-    //     "edu_reg_no",
-    //     "telephone",
-    //     "alternate_telephone",
-    //     "website",
-    //     "email",
-    //     "postal_code",
-    //     "academic_year_id",
-    //     "fiscal_year_id",
-    //     "year_start_month_id",
-    //     "current_month_id",
-    //     "country_id",
-    //     "province_id",
-    //     "district_id",
-    //     "street",
-    //     "logo_path",
-    //   ]);
-
-    //   self.url = "/appsetting";
-
-    //   if (self.id !== null && self.id > 0) {
-    //     await self.put(self.id, form, (res) => {});
-    //   } else {
-    //     await self.post(form, (res) => {});
-    //   }
-
-    //   window.location.reload();
-    //   self.loading = false;
-    // },
+ 
   },
 };
 </script>

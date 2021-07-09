@@ -43,18 +43,6 @@ $checkmembership = App\Models\Member::where('user_id', Auth::user()->id)
                     </template>
 
                     <v-list class="elevation-0">
-
-                        <v-list-item class="elevation-0" link to="/admin/profile">
-                            <v-list-item-icon>
-                                <v-icon>mdi-account-outline</v-icon>
-                            </v-list-item-icon>
-                            <v-list-item-content>
-                                <v-list-item-title>Profile</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-
-
-
                         <v-list-item class="elevation-0" link
                             @click="clickLogout('{{ route('logout') }}','{{ url('/login') }}')">
                             <v-list-item-icon>

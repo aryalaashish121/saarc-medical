@@ -4,7 +4,6 @@ require('./bootstrap');
 window.Vue = require('vue').default;
 
 import eventBus from "./common/event";
-import store from './common/store.js';
 import VueProgressBar from 'vue-progressbar';
 
 
@@ -38,7 +37,6 @@ Vue.use(VueProgressBar, {
 
 const app = new Vue({
     eventBus,
-    store,
     router,
     vuetify,
     el: '#app',

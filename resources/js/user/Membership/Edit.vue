@@ -1557,6 +1557,8 @@ export default {
           self.qualifications = res.data.data.qualifications;
           self.row_count = self.qualifications.length;
           self.trainings = res.data.data.trainings;
+          self.payment_slip_image = self.form_fields.payment_slip;
+          self.profile_image = self.form_fields.image;
           console.log(self.form_fields);
         })
         .catch((err) => {

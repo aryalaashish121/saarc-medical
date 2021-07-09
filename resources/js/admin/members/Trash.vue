@@ -269,9 +269,13 @@ export default {
     async restorMember(_id) {
       const self = this;
       try {
-        let response = await axios.get(`${"/members/restore"}/${_id}`);
+        await axios.get(`${"/members/restore"}/${_id}`).then((response)=>{
         self.loadMembers();
         console.log(response);
+        }).catch((err)=>{
+          console.log(err);
+        })
+        
       } catch (err) {
         console.log(err);
       }
