@@ -9,6 +9,16 @@
   >
     <div class="pa-5">
       <v-card class="mt-3" rounded="lg">
+        <v-toolbar color="primary" dark>
+          <v-btn icon dark><v-icon>mdi-account-outline</v-icon></v-btn>
+          <v-toolbar-title> Membership Details </v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-toolbar-items>
+            <v-btn dark icon @click="dialog = false"
+              ><v-icon>mdi-close</v-icon></v-btn
+            >
+          </v-toolbar-items>
+        </v-toolbar>
         <v-card-title>
           <v-row>
             <v-col cols="12" sm="3" md="3">
@@ -105,6 +115,7 @@
                   </v-avatar>
                 </v-card-subtitle>
                 <v-card-subtitle class="text-center">
+                  <strong>Photo </strong>
                   <input type="file" @change="changeImage" />
                 </v-card-subtitle>
               </v-card>
@@ -1251,7 +1262,7 @@
               <v-row class="mt-5">
                 <strong class="title">Payment Details</strong>
               </v-row>
-               <v-row>
+              <v-row>
                 <v-col cols="12" md="6">
                   <validation-provider
                     :rules="{
@@ -1273,7 +1284,7 @@
                     ></v-text-field>
                   </validation-provider>
                 </v-col>
-                 <v-col cols="12" md="6">
+                <v-col cols="12" md="6">
                   <validation-provider
                     :rules="{
                       required: false,
@@ -1295,7 +1306,7 @@
                   </validation-provider>
                 </v-col>
               </v-row>
-               <v-row>
+              <v-row>
                 <v-col cols="12" md="6">
                   <validation-provider
                     :rules="{
@@ -1317,18 +1328,20 @@
                     ></v-text-field>
                   </validation-provider>
                 </v-col>
-                 <v-col cols="12" md="6">
-                   <v-card flat>
-                <v-card-subtitle class="text-center">
-                  <v-avatar class="profile" color="grey" size="164" tile>
-                    <v-img :src="`images/${form_fields.payment_slip}`"></v-img>
-                  </v-avatar>
-                </v-card-subtitle>
-                <v-card-subtitle class="text-center">
-                  <input type="file" @change="paymentSlipChange" />
-                </v-card-subtitle>
-              </v-card>
-                 
+                <v-col cols="12" md="6">
+                  <v-card flat>
+                    <v-card-subtitle class="text-center">
+                      <v-avatar class="profile" color="grey" size="164" tile>
+                        <v-img
+                          :src="`images/${form_fields.payment_slip}`"
+                        ></v-img>
+                      </v-avatar>
+                    </v-card-subtitle>
+                    <v-card-subtitle class="text-center">
+                      <strong> Scan copy of payment slip </strong>
+                      <input type="file" @change="paymentSlipChange" />
+                    </v-card-subtitle>
+                  </v-card>
                 </v-col>
               </v-row>
               <v-row class="mt-5">
@@ -1405,7 +1418,7 @@ import UploadService from "../../utils/UploadFileService";
 export default {
   data() {
     return {
-      payment_slip_image:"",
+      payment_slip_image: "",
       preview_image_default:
         "https://www.pngitem.com/pimgs/m/4-47626_art-beard-no-male-avatar-clipart-hd-png.png",
       members_data: [],
@@ -1428,34 +1441,9 @@ export default {
       designation: [],
       years: [],
       remarks: [],
-      work_experience: [
-        {
-          organization_name: "",
-          designation: "",
-          years: "",
-          remarks: "",
-        },
-      ],
-      qualifications: [
-        {
-          univerisity_board: "",
-          level: "",
-          degree: "",
-          grade: "",
-          completed_year: "",
-          is_training: false,
-        },
-      ],
-      trainings: [
-        {
-          univerisity_board: "",
-          level: "",
-          degree: "",
-          grade: "",
-          completed_year: "",
-          is_training: true,
-        },
-      ],
+      work_experience: [],
+      qualifications: [],
+      trainings: [],
       nationalityList: [
         "Nepalese",
         "Indian",
@@ -1513,9 +1501,8 @@ export default {
       },
 
       wardnoRules: [
-        (v) => (v && v >= 1) || "Ward no. cannot be 0",
-        (v) => (v && v <= 100) || "Max should not be above 100",
-      ],
+        // (v) => (v && v <= 100) || "Max should not be above 100"
+        ],
       loading: false,
       genderItems: ["Male", "Female", "Others"],
     };
@@ -1677,10 +1664,10 @@ export default {
 
     async update(_id) {
       const self = this;
-      
+
       self.url = "/members/edit";
-      self.form_fields['payment_slip'] = this.payment_slip_image;
-      self.form_fields['image'] = this.profile_image;
+      self.form_fields["payment_slip"] = this.payment_slip_image;
+      self.form_fields["image"] = this.profile_image;
       self.form_fields["work_experiences"] = self.work_experience;
       self.form_fields["final_qualifications"] = [
         ...self.qualifications,
@@ -1704,13 +1691,14 @@ export default {
         .then((response) => {
           console.log(response);
           Vue.$toast.success(response.data.message, {
-                 position: 'top'
-           })
-            self.dialog = false;
-          if(response.data.status===false){
-             Vue.$toast.error(response.data.message, {
-                 position: 'top'
-           });}
+            position: "top",
+          });
+          self.dialog = false;
+          if (response.data.status === false) {
+            Vue.$toast.error(response.data.message, {
+              position: "top",
+            });
+          }
         })
         .catch((err) => {
           console.log(err);
@@ -1728,7 +1716,7 @@ export default {
         console.log(this.profile_image);
       };
     },
-    paymentSlipChange(e){
+    paymentSlipChange(e) {
       let _image = e.target.files[0];
       let fileReader = new FileReader();
       fileReader.readAsDataURL(_image);

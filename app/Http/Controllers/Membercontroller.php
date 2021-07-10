@@ -155,12 +155,18 @@ class Membercontroller extends Controller
     {
        $check = Member::findOrFail($id);
 
-       $member = Member::where('id',$id)
+       $data = Member::where('id',$id)
        ->get()->first();
-       if($member){
-       return $member;
+       $data['qualification'] = DB::table('members_qualifications')->where('member_id',$data->id)->get();
+       $data['trainings'] = DB::table('members_qualifications')
+       ->where(['member_id'=>$data->id,'is_training'=>true])->get();
+       $data['work_experiences'] = DB::table('members_work_experience')->where('member_id',$data->id)->get();
+
+
+       if($data){
+       return $data;
        }
-       return "Member not found";
+       return ['status'=>false,'message'=>"Member not found"];
     }
 
     /**

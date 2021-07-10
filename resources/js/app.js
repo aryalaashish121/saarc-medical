@@ -17,6 +17,7 @@ Vue.use(VueFbCustomerChat, {
     theme_color: '#333333', // theme color in HEX
     locale: 'en_US', // default 'en_US'
 })
+
 import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 Vue.use(VueToast,
@@ -34,6 +35,7 @@ Vue.use(VueProgressBar, {
     autoRevert: true,
     inverse: false
 })
+
 const app = new Vue({
     eventBus,
     router,

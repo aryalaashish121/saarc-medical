@@ -8,16 +8,16 @@
       hide-overlay
       transition="dialog-bottom-transition"
     >
-     <v-snackbar v-model="snackbar" top :timeout="5000">
-      {{ snackbar_text }}
+      <v-snackbar v-model="snackbar" top :timeout="5000">
+        {{ snackbar_text }}
 
-      <template v-slot:action="{ attrs }">
-        <v-btn color="blue" text v-bind="attrs" @click="snackbar = false">
-          Close
-        </v-btn>
-      </template>
-    </v-snackbar>
-      <v-card> 
+        <template v-slot:action="{ attrs }">
+          <v-btn color="blue" text v-bind="attrs" @click="snackbar = false">
+            Close
+          </v-btn>
+        </template>
+      </v-snackbar>
+      <v-card>
         <v-toolbar color="primary" dark>
           <v-btn icon dark><v-icon>mdi-account-outline</v-icon></v-btn>
           <v-toolbar-title> Membership Details </v-toolbar-title>
@@ -51,11 +51,9 @@
                         <div class="studentBasics">
                           <v-row>
                             <v-col sm="6" md="3">
-                              <v-icon small class="pb-1">
-                                mdi-abugida-devanagari
-                              </v-icon>
+                              <v-icon small class="pb-1"> mdi-account </v-icon>
                               <strong class="ml-2 studentDetailHeader">
-                                नाम
+                                Applicant Name:
                               </strong>
                             </v-col>
 
@@ -67,21 +65,28 @@
                               </span>
 
                               <v-btn
-                              
                                 color="primary"
-                                   @click="manageMemberRequest(form_fields.id,true)">
-                                Approve</v-btn>
-                                 <v-btn
-                                 color="error"
-                                    @click="manageMemberRequest(form_fields.id,false)">
-                                Reject</v-btn>
+                                @click="
+                                  manageMemberRequest(form_fields.id, true)
+                                "
+                              >
+                                Approve</v-btn
+                              >
+                              <v-btn
+                                color="error"
+                                @click="
+                                  manageMemberRequest(form_fields.id, false)
+                                "
+                              >
+                                Reject</v-btn
+                              >
                             </v-col>
                           </v-row>
                           <v-row>
                             <v-col sm="6" md="3">
                               <v-icon small class="pb-1"> mdi-counter </v-icon>
                               <strong class="ml-2 studentDetailHeader">
-                               Application no.
+                                Application no.
                               </strong>
                             </v-col>
 
@@ -149,13 +154,15 @@
                               </strong>
                             </v-col>
 
-                            <v-col sm="6" md="9" v-if="form_fields.t_village_name">
+                            <v-col
+                              sm="6"
+                              md="9"
+                              v-if="form_fields.t_village_name"
+                            >
                               <span class="studentDetail">
                                 : {{ form_fields.t_state }}, &nbsp;{{
                                   form_fields.t_district
-                                }}, &nbsp;{{
-                                  form_fields.t_village_name
-                                }}
+                                }}, &nbsp;{{ form_fields.t_village_name }}
                               </span>
                             </v-col>
                           </v-row>
@@ -171,11 +178,9 @@
 
                             <v-col sm="6" md="9">
                               <span class="studentDetail">
-                                  : {{ form_fields.p_state }}, &nbsp;{{
+                                : {{ form_fields.p_state }}, &nbsp;{{
                                   form_fields.p_district
-                                }}, &nbsp;{{
-                                  form_fields.p_village_name
-                                }}
+                                }}, &nbsp;{{ form_fields.p_village_name }}
                               </span>
                             </v-col>
                           </v-row>
@@ -192,7 +197,7 @@
                             tile
                           >
                             <v-img
-                             :src="`images/${form_fields.image}`"
+                              :src="`images/${form_fields.image}`"
                               alt="Members image"
                             />
                           </v-avatar>
@@ -287,7 +292,6 @@
                                 </v-card-text>
                               </v-card>
                             </v-col>
-                           
                           </v-row>
                         </v-card-text>
                       </v-card>
@@ -312,15 +316,15 @@
                       </v-tab>
                       <v-tab>
                         <v-icon left>mdi-school </v-icon>
-                        Work Experience
-                      </v-tab>
-                      <v-tab>
-                        <v-icon left>mdi-engineering</v-icon>
                         Qualifications
                       </v-tab>
                       <v-tab>
                         <v-icon left>mdi-model_training</v-icon>
                         Special Training
+                      </v-tab>
+                      <v-tab>
+                        <v-icon left>mdi-engineering</v-icon>
+                        Work Experience
                       </v-tab>
                     </v-tabs>
                   </v-card-title>
@@ -384,7 +388,6 @@
                                       </span>
                                     </v-col>
                                   </v-row>
-                               
                                 </v-card-text>
                               </v-card>
                             </v-col>
@@ -433,7 +436,7 @@
                                         mdi-account-tie
                                       </v-icon>
                                       <strong class="ml-2 studentDetailHeader">
-                                        Contact no. 
+                                        Contact no.
                                       </strong>
                                     </v-col>
 
@@ -443,7 +446,6 @@
                                       </span>
                                     </v-col>
                                   </v-row>
-                                 
                                 </v-card-text>
                               </v-card>
                             </v-col>
@@ -453,112 +455,138 @@
                       <v-tab-item>
                         <v-card outlined rounded="lg">
                           <v-row>
-                            <v-col cols="12" md="6" sm="12">
-                              <v-card-text>
-                               <v-col cols="12">
-                  <v-simple-table>
-                    <thead>
-                      <tr>
-                        <th class="text-left sybtitle-2">S.N.</th>
-                        <th class="text-left sybtitle-2">
-                          University/Board Name
-                        </th>
-                        <th class="text-left sybtitle-2">Level</th>
-                        <th class="text-left sybtitle-2">Degree Name</th>
-                        <th class="text-left sybtitle-2">Grade/%</th>
-                        <th class="text-left sybtitle-2">Completed Year</th>
-                      </tr>
-                    </thead>
-                      <tbody>
-                        <td ></td>
-                      </tbody>
-                      </v-simple-table>
-                               </v-col>
-                              </v-card-text>
-                            </v-col>
+                            <v-card-text>
+                              <v-simple-table>
+                                <thead>
+                                  <tr>
+                                    <th class="text-left sybtitle-2">S.N.</th>
+                                    <th class="text-left sybtitle-2">
+                                      University/Board Name
+                                    </th>
+                                    <th class="text-left sybtitle-2">Level</th>
+                                    <th class="text-left sybtitle-2">
+                                      Degree Name
+                                    </th>
+                                    <th class="text-left sybtitle-2">
+                                      Grade/%
+                                    </th>
+                                    <th class="text-left sybtitle-2">
+                                      Completed Year
+                                    </th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr
+                                    v-for="(
+                                      qualification, index
+                                    ) in qualificationList"
+                                    :key="index"
+                                  >
+                                  <td class="text-left sybtitle-2">
+                                      {{ index + 1 }}
+                                    </td>
+                                    <td>
+                                      {{ qualification.univerisity_board }}
+                                    </td>
+                                    <td>{{ qualification.level }}</td>
+                                    <td>{{ qualification.degree }}</td>
+                                    <td>{{ qualification.grade }}</td>
+                                    <td>
+                                      {{ qualification.completed_year }}
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </v-simple-table>
+                            </v-card-text>
                           </v-row>
                         </v-card>
                       </v-tab-item>
                       <v-tab-item>
                         <v-card rounded="lg" outlined>
                           <v-row>
-                            <v-col cols="12" md="6" sm="12">
-                              <v-card-text>
-                                <v-row>
-                                  <v-col sm="6" md="6">
-                                    <v-icon small class="pb-1">
-                                      mdi-account
-                                    </v-icon>
-                                    <strong class="ml-2 studentDetailHeader">
-                                      Name
-                                    </strong>
-                                  </v-col>
-
-                                  <v-col sm="6" md="6">
-                                    <span class="studentDetail">
-                                      : {{ form_fields.emergency_contact_name }}
-                                    </span>
-                                  </v-col>
-                                </v-row>
-                                <v-row>
-                                  <v-col sm="6" md="6">
-                                    <v-icon small class="pb-1">
-                                      mdi-briefcase
-                                    </v-icon>
-                                    <strong class="ml-2 studentDetailHeader">
-                                      Occupation
-                                    </strong>
-                                  </v-col>
-
-                                  <v-col sm="6" md="6">
-                                    <span class="studentDetail">
-                                      :
-                                      {{
-                                        form_fields.emergency_contact_occupation
-                                      }}
-                                    </span>
-                                  </v-col>
-                                </v-row>
-                                <v-row>
-                                  <v-col sm="6" md="6">
-                                    <v-icon small class="pb-1">
-                                      mdi-account-tie
-                                    </v-icon>
-                                    <strong class="ml-2 studentDetailHeader">
+                            <v-card-text>
+                              <v-simple-table>
+                                <thead>
+                                  <tr>
+                                    <th class="text-left sybtitle-2">S.N.</th>
+                                    <th class="text-left sybtitle-2">
+                                      University/Board Name
+                                    </th>
+                                    <th class="text-left sybtitle-2">Level</th>
+                                    <th class="text-left sybtitle-2">
+                                      Degree Name
+                                    </th>
+                                    <th class="text-left sybtitle-2">
+                                      Grade/%
+                                    </th>
+                                    <th class="text-left sybtitle-2">
+                                      Completed Year
+                                    </th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr
+                                    v-for="(training, index) in traningList"
+                                    :key="index"
+                                  >
+                                    <td class="text-left sybtitle-2">
+                                      {{ index + 1 }}
+                                    </td>
+                                    <td>
+                                      {{ training.univerisity_board }}
+                                    </td>
+                                    <td>{{ training.level }}</td>
+                                    <td>{{ training.degree }}</td>
+                                    <td>{{ training.grade }}</td>
+                                    <td>{{ training.completed_year }}</td>
+                                  </tr>
+                                </tbody>
+                              </v-simple-table>
+                            </v-card-text>
+                          </v-row>
+                        </v-card>
+                      </v-tab-item>
+                      <v-tab-item>
+                        <v-card rounded="lg" outlined>
+                          <v-row>
+                            <v-card-text>
+                              <v-simple-table>
+                                <thead>
+                                  <tr></tr>
+                                  <tr>
+                                    <th class="text-left sybtitle-2">S.N.</th>
+                                    <th class="text-left sybtitle-2">
+                                      Organization Name
+                                    </th>
+                                    <th class="text-left sybtitle-2">
                                       Designation
-                                    </strong>
-                                  </v-col>
-
-                                  <v-col sm="6" md="6">
-                                    <span class="studentDetail">
-                                      :
-                                      {{
-                                        form_fields.emergency_contact_designation
-                                      }}
-                                    </span>
-                                  </v-col>
-                                </v-row>
-                                <v-row>
-                                  <v-col sm="6" md="6">
-                                    <v-icon small class="pb-1">
-                                      mdi-home-circle
-                                    </v-icon>
-                                    <strong class="ml-2 studentDetailHeader">
-                                      Address
-                                    </strong>
-                                  </v-col>
-
-                                  <v-col sm="6" md="6">
-                                    <span class="studentDetail">
-                                      :
-                                      {{
-                                        form_fields.emergency_contact_address
-                                      }}
-                                    </span>
-                                  </v-col>
-                                </v-row>
-                              </v-card-text>
-                            </v-col>
+                                    </th>
+                                    <th class="text-left sybtitle-2">Years</th>
+                                    <th class="text-left sybtitle-2">
+                                      Renmarks
+                                    </th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr
+                                    v-for="(
+                                      experience, index
+                                    ) in experienceList"
+                                    :key="index"
+                                  >
+                                    <td class="text-left sybtitle-2">
+                                      {{ index + 1 }}
+                                    </td>
+                                    <td>
+                                      {{ experience.organization_name }}
+                                    </td>
+                                    <td>{{ experience.designation }}</td>
+                                    <td>{{ experience.years }}</td>
+                                    <td>{{ experience.remarks }}</td>
+                                  </tr>
+                                </tbody>
+                              </v-simple-table>
+                            </v-card-text>
                           </v-row>
                         </v-card>
                       </v-tab-item>
@@ -569,7 +597,8 @@
             </v-row>
           </v-card>
         </v-card-text>
-      </v-card> -->
+      </v-card>
+      -->
     </v-dialog>
   </div>
 </template>
@@ -582,6 +611,9 @@ export default {
       snackbar: false,
       dialog: false,
       form_fields: [],
+      experienceList: [],
+      qualificationList: [],
+      traningList: [],
 
       tabs: "",
     };
@@ -599,6 +631,9 @@ export default {
 
       //  let response = await self.show(_id);
       self.form_fields = response.data;
+      self.experienceList = response.data.work_experiences;
+      self.traningList = response.data.trainings;
+      self.qualificationList = response.data.qualification;
       self.radios = response.data.radios;
 
       console.log(_id);

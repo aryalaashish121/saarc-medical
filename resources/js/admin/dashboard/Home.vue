@@ -90,9 +90,9 @@
             </v-col>
 
             <v-spacer></v-spacer>
-            <v-btn dark fab x-small class="primary elevation-1" @click="addMembershipDetails">
+            <!-- <v-btn dark fab x-small class="primary elevation-1" @click="addMembershipDetails">
               <v-icon>mdi-plus</v-icon>
-            </v-btn>
+            </v-btn> -->
 
             <v-btn
               fab

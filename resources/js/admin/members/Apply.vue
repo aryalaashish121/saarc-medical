@@ -1386,37 +1386,17 @@ export default {
       remarks: [],
       form_fields:{},
       work_experience: [
-        {
-          organization_name: "",
-          designation: "",
-          years: "",
-          remarks: "",
-        },
+       
       ],
       qualifications: [
-        {
-          univerisity_board: "",
-          level: "",
-          degree: "",
-          grade: "",
-          completed_year: "",
-          is_training: false,
-        },
+       
       ],
       trainings: [
-        {
-          univerisity_board: "",
-          level: "",
-          degree: "",
-          grade: "",
-          completed_year: "",
-          is_training: true,
-        },
+        
       ],
-
       wardnoRules: [
-        (v) => (v && v >= 1) || "Ward no. cannot be 0",
-        (v) => (v && v <= 100) || "Max should not be above 100",
+        // (v) => (v && v >= 1) || "Ward no. cannot be 0",
+        // (v) => (v && v <= 100) || "Max should not be above 100",
       ],
       loading: false,
       genderItems: ["Male", "Female", "Others"],
