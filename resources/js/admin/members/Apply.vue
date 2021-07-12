@@ -1370,6 +1370,7 @@ export default {
       checkbox: false,
       date: null,
       menu: false,
+      dialog:false,
       name: "",
       countryList: [],
       provinceListItems: [],
