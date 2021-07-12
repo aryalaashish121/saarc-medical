@@ -8,7 +8,8 @@ $checkmembership = App\Models\Member::where('user_id', Auth::user()->id)
         <v-app id="inspire">
             <v-app-bar app color="white" flat>
                 <v-avatar :color=" $vuetify.breakpoint.smAndDown ? 'grey darken-1' : 'transparent'" size="36">
-                    <v-img src="/saarc_logo.jpg"> </v-img>
+                    <v-img src="/saarc_logo.jpg"
+                     > </v-img>
                 </v-avatar>
 
                 <v-tabs centered class="ml-n9" color="grey darken-1">
@@ -16,21 +17,12 @@ $checkmembership = App\Models\Member::where('user_id', Auth::user()->id)
                         <v-icon left> mdi-view-dashboard </v-icon>
                         Dashboard
                     </v-tab>
-<<<<<<< HEAD
-                    @if (!$checkmembership)
-                        <v-tab link exact :to="{ name: 'user.apply' }">
-                            <v-icon left> mdi-account-check </v-icon>
-                            Apply
-                        </v-tab>
-                    @endif
-=======
                     {{-- @if(!$checkmembership)
                     <v-tab link exact :to="{ name: 'user.apply' }" >
                         <v-icon left> mdi-account-check </v-icon>
                         Apply
                     </v-tab>
                     @endif --}}
->>>>>>> 92a671e818a2c9605c004c2609cab5470c3b00f8
                     <v-tab link exact :to="{ name: 'user.resources' }">
                         <v-icon left> mdi-hammer-screwdriver </v-icon>
                         Resources
@@ -52,18 +44,6 @@ $checkmembership = App\Models\Member::where('user_id', Auth::user()->id)
                     </template>
 
                     <v-list class="elevation-0">
-
-                        <v-list-item class="elevation-0" link to="/admin/profile">
-                            <v-list-item-icon>
-                                <v-icon>mdi-account-outline</v-icon>
-                            </v-list-item-icon>
-                            <v-list-item-content>
-                                <v-list-item-title>Profile</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-
-
-
                         <v-list-item class="elevation-0" link
                             @click="clickLogout('{{ route('logout') }}','{{ url('/login') }}')">
                             <v-list-item-icon>

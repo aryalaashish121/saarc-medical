@@ -87,20 +87,9 @@ class Membercontroller extends Controller
      */
     public function store(MemberRequest $request,MemberService $memberService)
     {
-        $explode = explode(',',$request->image);
-        $decode = base64_decode($explode[1]);
-        if(str_contains($explode[0],'jpeg')){
-        $extension = 'jpeg';
-        } elseif(str_contains($explode[0],'png')){
-        $extension = 'png';
-        }else{
-        return ['status'=>false,'message'=>'Please select only jpeg or png image'];
-        }
-        $file_name = time().'.'.$extension;
-
-        $path = public_path().'/images/'.$file_name;
-        file_put_contents($path,$decode);
-
+        $file_name = $memberService($request->image);
+        $checkIfmember = Member::where('user_id',Auth::user()->id)->get();
+        if($checkIfmember)return ['status'=>false,'message'=>"Membership application is already submitted!"];
         try{
             DB::beginTransaction();
             $work_experiences = $request->work_experiences;
@@ -155,12 +144,18 @@ class Membercontroller extends Controller
     {
        $check = Member::findOrFail($id);
 
-       $member = Member::where('id',$id)
+       $data = Member::where('id',$id)
        ->get()->first();
-       if($member){
-       return $member;
+       $data['qualification'] = DB::table('members_qualifications')->where('member_id',$data->id)->get();
+       $data['trainings'] = DB::table('members_qualifications')
+       ->where(['member_id'=>$data->id,'is_training'=>true])->get();
+       $data['work_experiences'] = DB::table('members_work_experience')->where('member_id',$data->id)->get();
+
+
+       if($data){
+       return $data;
        }
-       return "Member not found";
+       return ['status'=>false,'message'=>"Member not found"];
     }
 
     /**
@@ -200,20 +195,10 @@ class Membercontroller extends Controller
      */
     public function update(MemberUpdateRequest $request, $id,MemberService $memberService)
     {
-        $explode = explode(',',$request->image);
-        $decode = base64_decode($explode[1]);
-        if(str_contains($explode[0],'jpeg')){
-        $extension = 'jpeg';
-        } elseif(str_contains($explode[0],'png')){
-        $extension = 'png';
-        }else{
-        return ['status'=>false,'message'=>'Please select only jpeg or png image'];
-        }
-        $file_name = time().'.'.$extension;
+        // dd($request->all());
+        $file_name = $memberService->uploadProfile($request->image);
 
-        $path = public_path().'/images/'.$file_name;
-        file_put_contents($path,$decode);
-
+        $payment_slip_picture = $memberService->UploadPaymentSlip($request->payment_slip);
         try{
         DB::beginTransaction();
         $work_experiences =
@@ -223,6 +208,7 @@ class Membercontroller extends Controller
         $update_data = [];
         $update_data = $request->validated();
         $update_data['image']=$file_name;
+        $update_data['payment_slip']=$payment_slip_picture;
         $img = null;
         $update_application = Member::where('id',$id)
         ->update($update_data);
@@ -253,9 +239,9 @@ class Membercontroller extends Controller
     $member->is_deleted = true;
     $member->save();
     if($member){
-    return "Deleted Sucessfully";
+    return ['status'=>true,'message'=>"Deleted sucessfully"];
     }
-    return "Could not delete";
+    return ['status'=>true,'message'=>"Failed to delete! Try again."];
 
     }
 
@@ -268,9 +254,9 @@ class Membercontroller extends Controller
     $member->is_deleted = false;
     $member->save();
     if($member){
-    return "Restored Sucessfully";
+    return ['status'=>true,'message'=>"Members restored.."];
     }
-    return "Could not restore";
+    return ['status'=>false,'message'=>"Members couldnot restore.."];
 
     }
 
@@ -288,9 +274,9 @@ class Membercontroller extends Controller
     $update_status = Member::where("id", $id)->update($member_data_update);
 
     if ($update_status) {
-    return "Student Status Updated successfully";
+    return ['status'=>true,'message'=>"Status updated.."];
     } else {
-    return "Student Status Not Updated. Please try Again.";
+    return ['status'=>false,'message'=>"Members status could not update.."];
     }
     }
     /**
@@ -302,11 +288,12 @@ class Membercontroller extends Controller
     public function manageMemberRequest(Request $request){
     $checkiD = Member::findOrFail($request->id);
     if($checkiD){
-    $result = Member::where('id',$request->id)->update(['is_aproved'=>$request->status]);
+    $result = Member::where('id',$request->id)->update(['is_aproved'=>$request->status,'is_rejected'=>false]);
     if($request->status){
-    return "Accepted updated";
+    return ['status'=>true,'message'=>"Membership request approved ! "];
     }else{
-    return "Rejected Sucessfully";
+        Member::where('id',$request->id)->update(['is_rejected'=>true]);
+    return ['status'=>false,'message'=>"Membership request Rejected ! "];
     }
     }
     }
@@ -369,8 +356,8 @@ class Membercontroller extends Controller
     public function deletePermanently($id){
     $checkiD = Member::findOrFail($id);
     if($checkiD->delete()){
-    return "Deleted Permanently";
+    return ['status'=>true,'message'=>"Deleted Permanently"];
     }
-    return "Could not delete";
+    return ['status'=>false,'message'=>"Something went wrong! Try again."];
     }
 }

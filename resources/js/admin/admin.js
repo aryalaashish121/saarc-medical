@@ -5,12 +5,15 @@ window.Vue = require("vue");
 import Vue from "vue";
 window.Vue = Vue;
 
-import store from '../common/store';
 import vuetify from '../plugins/vuetify'
 import VueProgressBar from 'vue-progressbar';
 import eventBus from "../common/event";
 import router from "./router";
 Vue.use(eventBus);
+import VueToast from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-sugar.css';
+Vue.use(VueToast,
+    { position: 'top' });
 
 import VueFbCustomerChat from 'vue-fb-customer-chat'
 
@@ -37,7 +40,6 @@ Vue.use(VueProgressBar, {
 const admin = new Vue({
     eventBus,
     router,
-    store,
     vuetify,
     el: "#admin",
     data() {
@@ -56,58 +58,10 @@ const admin = new Vue({
                 window.location.href = redirectLogoutUrl;
             });
         },
-        dialogOk() {
-            store.commit('dialogOk');
-        },
-        dialogCancel() {
-            store.commit('dialogCancel');
-        }
+
     },
-    computed: {
-
-        showDialog: {
-            get() {
-                return store.getters.showDialog;
-            },
-            set(val) {
-                if (!val) store.commit('hideDialog');
-            }
-        },
-        dialogTitle() {
-            return store.getters.dialogTitle;
-        },
-        dialogMessage() {
-            return store.getters.dialogMessage;
-        },
-        dialogType() {
-            return store.getters.dialogType;
-        },
-        dialogIcon() {
-            return store.getters.dialogIcon;
-        },
-        showSnackbar: {
-            get() {
-                return store.getters.showSnackbar;
-            },
-            set(val) {
-                if (!val) store.commit('hideSnackbar');
-            }
-        },
-        snackbarDuration() {
-            return store.getters.snackbarDuration;
-        },
-        snackbarColor() {
-            return store.getters.snackbarColor;
-        },
-        snackbarMessage() {
-            return store.getters.snackbarMessage;
-        },
-        showLoader() {
-            return store.getters.showLoader;
-        },
 
 
-    }
 
 });
 export default admin;

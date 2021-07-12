@@ -58,7 +58,7 @@
           </v-col>
         </v-row>
 
-        <!-- <v-divider></v-divider> -->
+        <v-divider></v-divider>
         <!-- <v-card-text > </v-card-text> -->
       </v-card>
     </v-col>

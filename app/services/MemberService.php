@@ -41,4 +41,45 @@ class MemberService{
             DB::table('members_qualifications')->updateOrInsert(['id'=>$data['id']],$data);
         }
     }
+public function uploadProfile($img){
+        $explode = explode(',',$img);
+        if(count($explode)==1){
+        return $img;
+        }
+        $decode = base64_decode($explode[1]);
+
+        if(str_contains($explode[0],'jpeg')){
+        $extension = 'jpeg';
+        } elseif(str_contains($explode[0],'png')){
+        $extension = 'png';
+        }else{
+        return ['status'=>false,'message'=>'Please select only jpeg or png image'];
+        }
+        $file_name =time().rand(0, 99999).'.'.$extension;
+
+        $path = public_path().'/members/'.$file_name;
+        file_put_contents($path,$decode);
+        return "members/".$file_name;
+}
+public function UploadPaymentSlip($img){
+        $explode = explode(',',$img);
+        if(count($explode)==1){
+        return $img;
+        }
+        $decode = base64_decode($explode[1]);
+        if(str_contains($explode[0],'jpeg')){
+        $extension = 'jpeg';
+        } elseif(str_contains($explode[0],'png')){
+        $extension = 'png';
+        }else{
+        return ['status'=>false,'message'=>'Please select only jpeg or png image'];
+        }
+        $file_name = time().rand(0, 99999).'.'.$extension;
+
+        $path = public_path().'/payments/'.$file_name;
+        file_put_contents($path,$decode);
+
+        return "payments/".$file_name;
+}
+
 }

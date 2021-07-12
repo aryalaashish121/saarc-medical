@@ -35,14 +35,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Route::resource('members', [Membercontroller::class]);
 Route::group(['middleware'=>'auth'], function(){
 
-Route::group(['prefix'=>'admin','as'=>'admin.',], function(){
+Route::group(['prefix'=>'admin','as'=>'admin.'], function(){
 Route::resource('admin', AdminController::class);
 });
 });
 //country data
 Route::get('get-country-data',[CountryController::class,'index']);
-// Route::resource('/members', [Membercontroller::class]);
-Route::get('/members',[Membercontroller::class, 'index']);
+Route::get('/members/data',[Membercontroller::class, 'index']);
 Route::get('/members/trash',[Membercontroller::class, 'trash']);
 Route::get('/members/{id}',[Membercontroller::class, 'show']);
 Route::get('members/restore/{id}',[Membercontroller::class,'restore']);

@@ -63,6 +63,9 @@ class MemberUpdateRequest extends FormRequest
             'mothers_occupation'=>'',
             'mothers_designation'=>'',
             'acheivements'=>'',
+'bank_name'=>'',
+'bank_branch'=>'',
+'bank_account_no'=>'',
             ];
     }
 }

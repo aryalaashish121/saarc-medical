@@ -9,6 +9,16 @@
   >
     <div class="pa-5">
       <v-card class="mt-3" rounded="lg">
+        <v-toolbar color="primary" dark>
+          <v-btn icon dark><v-icon>mdi-account-outline</v-icon></v-btn>
+          <v-toolbar-title> Membership Details </v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-toolbar-items>
+            <v-btn dark icon @click="dialog = false"
+              ><v-icon>mdi-close</v-icon></v-btn
+            >
+          </v-toolbar-items>
+        </v-toolbar>
         <v-card-title>
           <v-row>
             <v-col cols="12" sm="3" md="3">
@@ -101,11 +111,25 @@
               <v-card flat>
                 <v-card-subtitle class="text-center">
                   <v-avatar class="profile" color="grey" size="164" tile>
-                    <v-img :src="`images/${form_fields.image}`"></v-img>
+                    <v-img :src="`${profile_image}`"></v-img>
                   </v-avatar>
                 </v-card-subtitle>
                 <v-card-subtitle class="text-center">
-                  <input type="file" @change="changeImage" />
+                  <input
+                    type="file"
+                    @change="changeImage"
+                    id="change_member_image"
+                    hidden
+                  />
+                  <v-btn
+                    small
+                    rounded
+                    class="primary"
+                    @click="onMembersImageUpload"
+                  >
+                    <v-icon left dark> mdi-camera </v-icon>
+                    Choose your photo
+                  </v-btn>
                 </v-card-subtitle>
               </v-card>
             </v-col>
@@ -586,8 +610,13 @@
 
                 <v-col cols="12" md="6">
                   <v-card outlined elevation="3" class="px-5">
-                    <v-card-title> Temporary Address </v-card-title>
-
+                    <v-card-title> Temporary Address  <v-checkbox
+                      class="ml-3"
+                      label="Same As Permanent"
+                      v-model="same_as_permanent"
+                      @click="sameAddressSettings"
+                    ></v-checkbox> </v-card-title>
+                   
                     <v-card-text class="mt-3">
                       <v-row>
                         <v-col cols="6" sm="1" md="12">
@@ -839,11 +868,9 @@
                 <v-col cols="12" md="6">
                   <validation-provider
                     :rules="{
-                      length: 10,
                       required: false,
-                      regex: /^9(8|7)[0-9]{8}/,
                     }"
-                    name="Mobile number"
+                    name="Mothers's Occupation"
                     v-slot="{ errors, valid }"
                   >
                     <v-text-field
@@ -1245,6 +1272,111 @@
                   </v-simple-table>
                 </v-col>
               </v-row>
+              <v-row>
+                <v-divider></v-divider>
+              </v-row>
+              <v-row class="mt-5">
+                <strong class="title">Payment Details</strong>
+              </v-row>
+              <v-row>
+                <v-col cols="12" md="6">
+                  <validation-provider
+                    :rules="{
+                      required: false,
+                    }"
+                    name="Bank Name"
+                    v-slot="{ errors, valid }"
+                  >
+                    <v-text-field
+                      :error-messages="errors"
+                      :success="valid"
+                      outlined
+                      clearable
+                      label="Bank Name"
+                      prepend-inner-icon="mdi-format-text"
+                      v-model="form_fields.bank_name"
+                      dense
+                      v-on:keypress="isName($event)"
+                    ></v-text-field>
+                  </validation-provider>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <validation-provider
+                    :rules="{
+                      required: false,
+                    }"
+                    name="Branch Name"
+                    v-slot="{ errors, valid }"
+                  >
+                    <v-text-field
+                      :error-messages="errors"
+                      :success="valid"
+                      outlined
+                      clearable
+                      label="Bank branch "
+                      prepend-inner-icon="mdi-format-text"
+                      v-model="form_fields.bank_branch"
+                      dense
+                      v-on:keypress="isName($event)"
+                    ></v-text-field>
+                  </validation-provider>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12" md="6">
+                  <validation-provider
+                    :rules="{
+                      required: false,
+                    }"
+                    name="Payment Account No. "
+                    v-slot="{ errors, valid }"
+                  >
+                    <v-text-field
+                      :error-messages="errors"
+                      :success="valid"
+                      outlined
+                      clearable
+                      label="Payment Account No."
+                      prepend-inner-icon="mdi-format-text"
+                      v-model="form_fields.bank_account_no"
+                      dense
+                      v-on:keypress="isName($event)"
+                    ></v-text-field>
+                  </validation-provider>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <!-- <v-text-field
+                   @click="openUploadPayment"
+                   label="Upload scan copy of your payment voucher"
+                   
+                  ></v-text-field> -->
+                  <v-btn
+                    small
+                    rounded
+                    class="primary"
+                    @click="openUploadPayment"
+                  >
+                    <v-icon left dark> mdi-camera </v-icon>
+                    Upload scan copy of your payment voucher
+                  </v-btn>
+
+                  <v-card flat>
+                    <v-card-subtitle class="text-center">
+                      <v-avatar class="profile" color="grey" size="164" tile>
+                        <v-img :src="`${payment_slip_image}`"></v-img>
+                      </v-avatar>
+                    </v-card-subtitle>
+                    <v-card-subtitle class="text-center">
+                      <input
+                        type="file"
+                        @change="paymentSlipChange"
+                        id="change_payment_slip"
+                        hidden
+                      />
+                    </v-card-subtitle>
+                  </v-card>
+                </v-col>
+              </v-row>
               <v-row class="mt-5">
                 <strong>
                   Achievements if any, in School/ College or Working
@@ -1319,8 +1451,9 @@ import UploadService from "../../utils/UploadFileService";
 export default {
   data() {
     return {
-      preview_image_default:
-        "https://www.pngitem.com/pimgs/m/4-47626_art-beard-no-male-avatar-clipart-hd-png.png",
+      payment_slip_image: "images/voucher.png",
+      profile_image: "images/user_preview.png",
+      same_as_permanent:false,
       members_data: [],
       activePicker: "",
       checkbox: false,
@@ -1341,34 +1474,9 @@ export default {
       designation: [],
       years: [],
       remarks: [],
-      work_experience: [
-        {
-          organization_name: "",
-          designation: "",
-          years: "",
-          remarks: "",
-        },
-      ],
-      qualifications: [
-        {
-          univerisity_board: "",
-          level: "",
-          degree: "",
-          grade: "",
-          completed_year: "",
-          is_training: false,
-        },
-      ],
-      trainings: [
-        {
-          univerisity_board: "",
-          level: "",
-          degree: "",
-          grade: "",
-          completed_year: "",
-          is_training: true,
-        },
-      ],
+      work_experience: [],
+      qualifications: [],
+      trainings: [],
       nationalityList: [
         "Nepalese",
         "Indian",
@@ -1382,7 +1490,7 @@ export default {
       qualification_count: 0,
       training_count: 0,
       experience_count: 0,
-      profile_image: "",
+
       form_fields: {
         application_no: "",
         membership_type: "",
@@ -1425,16 +1533,8 @@ export default {
         qualifications: {},
       },
 
-      // members_work_experience:{
-      //   organization_name:"",
-      //   designation:"",
-      //   years:"",
-      //   remark:"",
-      // },
-
       wardnoRules: [
-        (v) => (v && v >= 1) || "Ward no. cannot be 0",
-        (v) => (v && v <= 100) || "Max should not be above 100",
+        // (v) => (v && v <= 100) || "Max should not be above 100"
       ],
       loading: false,
       genderItems: ["Male", "Female", "Others"],
@@ -1470,6 +1570,8 @@ export default {
           self.qualifications = res.data.data.qualifications;
           self.row_count = self.qualifications.length;
           self.trainings = res.data.data.trainings;
+          self.payment_slip_image = self.form_fields.payment_slip;
+          self.profile_image = self.form_fields.image;
           console.log(self.form_fields);
         })
         .catch((err) => {
@@ -1595,9 +1697,10 @@ export default {
 
     async update(_id) {
       const self = this;
-      
+
       self.url = "/members/edit";
-      self.form_fields['image'] = this.profile_image;
+      self.form_fields["payment_slip"] = this.payment_slip_image;
+      self.form_fields["image"] = this.profile_image;
       self.form_fields["work_experiences"] = self.work_experience;
       self.form_fields["final_qualifications"] = [
         ...self.qualifications,
@@ -1620,13 +1723,27 @@ export default {
         .put(`${self.url}/${_id}`, self.form_fields)
         .then((response) => {
           console.log(response);
-          alert(response.data.message);
+          Vue.$toast.success(response.data.message, {
+            position: "top",
+          });
+          self.dialog = false;
+          if (response.data.status === false) {
+            Vue.$toast.error(response.data.message, {
+              position: "top",
+            });
+          }
         })
         .catch((err) => {
           console.log(err);
         });
       console.log("membership application data..");
       console.log(self.form_fields);
+    },
+    onMembersImageUpload() {
+      document.getElementById("change_member_image").click();
+    },
+    openUploadPayment() {
+      document.getElementById("change_payment_slip").click();
     },
     changeImage(e) {
       let _image = e.target.files[0];
@@ -1636,6 +1753,16 @@ export default {
         console.log(e);
         this.profile_image = e.target.result;
         console.log(this.profile_image);
+      };
+    },
+    paymentSlipChange(e) {
+      let _image = e.target.files[0];
+      let fileReader = new FileReader();
+      fileReader.readAsDataURL(_image);
+      fileReader.onload = (e) => {
+        console.log(e);
+        this.payment_slip_image = e.target.result;
+        console.log(this.payment_slip_image);
       };
     },
     restrictOverValue(e, data) {
@@ -1655,6 +1782,26 @@ export default {
     },
     ConvertBStoAD(date) {
       this.form_fields.dob_ad = new Conversions().ConvertBStoAD(date);
+    },
+     sameAddressSettings() {
+      let self = this;
+      console.log(self.same_as_permanent);
+      if (self.same_as_permanent == true) {
+        self.form_fields.t_country = self.form_fields.p_country;
+        self.form_fields.t_state = self.form_fields.p_state;
+        self.form_fields.t_district = self.form_fields.p_district;
+        self.form_fields.t_municipality = self.form_fields.p_municipality;
+        self.form_fields.t_ward_no = self.form_fields.p_ward_no;
+        self.form_fields.t_village_name = self.form_fields.p_village_name;
+        console.log("true ho yr");
+      } else {
+        self.form_fields.t_country = "",
+        self.form_fields.t_state = "";
+        self.form_fields.t_district = "";
+        self.form_fields.t_municipality = "";
+        self.form_fields.t_ward_no = "";
+        self.form_fields.t_village_name = "";
+      }
     },
   },
 };

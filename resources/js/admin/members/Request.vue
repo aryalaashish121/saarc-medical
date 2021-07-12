@@ -3,11 +3,16 @@
     <v-card outlined elevation="4" rounded="lg" class="px-5">
       <ViewMembers ref="viewMembers"></ViewMembers>
 
-      <v-snackbar v-model="snackbar" :timeout="5000">
+      <v-snackbar v-model="snackbar" absolute
+      centered
+     
+      elevation="24"
+       top
+        :timeout="5000">
         {{ snackbar_text }}
 
         <template v-slot:action="{ attrs }">
-          <v-btn color="blue" text v-bind="attrs" @click="snackbar = false">
+          <v-btn color="blue" text v-bind="attrs"  @click="snackbar = false">
             Close
           </v-btn>
         </template>
@@ -86,10 +91,7 @@
             </v-col> -->
 
             <v-spacer></v-spacer>
-            <v-btn dark fab x-small class="primary elevation-1">
-              <v-icon>mdi-plus</v-icon>
-            </v-btn>
-
+          
             <v-btn
               fab
               dark
@@ -100,9 +102,6 @@
               <v-icon>mdi-refresh</v-icon>
             </v-btn>
 
-            <v-btn fab dark x-small class="ml-2 green elevation-1">
-              <v-icon>mdi-export-variant</v-icon>
-            </v-btn>
           </v-toolbar>
         </template>
         <template v-slot:[`item.full_name`]="{ item }">
@@ -139,14 +138,6 @@
           >
             <v-icon small dark> mdi-eye-outline </v-icon>
           </v-btn>
-
-          <v-btn @click="check(item)" outlined small color="success" icon>
-            <v-icon small dark> mdi-pencil-outline </v-icon>
-          </v-btn>
-          <v-btn @click="test(item)" outlined small color="success" icon>
-            <v-icon small dark> mdi-pencil-outline </v-icon>
-          </v-btn>
-
           <v-btn
             @click="deleteMember(item.id)"
             outlined
@@ -245,12 +236,7 @@ export default {
     this.loadMembers();
   },
   methods: {
-    test() {
-      self.$store.commit("showSnackbar", {
-        message: "chall dekha",
-        color: false,
-      });
-    },
+   
     async loadMembers() {
       const self = this;
       self.isLoading = true;
@@ -282,23 +268,18 @@ export default {
         };
       }
 
-      let response = await axios.get("/members", { params });
-      if (response) {
+     await axios.get("/members/data", { params }).then((response)=>{
+    
         self.membersList = response.data.data;
         self.totalMembers = response.total;
         console.log(response.data.data[0]);
         self.isLoading = false;
-      }
-
-      //   await axios.get("/members",{params}).then((res) => {
-      //     console.log("Members data here.....");
-      //     console.log(res.data);
-      //     console.log(res.data);
-      //    self.membersList = res.data;
-      //    self.isLoading = false;
-      // });
+     
+     }).catch((err)=>{
+       console.log(err);
+     })
     },
-    check(_id) {},
+ 
     async onStatusChange(e, _id) {
       const self = this;
       let params = {

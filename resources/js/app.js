@@ -4,7 +4,6 @@ require('./bootstrap');
 window.Vue = require('vue').default;
 
 import eventBus from "./common/event";
-import store from './common/store.js';
 import VueProgressBar from 'vue-progressbar';
 
 
@@ -18,6 +17,7 @@ Vue.use(VueFbCustomerChat, {
     theme_color: '#333333', // theme color in HEX
     locale: 'en_US', // default 'en_US'
 })
+
 import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 Vue.use(VueToast,
@@ -38,7 +38,6 @@ Vue.use(VueProgressBar, {
 
 const app = new Vue({
     eventBus,
-    store,
     router,
     vuetify,
     el: '#app',
@@ -50,7 +49,6 @@ const app = new Vue({
             path: "/dashboard",
         };
     },
-
     methods: {
 
         clickLogout(logoutUrl, redirectLogoutUrl) {
@@ -67,7 +65,5 @@ const app = new Vue({
                 }
             });
         },
-
     },
-
 });
