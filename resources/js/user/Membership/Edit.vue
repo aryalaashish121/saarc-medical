@@ -610,8 +610,13 @@
 
                 <v-col cols="12" md="6">
                   <v-card outlined elevation="3" class="px-5">
-                    <v-card-title> Temporary Address </v-card-title>
-
+                    <v-card-title> Temporary Address  <v-checkbox
+                      class="ml-3"
+                      label="Same As Permanent"
+                      v-model="same_as_permanent"
+                      @click="sameAddressSettings"
+                    ></v-checkbox> </v-card-title>
+                   
                     <v-card-text class="mt-3">
                       <v-row>
                         <v-col cols="6" sm="1" md="12">
@@ -1345,11 +1350,16 @@
                    label="Upload scan copy of your payment voucher"
                    
                   ></v-text-field> -->
-                   <v-btn small rounded class="primary" @click="openUploadPayment">
-                        <v-icon left dark> mdi-camera </v-icon>
-                        Upload scan copy of your payment voucher
-                      </v-btn>
-                      
+                  <v-btn
+                    small
+                    rounded
+                    class="primary"
+                    @click="openUploadPayment"
+                  >
+                    <v-icon left dark> mdi-camera </v-icon>
+                    Upload scan copy of your payment voucher
+                  </v-btn>
+
                   <v-card flat>
                     <v-card-subtitle class="text-center">
                       <v-avatar class="profile" color="grey" size="164" tile>
@@ -1357,7 +1367,6 @@
                       </v-avatar>
                     </v-card-subtitle>
                     <v-card-subtitle class="text-center">
-                     
                       <input
                         type="file"
                         @change="paymentSlipChange"
@@ -1444,6 +1453,7 @@ export default {
     return {
       payment_slip_image: "images/voucher.png",
       profile_image: "images/user_preview.png",
+      same_as_permanent:false,
       members_data: [],
       activePicker: "",
       checkbox: false,
@@ -1732,7 +1742,7 @@ export default {
     onMembersImageUpload() {
       document.getElementById("change_member_image").click();
     },
-    openUploadPayment(){
+    openUploadPayment() {
       document.getElementById("change_payment_slip").click();
     },
     changeImage(e) {
@@ -1772,6 +1782,26 @@ export default {
     },
     ConvertBStoAD(date) {
       this.form_fields.dob_ad = new Conversions().ConvertBStoAD(date);
+    },
+     sameAddressSettings() {
+      let self = this;
+      console.log(self.same_as_permanent);
+      if (self.same_as_permanent == true) {
+        self.form_fields.t_country = self.form_fields.p_country;
+        self.form_fields.t_state = self.form_fields.p_state;
+        self.form_fields.t_district = self.form_fields.p_district;
+        self.form_fields.t_municipality = self.form_fields.p_municipality;
+        self.form_fields.t_ward_no = self.form_fields.p_ward_no;
+        self.form_fields.t_village_name = self.form_fields.p_village_name;
+        console.log("true ho yr");
+      } else {
+        self.form_fields.t_country = "",
+        self.form_fields.t_state = "";
+        self.form_fields.t_district = "";
+        self.form_fields.t_municipality = "";
+        self.form_fields.t_ward_no = "";
+        self.form_fields.t_village_name = "";
+      }
     },
   },
 };
