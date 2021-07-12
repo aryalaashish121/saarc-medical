@@ -86,14 +86,15 @@
                 <v-card flat>
                   <v-card-subtitle class="text-center">
                     <v-avatar class="profile" color="grey" size="164" tile>
-                      <v-img
-                        src="https://www.pngitem.com/pimgs/m/4-47626_art-beard-no-male-avatar-clipart-hd-png.png"
-                      ></v-img>
+                      <v-img :src="`${profile_image}`"></v-img>
                     </v-avatar>
                   </v-card-subtitle>
                   <v-card-subtitle class="text-center">
-                    <strong>Photo </strong>
-                      <input type="file" @change="changeImage" />
+                  <v-btn small rounded class="primary" @click="openUpload">
+                  <v-icon left dark> mdi-camera </v-icon>
+                  Choose your photo
+                </v-btn>
+                <input type="file" @change="changeImage" id="change_member_image" hidden/>
                   </v-card-subtitle>
                    
                 </v-card></v-col
@@ -848,13 +849,11 @@
               </v-row>
               <v-row>
                 <v-col cols="12" md="6">
-                   <validation-provider
+                    <validation-provider
                     :rules="{
-                      length: 10,
                       required: false,
-                      regex: /^9(8|7)[0-9]{8}/,
                     }"
-                    name="Mobile number"
+                    name="Mothers's Occupation"
                     v-slot="{ errors, valid }"
                   >
                   <v-text-field
@@ -1357,7 +1356,7 @@ export default {
   },
   data() {
     return {
-       profile_image: "",
+       profile_image: "images/user_preview.png",
       notify: true,
       notify_message: "notify now",
       activePicker: "",
@@ -1551,6 +1550,9 @@ export default {
         })
       console.log("membership application data..");
        });
+    },
+    openUpload(){
+      document.getElementById('change_member_image').click()
     },
     changeImage(e) {
       let _image = e.target.files[0];

@@ -8,7 +8,8 @@ $checkmembership = App\Models\Member::where('user_id', Auth::user()->id)
         <v-app id="inspire">
             <v-app-bar app color="white" flat>
                 <v-avatar :color=" $vuetify.breakpoint.smAndDown ? 'grey darken-1' : 'transparent'" size="36">
-                    <v-img src="/saarc_logo.jpg"> </v-img>
+                    <v-img src="/saarc_logo.jpg"
+                     > </v-img>
                 </v-avatar>
 
                 <v-tabs centered class="ml-n9" color="grey darken-1">

@@ -856,13 +856,11 @@
               </v-row>
               <v-row>
                 <v-col cols="12" md="6">
-                   <validation-provider
+                    <validation-provider
                     :rules="{
-                      length: 10,
                       required: false,
-                      regex: /^9(8|7)[0-9]{8}/,
                     }"
-                    name="Mobile number"
+                    name="Mothers's Occupation"
                     v-slot="{ errors, valid }"
                   >
                   <v-text-field

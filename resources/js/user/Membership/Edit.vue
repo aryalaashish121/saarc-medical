@@ -111,12 +111,25 @@
               <v-card flat>
                 <v-card-subtitle class="text-center">
                   <v-avatar class="profile" color="grey" size="164" tile>
-                    <v-img :src="`images/${form_fields.image}`"></v-img>
+                    <v-img :src="`${profile_image}`"></v-img>
                   </v-avatar>
                 </v-card-subtitle>
                 <v-card-subtitle class="text-center">
-                  <strong>Photo </strong>
-                  <input type="file" @change="changeImage" />
+                  <input
+                    type="file"
+                    @change="changeImage"
+                    id="change_member_image"
+                    hidden
+                  />
+                  <v-btn
+                    small
+                    rounded
+                    class="primary"
+                    @click="onMembersImageUpload"
+                  >
+                    <v-icon left dark> mdi-camera </v-icon>
+                    Choose your photo
+                  </v-btn>
                 </v-card-subtitle>
               </v-card>
             </v-col>
@@ -850,11 +863,9 @@
                 <v-col cols="12" md="6">
                   <validation-provider
                     :rules="{
-                      length: 10,
                       required: false,
-                      regex: /^9(8|7)[0-9]{8}/,
                     }"
-                    name="Mobile number"
+                    name="Mothers's Occupation"
                     v-slot="{ errors, valid }"
                   >
                     <v-text-field
@@ -1329,17 +1340,30 @@
                   </validation-provider>
                 </v-col>
                 <v-col cols="12" md="6">
+                  <!-- <v-text-field
+                   @click="openUploadPayment"
+                   label="Upload scan copy of your payment voucher"
+                   
+                  ></v-text-field> -->
+                   <v-btn small rounded class="primary" @click="openUploadPayment">
+                        <v-icon left dark> mdi-camera </v-icon>
+                        Upload scan copy of your payment voucher
+                      </v-btn>
+                      
                   <v-card flat>
                     <v-card-subtitle class="text-center">
                       <v-avatar class="profile" color="grey" size="164" tile>
-                        <v-img
-                          :src="`images/${form_fields.payment_slip}`"
-                        ></v-img>
+                        <v-img :src="`${payment_slip_image}`"></v-img>
                       </v-avatar>
                     </v-card-subtitle>
                     <v-card-subtitle class="text-center">
-                      <strong> Scan copy of payment slip </strong>
-                      <input type="file" @change="paymentSlipChange" />
+                     
+                      <input
+                        type="file"
+                        @change="paymentSlipChange"
+                        id="change_payment_slip"
+                        hidden
+                      />
                     </v-card-subtitle>
                   </v-card>
                 </v-col>
@@ -1418,9 +1442,8 @@ import UploadService from "../../utils/UploadFileService";
 export default {
   data() {
     return {
-      payment_slip_image: "",
-      preview_image_default:
-        "https://www.pngitem.com/pimgs/m/4-47626_art-beard-no-male-avatar-clipart-hd-png.png",
+      payment_slip_image: "images/voucher.png",
+      profile_image: "images/user_preview.png",
       members_data: [],
       activePicker: "",
       checkbox: false,
@@ -1457,7 +1480,7 @@ export default {
       qualification_count: 0,
       training_count: 0,
       experience_count: 0,
-      profile_image: "",
+
       form_fields: {
         application_no: "",
         membership_type: "",
@@ -1502,7 +1525,7 @@ export default {
 
       wardnoRules: [
         // (v) => (v && v <= 100) || "Max should not be above 100"
-        ],
+      ],
       loading: false,
       genderItems: ["Male", "Female", "Others"],
     };
@@ -1705,6 +1728,12 @@ export default {
         });
       console.log("membership application data..");
       console.log(self.form_fields);
+    },
+    onMembersImageUpload() {
+      document.getElementById("change_member_image").click();
+    },
+    openUploadPayment(){
+      document.getElementById("change_payment_slip").click();
     },
     changeImage(e) {
       let _image = e.target.files[0];

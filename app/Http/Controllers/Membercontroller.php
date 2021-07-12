@@ -87,20 +87,9 @@ class Membercontroller extends Controller
      */
     public function store(MemberRequest $request,MemberService $memberService)
     {
-        $explode = explode(',',$request->image);
-        $decode = base64_decode($explode[1]);
-        if(str_contains($explode[0],'jpeg')){
-        $extension = 'jpeg';
-        } elseif(str_contains($explode[0],'png')){
-        $extension = 'png';
-        }else{
-        return ['status'=>false,'message'=>'Please select only jpeg or png image'];
-        }
-        $file_name = time().'.'.$extension;
-
-        $path = public_path().'/images/'.$file_name;
-        file_put_contents($path,$decode);
-
+        $file_name = $memberService($request->image);
+        $checkIfmember = Member::where('user_id',Auth::user()->id)->get();
+        if($checkIfmember)return ['status'=>false,'message'=>"Membership application is already submitted!"];
         try{
             DB::beginTransaction();
             $work_experiences = $request->work_experiences;
@@ -299,10 +288,11 @@ class Membercontroller extends Controller
     public function manageMemberRequest(Request $request){
     $checkiD = Member::findOrFail($request->id);
     if($checkiD){
-    $result = Member::where('id',$request->id)->update(['is_aproved'=>$request->status]);
+    $result = Member::where('id',$request->id)->update(['is_aproved'=>$request->status,'is_rejected'=>false]);
     if($request->status){
     return ['status'=>true,'message'=>"Membership request approved ! "];
     }else{
+        Member::where('id',$request->id)->update(['is_rejected'=>true]);
     return ['status'=>false,'message'=>"Membership request Rejected ! "];
     }
     }

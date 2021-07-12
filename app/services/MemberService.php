@@ -55,11 +55,11 @@ public function uploadProfile($img){
         }else{
         return ['status'=>false,'message'=>'Please select only jpeg or png image'];
         }
-        $file_name = time().rand(0, 99999).'.'.$extension;
+        $file_name =time().rand(0, 99999).'.'.$extension;
 
-        $path = public_path().'/images/'.$file_name;
+        $path = public_path().'/members/'.$file_name;
         file_put_contents($path,$decode);
-        return $file_name;
+        return "members/".$file_name;
 }
 public function UploadPaymentSlip($img){
         $explode = explode(',',$img);
@@ -76,10 +76,10 @@ public function UploadPaymentSlip($img){
         }
         $file_name = time().rand(0, 99999).'.'.$extension;
 
-        $path = public_path().'/images/'.$file_name;
+        $path = public_path().'/payments/'.$file_name;
         file_put_contents($path,$decode);
 
-        return $file_name;
+        return "payments/".$file_name;
 }
 
 }
