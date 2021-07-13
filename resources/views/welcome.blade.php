@@ -23,7 +23,7 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
     <!-- Styles -->
-     <style>
+    <style>
         /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
         html {
             line-height: 1.15;
@@ -402,7 +402,7 @@
             }
         }
 
-    </style> 
+    </style>
 
     <style>
         body {
@@ -416,19 +416,16 @@
     <nav class="navbar navbar-expand-sm bg-light navbar-ight fixed-top">
         <!-- Brand/logo -->
         <a class="navbar-brand" href="#">
-            <img src="/images/saarc_logo.jpg" alt="logo" style="width:40px; border-radius:20px">
-            SAARCMC
+            <img src="/images/saarc_logo.jpg" alt="logo" style="width:80px; border-radius:20px">
+
         </a>
-
-
-
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon dark"></span>
         </button>
 
         <!-- Links -->
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                         SAARCMC
@@ -457,12 +454,16 @@
                         <a class="dropdown-item" href="#">Sri Lanka</a>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Registered Health Workers</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        Registered
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Health Workers</a>
+                        <a class="dropdown-item" href="#">Centers</a>
+                    </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Registered Centers</a>
-                </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                         Resources
@@ -483,25 +484,24 @@
                 </li>
 
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+
+                <li><a href="{{ route('login') }}" class="text-sm text-gray-700"><button style="border-radius:20px"
+                            class="btn btn-primary ml-5" type="submit">Login
+                        </button></a>
+                </li>
+
+                <li> <a href="{{ route('register') }}" class="text-sm text-gray-700"><button
+                            style="border-radius:20px" class="btn btn-info ml-1" type="submit">Register
+                        </button>
+                    </a>
+                </li>
+
+            </ul>
         </div>
-        @if (Route::has('login'))
-            <div class="hidden fixed top-0 right-0 px-6 py-3 sm:block">
-                @auth
-                    <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
-                @else
-                    <a href="{{ route('login') }}" class="text-sm text-gray-700"><button style="border-radius:20px"
-                            class="btn btn-primary ml-5" type="submit">Login</button></a>
-
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="text-sm text-gray-700"><button style="border-radius:20px"
-                                class="btn btn-info ml-1" type="submit">Register</button></a>
-                    @endif
-                @endauth
-            </div>
-        @endif
-
 
     </nav>
+
     <div class="relative flex items-top justify-center min-h-screen  sm:items-center py-4 sm:pt-0">
         <div class="max-w-6xl mx-auto sm:px-12 lg:px-12 mt-5">
             <div id="demo" class="carousel slide" data-ride="carousel">
@@ -680,7 +680,10 @@
                     <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                         <!-- Content -->
                         <h6 class="text-uppercase font-weight-bold mb-4">
-                            <i class="fas fa-building me-3 mr-3"></i>SAARC Medical Co-operation
+                            <a class="navbar-brand" href="#">
+                                <img src="/images/saarc_logo.jpg" alt="logo" style="width:30px; border-radius:20px">
+
+                            </a>SAARC Medical Co-operation
                         </h6>
                         <p>
                             Lorem ipsum
@@ -693,6 +696,7 @@
                     <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                         <!-- Links -->
                         <h6 class="text-uppercase font-weight-bold mb-4">
+                            <i class="fas fa-tools mr-1"></i>
                             Resources
                         </h6>
                         <p>
@@ -714,6 +718,7 @@
                     <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                         <!-- Links -->
                         <h6 class="text-uppercase font-weight-bold mb-4">
+                            <i class="fas fa-hospital mr-1"></i>
                             SAARCMC Hospitals
                         </h6>
                         <p>
@@ -747,6 +752,7 @@
                     <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                         <!-- Links -->
                         <h6 class="text-uppercase font-weight-bold mb-4">
+                            <i class="fas fa-phone-square-alt mr-1"></i>
                             Contact
                         </h6>
                         <p><i class="fas fa-home me-3"></i> Tinkune-32, Kathmandu ( Raja Janak Marg Road)</p>
