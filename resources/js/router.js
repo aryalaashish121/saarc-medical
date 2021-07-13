@@ -22,7 +22,12 @@ const routes = [
         path: '/user/contactUs',
         name: 'user.contactUs',
         component: require('./user/resources/ContactUs').default
-    }
+    },
+    // {
+    //     path: '/contact',
+    //     name: 'contact',
+    //     component: require('./user/resources/ContactUs').default
+    // }
 ];
 const router = new Router({
     routes,
