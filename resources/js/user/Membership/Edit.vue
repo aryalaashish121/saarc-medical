@@ -1,15 +1,13 @@
 <template>
-  <v-dialog
-    v-model="dialog"
-    fullscreen
-    persistent
-    scrollable
-    hide-overlay
-    transition="dialog-bottom-transition"
-  >
-    <div class="pa-5">
-      <v-card class="mt-3" rounded="lg">
-        <v-toolbar color="primary" dark>
+
+   <v-dialog
+      v-model="dialog"
+      fullscreen
+      hide-overlay
+      transition="dialog-bottom-transition"
+    >
+    
+    <v-toolbar color="primary" dark>
           <v-btn icon dark><v-icon>mdi-account-outline</v-icon></v-btn>
           <v-toolbar-title> Membership Details </v-toolbar-title>
           <v-spacer></v-spacer>
@@ -19,6 +17,9 @@
             >
           </v-toolbar-items>
         </v-toolbar>
+    <div class="pa-5">
+      <v-card class="mt-3" rounded="lg">
+        
         <v-card-title>
           <v-row>
             <v-col cols="12" sm="3" md="3">
@@ -819,7 +820,7 @@
                   <validation-provider
                     :rules="{
                       length: 10,
-                      required: true,
+                      required: false,
                       regex: /^9(8|7)[0-9]{8}/,
                     }"
                     name="Father's mobile number"
@@ -1446,7 +1447,6 @@
 import _ from "lodash";
 import axios from "axios";
 import Conversions from "../../utils/conversions";
-import UploadService from "../../utils/UploadFileService";
 
 export default {
   data() {

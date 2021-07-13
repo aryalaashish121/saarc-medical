@@ -87,9 +87,9 @@ class Membercontroller extends Controller
      */
     public function store(MemberRequest $request,MemberService $memberService)
     {
-        $file_name = $memberService($request->image);
+        $file_name = $memberService->uploadProfile($request->image);
         $checkIfmember = Member::where('user_id',Auth::user()->id)->get();
-        if($checkIfmember)return ['status'=>false,'message'=>"Membership application is already submitted!"];
+        if(count($checkIfmember))return ['status'=>false,'message'=>"Membership application is already submitted!"];
         try{
             DB::beginTransaction();
             $work_experiences = $request->work_experiences;

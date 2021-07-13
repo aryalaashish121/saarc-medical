@@ -1,7 +1,7 @@
 <template>
   <div class="px-2">
     <ViewMembers ref="viewMembers"></ViewMembers>
-    <AddMember ref="addMembership"></AddMember>
+   
      <edit-membership ref="editMembership"></edit-membership>
     <!-- <edit-membership ref="editMembership"></edit-membership> -->
     <v-snackbar v-model="snackbar" top :timeout="5000">
@@ -165,14 +165,14 @@
 </template>
 <script >
 import EditMembership from "../../user/Membership/Edit.vue";
-import AddMember from "../members/Apply.vue";
+
 import Report from "./Report.vue";
 import axios from "axios";
 import ViewMembers from "../members/View.vue";
 import _ from "lodash";
 export default {
   name: "Members",
-  components: {"edit-membership": EditMembership, ViewMembers, Report, AddMember },
+  components: {"edit-membership": EditMembership, ViewMembers, Report },
   data() {
     return {
       snackbar: true,

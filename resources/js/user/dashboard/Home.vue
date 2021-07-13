@@ -1,5 +1,7 @@
 <template>
+
   <div class="mt-3">
+    <ProgressBar />
     <edit-membership ref="editMembership"></edit-membership>
     <div v-if="is_applied_membership === false">
       <ApplyNow />
@@ -14,6 +16,7 @@
     <div v-else>
       <OnProgress />
     </div>
+    
   </div>
 </template>
 <script>
@@ -24,23 +27,30 @@ import ApplyNow from "./ApplyNow.vue";
 import OnProgress from "./OnProgress.vue";
 import MembershipApproved from "./MembershipApproved.vue";
 import MembershipRejected from "./MembershipRejected.vue";
+import ProgressBar from "../../components/preloader.vue";
 export default {
   components: {
     "edit-membership": EditMembership,
+    ProgressBar,
     ApplyNow,
     OnProgress,
     MembershipApproved,
     MembershipRejected,
   },
+  
   data() {
+    
     return {
+      
       user_data: [],
       is_applied_membership: false,
     };
   },
-  created() {
+  beforeCreate() {
+    
     const self = this;
     axios.get("/check-user").then((res) => {
+      
       self.is_applied_membership = self.user_data.status;
       self.user_data = res.data.data;
       console.log(self.user_data);

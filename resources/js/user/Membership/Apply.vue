@@ -1,8 +1,31 @@
 <template>
   <div class="pa-5 mt-3">
+      <v-dialog
+      v-model="dialog"
+      fullscreen
+      hide-overlay
+      transition="dialog-bottom-transition"
+    >
     <notification-bar></notification-bar>
     <validation-observer ref="observer">
       <v-card class="mt-3" rounded="lg" flat>
+        
+        <v-toolbar
+          dark
+          color="primary"
+        >
+          <v-toolbar-title>Membership Application</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-toolbar-items>
+           <v-btn
+            icon
+            dark
+            @click="dialog = false"
+          >
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+          </v-toolbar-items>
+        </v-toolbar>
         <v-row class="d-flex">
           <v-col sm="4" md="4" class="mt-5">
             <v-img
@@ -810,7 +833,7 @@
                     <validation-provider
                       :rules="{
                         length: 10,
-                        required: true,
+                        required: false,
                         regex: /^9(8|7)[0-9]{8}/,
                       }"
                       name="Father's mobile number"
@@ -1337,7 +1360,7 @@
                 color="error"
                 link
                 exact
-                :to="{ name: 'user.dashboard' }"
+                @click="dialog=false"
               >
                 Cancel
                 <v-icon right>mdi-close-circle-outline</v-icon>
@@ -1347,6 +1370,7 @@
         </v-card-text>
       </v-card>
     </validation-observer>
+      </v-dialog>
   </div>
 </template>
 
@@ -1362,6 +1386,7 @@ export default {
   },
   data() {
     return {
+      dialog:false,
       same_as_permanent: false,
       profile_image: "images/user_preview.png",
       notify: true,
@@ -1414,10 +1439,15 @@ export default {
     self.loadCountry();
   },
   mounted() {
-    console.log("User component mounted.");
-    Vue.$toast.info("Fillup the application form with your vaild details!");
+  
   },
   methods: {
+    add(){
+      const self = this;
+      self.dialog = true;
+    console.log("User component mounted.");
+    Vue.$toast.info("Fillup the application form with your vaild details!");
+    },
     save(date) {
       this.$refs.menu.save(date);
     },
@@ -1543,10 +1573,12 @@ export default {
             console.log("responsing from serve..");
             console.log(response);
             if (response.data.status === true) {
-              this.$router.push("/");
               Vue.$toast.success(response.data.message, {
                 position: "top",
               });
+              location.reload();
+              self.dialog = false;
+              
             }
             if (response.data.status === false) {
               Vue.$toast.error(response.data.message, {
