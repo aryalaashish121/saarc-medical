@@ -44,7 +44,6 @@ const app = new Vue({
     data() {
         return {
             membership_data: [],
-
             drawer: true,
             path: "/dashboard",
         };

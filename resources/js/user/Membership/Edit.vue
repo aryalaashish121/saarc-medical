@@ -819,7 +819,7 @@
                   <validation-provider
                     :rules="{
                       length: 10,
-                      required: true,
+                      required: false,
                       regex: /^9(8|7)[0-9]{8}/,
                     }"
                     name="Father's mobile number"
