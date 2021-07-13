@@ -14,16 +14,6 @@ const routes = [
         component: require('./user/dashboard/Home').default
     },
     {
-        path: '/user/apply',
-        name: 'user.apply',
-        component: require('./user/Membership/Apply').default
-    },
-    {
-        path: '/user/reapply',
-        name: 'membership.edit',
-        component: require('./user/Membership/Edit').default
-    },
-    {
         path: '/user/resources',
         name: 'user.resources',
         component: require('./user/resources/Resources').default

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <apply-membership ref="applyMembership"></apply-membership>
     <v-container class="py-8">
       <v-card
         class="mx-auto"
@@ -42,13 +43,19 @@
   </div>
 </template>
 <script>
+import Apply from "../Membership/Apply.vue";
 export default {
+  components:{
+    'apply-membership':Apply,
+  },
   data() {
     return {};
   },
   methods: {
     goToApply() {
-      this.$router.push("/user/apply");
+      const self = this;
+      self.$refs.applyMembership.add();
+      // this.$router.push("/user/apply");
     },
   },
 };
