@@ -104,7 +104,7 @@
                 <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                     <!-- Links -->
                     <h6 class="text-uppercase font-weight-bold mb-4">
-                        <i class="fas fa-phone-square-alt mr-1"></i>
+                        <i class="fas fa-home mr-1"></i>
                         Contact
                     </h6>
                     <p><i class="fas fa-home me-3"></i> Tinkune-32, Kathmandu ( Raja Janak Marg Road)</p>
