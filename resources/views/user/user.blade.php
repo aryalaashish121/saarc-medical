@@ -71,4 +71,5 @@ $checkmembership = App\Models\Member::where('user_id', Auth::user()->id)
         </v-app>
     </template>
 </div>
+@include('layouts.fbchat');
 <script src="{{ asset('js/app.js') }}" defer></script>
