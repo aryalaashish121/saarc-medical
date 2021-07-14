@@ -148,7 +148,6 @@
             <v-icon small dark> mdi-pencil-outline </v-icon>
           </v-btn>
          
-
           <v-btn
             @click="deleteMember(item.id)"
             outlined
@@ -161,6 +160,7 @@
         </template>
       </v-data-table>
     </v-card>
+
   </div>
 </template>
 <script >
@@ -199,7 +199,7 @@ export default {
           text: "Address",
           value: "address",
         },
-        { text: "Email", value: "first_name_en" },
+        { text: "Email", value: "email" },
         { text: "Mobile", value: "mobile", sortable: false, align: "start" },
         { text: "Approved", value: "is_aproved" },
         { text: "Status", value: "status" },

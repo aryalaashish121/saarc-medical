@@ -13,7 +13,7 @@ import router from './router';
 import VueFbCustomerChat from 'vue-fb-customer-chat'
 
 Vue.use(VueFbCustomerChat, {
-    page_id: 2305130609529832, //  change 'null' to your Facebook Page ID,
+    page_id: 356566154827460, //  change 'null' to your Facebook Page ID,
     theme_color: '#333333', // theme color in HEX
     locale: 'en_US', // default 'en_US'
 })

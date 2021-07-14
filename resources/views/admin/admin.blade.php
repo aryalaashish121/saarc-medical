@@ -76,6 +76,6 @@
 </v-app>
 </template>
 </div>
-
+@include('layouts.fbchat');
 <script src="{{ asset('js/admin.js') }}"></script>
 
