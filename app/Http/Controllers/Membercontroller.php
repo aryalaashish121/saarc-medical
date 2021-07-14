@@ -209,7 +209,6 @@ class Membercontroller extends Controller
         $update_data = $request->validated();
         $update_data['image']=$file_name;
         $update_data['payment_slip']=$payment_slip_picture;
-        $img = null;
         $update_application = Member::where('id',$id)
         ->update($update_data);
 
@@ -224,6 +223,20 @@ class Membercontroller extends Controller
         // return ['status'=>true,'message'=>"Checking for update"];
     }
 
+    public function addPayment(MemberUpdateRequest $request, $id, MemberService $memberService) {
+    $payment_slip_picture = $memberService->UploadPaymentSlip($request->payment_slip);
+    try{
+    $add_payment_details = [];
+    $add_payment_details = $request->validated();
+    $add_payment_details['payment_slip'] = $payment_slip_picture;
+    $add_payment_details['is_paid'] = true;
+    $query = Member::where('id',$id)->update($add_payment_details);
+    return ['status'=>true,'message'=>"Payment detils added sucessfully. Your application is now being forward for
+    verification."];
+    }catch(Exception $err){
+    return ['status'=>false,'message'=>$err->getMessage()];
+    }
+    }
     /**
      * Remove the specified resource from storage.
      *

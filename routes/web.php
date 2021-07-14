@@ -76,3 +76,5 @@ Route::post('/uploadImage', [ImageController::class, 'handleUpload']);
 
 Route::get('/test', [Membercontroller::class, 'create']);
 Route::get('/getmedia', [ImageController::class, 'getMedia']);
+
+Route::put('members/payment/{id}',[Membercontroller::class,'addPayment']);
