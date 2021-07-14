@@ -1,15 +1,14 @@
 <?php
 $checkmembership = App\Models\Member::where('user_id', Auth::user()->id)
-->get()
-->first(); ?>
+    ->get()
+    ->first(); ?>
 <div id="app">
     <template>
 
         <v-app id="inspire">
             <v-app-bar app color="white" flat>
                 <v-avatar :color=" $vuetify.breakpoint.smAndDown ? 'grey darken-1' : 'transparent'" size="36">
-                    <v-img src="/saarc_logo.jpg"
-                     > </v-img>
+                    <v-img src="/saarc_logo.jpg"> </v-img>
                 </v-avatar>
 
                 <v-tabs centered class="ml-n9" color="grey darken-1">
@@ -17,7 +16,7 @@ $checkmembership = App\Models\Member::where('user_id', Auth::user()->id)
                         <v-icon left> mdi-view-dashboard </v-icon>
                         Dashboard
                     </v-tab>
-                    {{-- @if(!$checkmembership)
+                    {{-- @if (!$checkmembership)
                     <v-tab link exact :to="{ name: 'user.apply' }" >
                         <v-icon left> mdi-account-check </v-icon>
                         Apply

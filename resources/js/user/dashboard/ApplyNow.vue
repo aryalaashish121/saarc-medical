@@ -1,7 +1,7 @@
 <template>
   <div>
     <apply-membership ref="applyMembership"></apply-membership>
-    <v-container class="py-8">
+    <v-container>
       <v-card
         class="mx-auto"
         color="#952175"
@@ -45,8 +45,8 @@
 <script>
 import Apply from "../Membership/Apply.vue";
 export default {
-  components:{
-    'apply-membership':Apply,
+  components: {
+    "apply-membership": Apply,
   },
   data() {
     return {};

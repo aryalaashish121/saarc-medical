@@ -32,38 +32,47 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// Route::resource('members', [Membercontroller::class]);
-Route::group(['middleware'=>'auth'], function(){
 
-Route::group(['prefix'=>'admin','as'=>'admin.'], function(){
-Route::resource('admin', AdminController::class);
-});
+Route::get('/contact', function () {
+    return view('contactus');
+})->name('contact');
+
+Route::get('/resource', function () {
+    return view('resource');
+})->name('resource');
+
+// Route::resource('members', [Membercontroller::class]);
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+        Route::resource('admin', AdminController::class);
+    });
 });
 //country data
-Route::get('get-country-data',[CountryController::class,'index']);
-Route::get('/members/data',[Membercontroller::class, 'index']);
-Route::get('/members/trash',[Membercontroller::class, 'trash']);
-Route::get('/members/{id}',[Membercontroller::class, 'show']);
-Route::get('members/restore/{id}',[Membercontroller::class,'restore']);
-Route::get('/members/{id}/edit',[Membercontroller::class,'edit']);
+Route::get('get-country-data', [CountryController::class, 'index']);
+Route::get('/members/data', [Membercontroller::class, 'index']);
+Route::get('/members/trash', [Membercontroller::class, 'trash']);
+Route::get('/members/{id}', [Membercontroller::class, 'show']);
+Route::get('members/restore/{id}', [Membercontroller::class, 'restore']);
+Route::get('/members/{id}/edit', [Membercontroller::class, 'edit']);
 
-Route::post('/members/manage', [Membercontroller::class,'manageMemberRequest'] );
-Route::post('update-member-status',[Membercontroller::class,'updateStatus']);
+Route::post('/members/manage', [Membercontroller::class, 'manageMemberRequest']);
+Route::post('update-member-status', [Membercontroller::class, 'updateStatus']);
 
-Route::delete('/members/{id}',[Membercontroller::class,'destroy']);
-Route::delete('/members/trash/{id}',[Membercontroller::class,'deletePermanently']);
+Route::delete('/members/{id}', [Membercontroller::class, 'destroy']);
+Route::delete('/members/trash/{id}', [Membercontroller::class, 'deletePermanently']);
 //state
-Route::get('/get-state-data',[StateController::class,'index']);
-Route::get('/get-district-data',[DistrictController::class,'index']);
-Route::get('/get-membership-type-data',[MembershipTypeController::class,'index']);
+Route::get('/get-state-data', [StateController::class, 'index']);
+Route::get('/get-district-data', [DistrictController::class, 'index']);
+Route::get('/get-membership-type-data', [MembershipTypeController::class, 'index']);
 
-Route::post('/members/apply',[Membercontroller::class,'store']);
-Route::put('/members/edit/{id}',[Membercontroller::class,'update']);
+Route::post('/members/apply', [Membercontroller::class, 'store']);
+Route::put('/members/edit/{id}', [Membercontroller::class, 'update']);
 
-Route::get('/logout', [LogoutController::class,'logout']);
-Route::get('check-user',[UserController::class,'index']);
-Route::post('/media', [ImageController::class,'store']);
-Route::post('/uploadImage', [ImageController::class,'handleUpload']);
+Route::get('/logout', [LogoutController::class, 'logout']);
+Route::get('check-user', [UserController::class, 'index']);
+Route::post('/media', [ImageController::class, 'store']);
+Route::post('/uploadImage', [ImageController::class, 'handleUpload']);
 
-Route::get('/test',[Membercontroller::class,'create']);
-Route::get('/getmedia',[ImageController::class,'getMedia']);
+Route::get('/test', [Membercontroller::class, 'create']);
+Route::get('/getmedia', [ImageController::class, 'getMedia']);

@@ -1,5 +1,4 @@
 <template>
-
   <div class="mt-3">
     <ProgressBar />
     <edit-membership ref="editMembership"></edit-membership>
@@ -16,7 +15,6 @@
     <div v-else>
       <OnProgress />
     </div>
-    
   </div>
 </template>
 <script>
@@ -37,20 +35,16 @@ export default {
     MembershipApproved,
     MembershipRejected,
   },
-  
+
   data() {
-    
     return {
-      
       user_data: [],
       is_applied_membership: false,
     };
   },
   beforeCreate() {
-    
     const self = this;
     axios.get("/check-user").then((res) => {
-      
       self.is_applied_membership = self.user_data.status;
       self.user_data = res.data.data;
       console.log(self.user_data);
