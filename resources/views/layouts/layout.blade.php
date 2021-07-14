@@ -6,17 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>@yield('title')</title>
-    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
     </script>
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
     </script>
@@ -401,18 +401,6 @@
                 color: #cbd5e0;
                 color: rgba(203, 213, 224, var(--text-opacity))
             }
-
-            #myCarousel .carousel-inner .carousel-item img {
-                height: 100vh;
-                width: 100%;
-
-            }
-
-            #myCarousel .carousel-inner .carousel-item {
-                background-size: cover;
-                background: no-repeat center scroll;
-            }
-
         }
 
     </style>
@@ -426,6 +414,7 @@
 </head>
 
 <body>
+
     @include('layouts.nav')
 
     @yield('content')

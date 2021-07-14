@@ -4,7 +4,6 @@ $checkmembership = App\Models\Member::where('user_id', Auth::user()->id)
     ->first(); ?>
 <div id="app">
     <template>
-
         <v-app id="inspire">
             <v-app-bar app color="white" flat>
                 <v-avatar :color=" $vuetify.breakpoint.smAndDown ? 'grey darken-1' : 'transparent'" size="36">

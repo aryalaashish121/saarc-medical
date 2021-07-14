@@ -99,6 +99,7 @@
           </v-col>
         </v-row>
       </v-card>
+      <v-divider class="mb-4"></v-divider>
     </v-container>
   </div>
 </template>
