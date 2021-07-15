@@ -6,7 +6,7 @@ Vue.use(Router);
 const routes = [
     {
         path: '/',
-        redirect: '/dashboard'
+        redirect: '/welcome'
     },
     {
         path: '/dashboard',
@@ -22,6 +22,11 @@ const routes = [
         path: '/user/contactUs',
         name: 'user.contactUs',
         component: require('./user/resources/ContactUs').default
+    },
+    {
+        path: '/welcome',
+        name: 'welcome',
+        component: require('./user/resources/Welcome').default
     },
     // {
     //     path: '/contact',

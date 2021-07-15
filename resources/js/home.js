@@ -11,5 +11,4 @@ Vue.component('welcome', require('./user/resources/Welcome').default)
 const app = new Vue({
     vuetify,
     el: '#root',
-
 })

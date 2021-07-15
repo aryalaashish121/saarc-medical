@@ -2,15 +2,22 @@
 $checkmembership = App\Models\Member::where('user_id', Auth::user()->id)
     ->get()
     ->first(); ?>
+   
 <div id="app">
     <template>
         <v-app id="inspire">
             <v-app-bar app color="white" flat>
-                <v-avatar :color=" $vuetify.breakpoint.smAndDown ? 'grey darken-1' : 'transparent'" size="36">
+                <v-avatar 
+                :color=" $vuetify.breakpoint.smAndDown ? 'grey darken-1' : 'transparent'"
+                 size="36">
                     <v-img src="/saarc_logo.jpg"> </v-img>
                 </v-avatar>
-
+              
                 <v-tabs centered class="ml-n9" color="grey darken-1">
+                    <v-tab link exact :to="{ name: 'welcome' }">
+                        <v-icon left> mdi-view-dashboard </v-icon>
+                        Home
+                    </v-tab>
                     <v-tab link exact :to="{ name: 'user.dashboard' }">
                         <v-icon left> mdi-view-dashboard </v-icon>
                         Dashboard
@@ -25,6 +32,7 @@ $checkmembership = App\Models\Member::where('user_id', Auth::user()->id)
                         <v-icon left> mdi-hammer-screwdriver </v-icon>
                         Resources
                     </v-tab>
+                    
                     <v-tab link exact :to="{ name: 'user.contactUs' }">
                         <v-icon left> mdi-phone </v-icon>
                         Contact Us
