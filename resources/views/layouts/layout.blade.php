@@ -416,7 +416,6 @@
 <body>
 
     @include('layouts.nav')
-
     @yield('content')
     <!-- Footer -->
     @include('layouts.footer')

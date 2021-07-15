@@ -20,7 +20,7 @@
       <div>
         <h1 class="text-center" style="font-family: Roboto">Our Vision</h1>
         <div class="row mt-4">
-          <v-col md="4">
+          <v-col md="4" sm="12">
             <v-card rounded="xl" elevation="5" flat>
               <v-card-title class="justify-center">
                 <v-avatar size="104" class="mt-5" tile>
@@ -48,7 +48,7 @@
               </v-card-text>
             </v-card>
           </v-col>
-          <v-col md="4">
+          <v-col md="4" sm="12">
             <v-card rounded="xl" elevation="5" flat>
               <v-card-title class="justify-center">
                 <v-avatar size="104" tile class="mt-5">
@@ -77,7 +77,7 @@
               </v-card-text>
             </v-card>
           </v-col>
-          <v-col md="4">
+          <v-col md="4" sm="12">
             <v-card rounded="xl" elevation="5" flat>
               <v-card-title class="justify-center">
                 <v-avatar size="104" class="mt-5">
@@ -110,7 +110,7 @@
       <div class="mt-16">
         <h1 class="text-center" style="font-family: Roboto">Our Services</h1>
         <div class="row mt-4">
-          <v-col md="4">
+          <v-col md="4" sm="12">
             <v-card rounded="xl" elevation="5" flat>
               <v-card-title class="justify-center">
                 <v-avatar size="104" tile class="mt-5">
@@ -140,7 +140,7 @@
               </v-card-text>
             </v-card>
           </v-col>
-          <v-col md="4">
+          <v-col md="4" sm="12">
             <v-card rounded="xl" elevation="5" flat>
               <v-card-title class="justify-center">
                 <v-avatar size="104" tile class="mt-5">
@@ -170,7 +170,7 @@
               </v-card-text>
             </v-card>
           </v-col>
-          <v-col md="4">
+          <v-col md="4" sm="12">
             <v-card rounded="xl" elevation="5" flat>
               <v-card-title class="justify-center">
                 <v-avatar size="104" tile class="mt-5">
