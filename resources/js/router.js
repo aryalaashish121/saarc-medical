@@ -23,6 +23,21 @@ const routes = [
         name: 'user.contactUs',
         component: require('./user/resources/ContactUs').default
     },
+    {
+        path: '/welcome',
+        name: 'welcome',
+        component: require('./user/resources/Welcome').default
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: require('./user/resources/Login').default
+    },
+    {
+        path: '/health-workers',
+        name: 'health-workers',
+        component: require('./user/resources/HealthWorkers').default
+    },
     // {
     //     path: '/contact',
     //     name: 'contact',

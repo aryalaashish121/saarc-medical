@@ -12,7 +12,7 @@
         </v-card-subtitle>
         <v-row class="mt-5">
           <v-col cols="12" md="4" sm="12">
-            <v-card elevation="2" rounded="lg" flat>
+            <v-card class="mt-5" rounded="lg" flat>
               <v-alert border="top" color="cyan" colored-border elevation="2">
                 <v-card-title class="font-weight-bold">
                   Membership
@@ -28,21 +28,21 @@
                 </v-card-text>
                 <v-card-action class="justify-end">
                   <v-btn
-                    class="ma-2"
+                    class="ma-2 text-capitalize"
                     outlined
                     small
                     rounded
                     color="cyan darken-2"
                   >
                     <v-icon left class="mr-2"> mdi-headset </v-icon>
-                    Contact Help Centre
+                    Help Centre
                   </v-btn>
                 </v-card-action>
               </v-alert>
             </v-card>
           </v-col>
           <v-col cols="12" md="4" sm="12">
-            <v-card elevation="2" rounded="lg" flat>
+            <v-card rounded="lg" flat>
               <v-alert border="top" color="green" colored-border elevation="2">
                 <v-card-title class="font-weight-bold">
                   Help & Support
@@ -60,21 +60,21 @@
                 </v-card-text>
                 <v-card-action class="justify-center">
                   <v-btn
-                    class="ma-2"
+                    class="ma-2 text-capitalize"
                     outlined
                     small
                     rounded
                     color="green darken-3"
                   >
                     <v-icon left class="mr-2"> mdi-headset </v-icon>
-                    Contact Support Team
+                    Support Team
                   </v-btn>
                 </v-card-action>
               </v-alert>
             </v-card>
           </v-col>
           <v-col cols="12" md="4" sm="12">
-            <v-card elevation="2" rounded="lg" flat>
+            <v-card class="mt-5" rounded="lg" flat>
               <v-alert border="top" color="blue" colored-border elevation="2">
                 <v-card-title class="font-weight-bold">
                   Join the Team
@@ -89,9 +89,15 @@
                   to be member here.
                 </v-card-text>
                 <v-card-action class="justify-end">
-                  <v-btn class="ma-2" outlined small rounded color="blue">
+                  <v-btn
+                    class="ma-2 text-capitalize"
+                    outlined
+                    small
+                    rounded
+                    color="blue"
+                  >
                     <v-icon left class="mr-2"> mdi-headset </v-icon>
-                    Contact Recruitment Team
+                    Recruitment Team
                   </v-btn>
                 </v-card-action>
               </v-alert>
