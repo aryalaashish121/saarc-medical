@@ -3,7 +3,7 @@
 @section('content')
     <div id="root">
         <v-app>
-            {{-- <v-card class="overflow-hidden">
+            <v-card class="overflow-hidden">
                 <v-app-bar color="white" elevation="5" fixed>
                     <v-avatar size="55" tile class="mr-3">
                         <v-img src="/images/saarc_logo.jpg"> </v-img>
@@ -116,7 +116,7 @@
                         <v-icon small right> mdi-login-variant </v-icon>
                     </v-btn>
                 </v-app-bar>
-            </v-card> --}}
+            </v-card>
 
             <welcome></welcome>
         </v-app>

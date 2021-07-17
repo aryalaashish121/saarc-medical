@@ -14,10 +14,7 @@ $checkmembership = App\Models\Member::where('user_id', Auth::user()->id)
                 </v-avatar>
               
                 <v-tabs centered class="ml-n9" color="grey darken-1">
-                    <v-tab link exact :to="{ name: 'welcome' }">
-                        <v-icon left> mdi-view-dashboard </v-icon>
-                        Home
-                    </v-tab>
+                   
                     <v-tab link exact :to="{ name: 'user.dashboard' }">
                         <v-icon left> mdi-view-dashboard </v-icon>
                         Dashboard
