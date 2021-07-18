@@ -3,14 +3,14 @@
     <h1><i class="fas fa-user-md mr-5"></i> Registered Health Workers</h1>
 
     <!-- Workers Details -->
-    <div class="container mt-5">
+    <div class="health-workers-div mt-5">
       <div class="health-workers">
         <div class="pic">
-          <img src="/images/nurse.jpg" alt="" />
+          <img src="/images/doctor1.jpg" alt="" />
         </div>
         <div class="workers-detail">
-          <h3 class="title">Swastima Poudel</h3>
-          <span class="post">Nurse</span>
+          <h3 class="title">Aashish Aryal</h3>
+          <span class="post">Dentist</span>
         </div>
         <ul class="social">
           <li><a href="" class="fab fa-facebook"></a></li>
@@ -50,7 +50,7 @@
         </ul>
       </div>
     </div>
-    <div class="container mt-5">
+    <div class="health-workers-div mt-5">
       <div class="health-workers">
         <div class="pic">
           <img src="/images/doctor2.jpg" alt="" />
@@ -69,11 +69,11 @@
 
       <div class="health-workers">
         <div class="pic">
-          <img src="/images/nurse.jpg" alt="" />
+          <img src="/images/doctor1.jpg" alt="" />
         </div>
         <div class="workers-detail">
-          <h3 class="title">Swastima Poudel</h3>
-          <span class="post">Nurse</span>
+          <h3 class="title">Aashish Aryal</h3>
+          <span class="post">Dentist</span>
         </div>
         <ul class="social">
           <li><a href="" class="fab fa-facebook"></a></li>
@@ -115,7 +115,7 @@ h1 {
   text-shadow: 0 0 2px #ff0000;
   margin-bottom: 50px;
 }
-.container {
+.health-workers-div {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -224,7 +224,7 @@ h1 {
   background: #f7f5ec;
 }
 @media (max-width: 720px) {
-  .container {
+  .health-workers-div {
     flex-direction: column;
   }
   .health-workers {
