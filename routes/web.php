@@ -8,6 +8,7 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\Membercontroller;
 use App\Http\Controllers\MembershipTypeController;
 use App\Http\Controllers\StateController;
+use App\Http\Controllers\user\UserRouteController;
 use App\Http\Controllers\UserController;
 use App\Models\Member;
 use App\Models\MembershipType;
@@ -32,21 +33,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/contact', function () {
-    return view('contactus');
-})->name('contact');
-
-Route::get('/resource', function () {
-    return view('resource');
-})->name('resource');
-
-// Route::resource('members', [Membercontroller::class]);
 Route::group(['middleware' => 'auth'], function () {
-
-    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-        Route::resource('admin', AdminController::class);
-    });
+Route::resource('user', UserRouteController::class);
+Route::resource('admin', AdminController::class);
 });
 //country data
 Route::get('get-country-data', [CountryController::class, 'index']);
@@ -78,3 +67,11 @@ Route::get('/test', [Membercontroller::class, 'create']);
 Route::get('/getmedia', [ImageController::class, 'getMedia']);
 
 Route::put('members/payment/{id}',[Membercontroller::class,'addPayment']);
+
+Route::get('/contact', function () {
+return view('contactus');
+})->name('contact');
+
+Route::get('/resource', function () {
+return view('resource');
+})->name('resource');

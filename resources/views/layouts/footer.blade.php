@@ -25,7 +25,7 @@
 
     <!-- Section: Links  -->
     <section class="">
-        <div class="container text-center text-md-start mt-5">
+        <div class="px-3 text-left text-md-start mt-5">
             <!-- Grid row -->
             <div class="row mt-3">
                 <!-- Grid column -->
@@ -45,7 +45,7 @@
                 <!-- Grid column -->
 
                 <!-- Grid column -->
-                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                <div class="resources col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                     <!-- Links -->
                     <h6 class="text-uppercase font-weight-bold mb-4">
                         <i class="fas fa-tools mr-1"></i>
@@ -67,7 +67,7 @@
                 <!-- Grid column -->
 
                 <!-- Grid column -->
-                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                <div class="hospitals col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                     <!-- Links -->
                     <h6 class="text-uppercase font-weight-bold mb-4">
                         <i class="fas fa-hospital mr-1"></i>
@@ -107,10 +107,11 @@
                         <i class="fas fa-home mr-1"></i>
                         Contact
                     </h6>
-                    <p><i class="fas fa-home me-3"></i> Tinkune-32, Kathmandu ( Raja Janak Marg Road)</p>
+                    <p><i class="fas fa-map-marked-alt me-3"></i> Tinkune-32, Kathmandu ( Raja Janak Marg Road)</p>
                     <p>
                         <i class="fas fa-envelope me-3"></i>
-                        <a href="mailto:info.saarcmcoop@gmail.com"> info.saarcmcoop@gmail.com </a>
+                        <a href="mailto:info.saarcmcoop@gmail.com" style="text-decoration: none">
+                            info.saarcmcoop@gmail.com </a>
                     </p>
                     <p><i class="fas fa-phone me-3"></i> 01-4279626, 01-4117940 </p>
 
@@ -128,7 +129,7 @@
         <a class="text-reset fw-bold" href="#">SAARC Medical Co-operation</a>
     </div>
     <!-- Copyright -->
-             <!-- Messenger Chat Plugin Code -->
+    <!-- Messenger Chat Plugin Code -->
     <div id="fb-root"></div>
 
     <!-- Your Chat Plugin code -->
@@ -136,25 +137,86 @@
     </div>
 
     <script>
-      var chatbox = document.getElementById('fb-customer-chat');
-      chatbox.setAttribute("page_id", "356566154827460");
-      chatbox.setAttribute("attribution", "biz_inbox");
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "356566154827460");
+        chatbox.setAttribute("attribution", "biz_inbox");
 
-      window.fbAsyncInit = function() {
-        FB.init({
-          xfbml            : true,
-          version          : 'v11.0'
-        });
-      };
+        window.fbAsyncInit = function() {
+            FB.init({
+                xfbml: true,
+                version: 'v11.0'
+            });
+        };
 
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     </script>
     @include('layouts.fbchat');
 </footer>
+<style>
+    .hospitals a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .hospitals a {
+        display: block;
+        position: relative;
+        padding: 0.2em 0;
+    }
+
+    .hospitals a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 0.1em;
+        background-color: hotpink;
+        opacity: 0;
+        transition: opacity 300ms, transform 300ms;
+    }
+
+    .hospitals a:hover::after,
+    a:focus::after {
+        opacity: 1;
+        transform: translate3d(0, 0.2em, 0);
+    }
+
+    .resources a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .resources a {
+        display: block;
+        position: relative;
+        padding: 0.2em 0;
+    }
+
+    .resources a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 0.1em;
+        background-color: hotpink;
+        opacity: 0;
+        transition: opacity 300ms, transform 300ms;
+    }
+
+    .resources a:hover::after,
+    a:focus::after {
+        opacity: 1;
+        transform: translate3d(0, 0.2em, 0);
+    }
+
+</style>
 <!-- Footer -->

@@ -14,12 +14,17 @@ const routes = [
         component: require('./user/dashboard/Home').default
     },
     {
-        path: '/user/resources',
+        path:'/profile',
+        name:'user.profile',
+        component:require('./user/profile/Profile').default
+    },
+    {
+        path: '/resources',
         name: 'user.resources',
         component: require('./user/resources/Resources').default
     },
     {
-        path: '/user/contactUs',
+        path: '/contactUs',
         name: 'user.contactUs',
         component: require('./user/resources/ContactUs').default
     },
@@ -28,11 +33,12 @@ const routes = [
         name: 'welcome',
         component: require('./user/resources/Welcome').default
     },
-    // {
-    //     path: '/contact',
-    //     name: 'contact',
-    //     component: require('./user/resources/ContactUs').default
-    // }
+    {
+        path: '/health-workers',
+        name: 'health-workers',
+        component: require('./user/resources/HealthWorkers').default
+    },
+
 ];
 const router = new Router({
     routes,
