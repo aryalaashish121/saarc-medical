@@ -112,7 +112,7 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-    <a class="navbar-brand" href="#"><img src="/images/saarc_logo.jpg" style="width: 50px" alt=""></a>
+    <a class="navbar-brand" href="/"><img src="/images/saarc_logo.jpg" style="width: 50px" alt=""></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fa fa-bars"></i></span>

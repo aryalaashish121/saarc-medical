@@ -4,11 +4,10 @@ $checkmembership = App\Models\Member::where('user_id', Auth::user()->id)
 
     Auth::user()->name;
     ?>
-
-<div id="app">
-    <template>
+<div id="app" >
+    <template >
         <v-app id="inspire">
-            <v-main class="grey lighten-3">
+            <v-main class="grey lighten-3" >
                 <v-container>
                     <v-row>
                         <v-col cols="2">
@@ -60,5 +59,5 @@ $checkmembership = App\Models\Member::where('user_id', Auth::user()->id)
         </v-app>
     </template>
 </div>
-@include('layouts.fbchat');
+@include('layouts.fbchat')
 <script src="{{ asset('js/app.js') }}" defer></script>

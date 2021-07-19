@@ -4,10 +4,11 @@
     <Payment ref="addPayment"></Payment>
     <ProgressBar />
     <edit-membership ref="editMembership"></edit-membership>
-    <div v-if="is_applied_membership === false">
-      <ApplyNow />
+    <div v-if="user_data.user_id === true">
+       <OnProgress />
+      
     </div>
-    <div v-else-if="!user_data.is_paid">
+    <div v-else-if="user_data.is_paid===false">
       <pre>
       you are under processing. 
       Note. your payment voucher must have information same as you submitted on application details. 
@@ -25,7 +26,7 @@
     </div>
 
     <div v-else>
-      <OnProgress />
+     <ApplyNow />
     </div>
   </div>
 </template>
@@ -55,11 +56,11 @@ export default {
       is_applied_membership: false,
     };
   },
-  beforeCreate() {
+  created() {
     const self = this;
-    axios.get("/check-user").then((res) => {
+    axios.get("current-user").then((res) => {
+       self.user_data = res.data.data;
       self.is_applied_membership = self.user_data.status;
-      self.user_data = res.data.data;
       console.log(self.user_data);
     });
   },

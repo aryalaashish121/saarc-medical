@@ -21,7 +21,7 @@
 <body>
     @include('layouts.nav')
     <main class="py-4">
-            @yield('content')
+        @yield('content')
     </main>
     @include('layouts.footer')
 </body>

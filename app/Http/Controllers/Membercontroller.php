@@ -166,8 +166,7 @@ class Membercontroller extends Controller
      */
     public function edit($id)
     {
-       $check = Member::findOrFail($id);
-       if($check){
+    Member::findOrFail($id);
        $data = [];
        $data = Member::where('id',$id)->first();
        $data['experiences'] = DB::table('members_work_experience')
@@ -182,7 +181,6 @@ class Membercontroller extends Controller
        ->where(['is_training'=>true])->get();
 
        return ['status'=>true,'data'=>$data];
-       }
        return ['status'=>false,'message'=>"Membership application not found.."];
     }
 

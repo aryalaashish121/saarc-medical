@@ -1575,6 +1575,7 @@ export default {
           console.log(self.form_fields);
         })
         .catch((err) => {
+           Vue.$toast.error("Something went wrong! Please try refreshing page.");
           console.log(err);
         });
       console.log(_id);
