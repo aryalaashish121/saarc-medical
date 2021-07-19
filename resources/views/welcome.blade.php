@@ -1,4 +1,5 @@
-welcome page
-<a href="{{route('login')}}" >Login</a>
-<a href="{{route('register')}}" >Register</a>
-<a href="{{route('logout')}}" >Logout</a>
+@extends('layouts.layout')
+@section('title', 'SAARC Medical Co-operation')
+@section('content')
+    Here we go in the laravle welcome
+@endsection

@@ -1,69 +1,38 @@
-body{
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Nunito' sans-serif;
 }
-#myCarousel .carousel-inner .carousel-item img {
-    height: 100vh;
-    width: 100%;
-
+.navbar {
+    background-image: linear-gradient(-5deg, #e36463, #e1bc29);
 }
-
-#myCarousel .carousel-inner .carousel-item {
-    background-size: cover;
-    background: no-repeat center scroll;
+.nav-link {
+    font-size: 16px;
+    margin: 3px;
+    color: #fff !important;
+    font-weight: 500;
 }
-
-.navbar ul li a {
-display: block;
-padding: 15px;
-text-align: none;
-color: grey;
-font-weight: 800;
-text-transform: uppercase;
-margin: 0 10px;
+.navbar-nav {
+    text-align: right;
+    margin-right: 20px;
 }
-
-.navbar ul li a, .navbar ul li a::after, .navbar ul li a ::before {
-    transition: all .5s;
+.navbar-toggler {
+    padding-right: 20px;
+    outline: none !important;
+    border: none !important;
 }
-.navbar ul li a:hover {
-    color:black;
+.navbar .fa {
+    color: #fff !important;
+    font-size: 26px;
+}.nav-link:hover {
+    font-weight: 650;
+    border-bottom: 1px solid #fff;
 }
-.navbar ul li a{
-  position: relative;
+.dropdown:hover> .dropdown-menu {
+    display: block;
 }
-.navbar ul li a:after {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  width: 0%;
-  content: '.';
-  color: transparent;
-  background: #aaa;
-  height: 5px;
-}
-.navbar ul li a:hover:after {
-  width: 100%;
-}
-@media all and (min-width: 992px) {
-	.navbar .nav-item .dropdown-menu{ display: none; }
-	
-	.navbar .nav-item:hover .dropdown-menu{ display: block; }
-	.navbar .nav-item .dropdown-menu{ margin-top:0; }
-}
-.visonCard {
-
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    
-}
-.visonCard:hover {
-
-    box-shadow: 0 4px 8px 0 rgba(196, 17, 241, 0.274), 0 6px 20px 0 rgba(196, 17, 241, 0.274);
-}
-.btn {
-    color: whitesmoke;
+@media only screen and (max-width:1000px) {
+    .nav-link:hover {
+        border-bottom: none !important;
+    }
 }
