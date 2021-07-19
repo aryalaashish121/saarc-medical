@@ -33,6 +33,10 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/health-workers', function () {
+    return view('healthWorkers');
+})->name('health-workers');
+
 Route::get('/contact', function () {
     return view('contactus');
 })->name('contact');
@@ -77,4 +81,4 @@ Route::post('/uploadImage', [ImageController::class, 'handleUpload']);
 Route::get('/test', [Membercontroller::class, 'create']);
 Route::get('/getmedia', [ImageController::class, 'getMedia']);
 
-Route::put('members/payment/{id}',[Membercontroller::class,'addPayment']);
+Route::put('members/payment/{id}', [Membercontroller::class, 'addPayment']);

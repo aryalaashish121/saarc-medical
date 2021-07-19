@@ -112,7 +112,7 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-    <a class="navbar-brand" href="/"><img src="/images/saarc_logo.jpg" style="width: 50px" alt=""></a>
+    <a class="navbar-brand" href="/"><img src="/images/new_logo.png" style="width: 350px" alt=""></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fa fa-bars"></i></span>
@@ -153,7 +153,7 @@
                     <i class="fas fa-user-tie mr-1"></i> Registered
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Health Workers</a>
+                    <a class="dropdown-item" href="{{ route('health-workers') }}">Health Workers</a>
                     <a class="dropdown-item" href="#">Centers</a>
                 </div>
             </li>
@@ -169,7 +169,7 @@
             </li>
         </ul>
         <ul class="navbar-nav navbar-right">
-            <a href="#" class="btn btn-light" style="border-radius: 20px" role="button">Login
+            <a href="{{ route('login') }}" class="btn btn-light" style="border-radius: 20px" role="button">Login
                 <i class="fas fa-sign-in-alt ml-1"></i>
             </a>
         </ul>
