@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @section('title', 'SAARC Medical Co-operation')
 @section('content')
-    <div>
+    <div class="mt-5">
         <h1>hello hello</h1>
     </div>
-@stop
+@endsection
