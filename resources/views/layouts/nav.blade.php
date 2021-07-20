@@ -112,7 +112,7 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-    <a class="navbar-brand" href="/"><img src="/images/new_logo.png" style="width: 350px" alt=""></a>
+    <a class="navbar-brand" href="/"><img src="/images/new_logo.png" style="width: 280px" alt=""></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fa fa-bars"></i></span>
@@ -166,6 +166,10 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('contact') }}">
                     <i class="fas fa-phone-alt mr-1"></i> Contact Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('user-Dashboard') }}">
+                    <i class="fas fa-eye mr-1"></i> User </a>
             </li>
         </ul>
         <ul class="navbar-nav navbar-right">
