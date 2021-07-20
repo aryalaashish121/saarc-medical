@@ -297,6 +297,47 @@
                       </v-card>
                     </v-col>
                   </v-row>
+                  <v-row class="px-5 py-3" v-if="form_fields">
+                    <v-col cols="12">
+                      <v-card outlined rounded="lg">
+                        <v-card-title class="primary--text font-weight-bold">
+                          <v-icon class="mr-2" color="pink">
+                            mdi-phone-log
+                          </v-icon>
+                          Payment Information
+                        </v-card-title>
+                        <v-divider></v-divider>
+                        <v-card-text>
+                          <v-card outlined rounded="xl" elevation="3">
+                            <v-card-text>
+                              <h2 style="font-size: 16px" class="text-wrap">
+                                <strong> Bank Name: </strong>
+                                {{ form_fields.bank_name }}
+                              </h2>
+                              <br />
+                              <h2 style="font-size: 16px">
+                                <strong> Branch Name: </strong>
+                                {{ form_fields.bank_branch }}
+                              </h2>
+                              <h2 style="font-size: 16px">
+                                <strong> Account no.: </strong>
+                                {{ form_fields.bank_account_no }}
+                              </h2>
+                            </v-card-text>
+                            <v-card-subtitle class="">
+                              <strong>Payment Slip</strong>
+                                <v-img
+                                  max-height="121"
+                                  max-width="250"
+                                  :src="`${form_fields.payment_slip}`"
+                                > </v-img>
+                            
+                            </v-card-subtitle>
+                          </v-card>
+                        </v-card-text>
+                      </v-card>
+                    </v-col>
+                  </v-row>
                 </v-card>
               </v-col>
             </v-row>
@@ -482,7 +523,7 @@
                                     ) in qualificationList"
                                     :key="index"
                                   >
-                                  <td class="text-left sybtitle-2">
+                                    <td class="text-left sybtitle-2">
                                       {{ index + 1 }}
                                     </td>
                                     <td>
