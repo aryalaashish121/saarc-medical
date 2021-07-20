@@ -39,6 +39,10 @@ Route::get('/health-workers', function () {
     return view('healthWorkers');
 })->name('health-workers');
 
+Route::get('/previewUserDashboard', function () {
+    return view('userDashboard');
+})->name('user-Dashboard');
+
 Route::get('/contact', function () {
     return view('contactus');
 })->name('contact');

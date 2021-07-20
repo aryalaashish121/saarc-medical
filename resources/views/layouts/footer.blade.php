@@ -189,6 +189,12 @@
         transform: translate3d(0, 0.2em, 0);
     }
 
+    h6 {
+        font-size: 15px;
+        font-weight: 700;
+        font-family: 'Nunito', sans-serif;
+    }
+
     .resources a {
         text-decoration: none;
         color: inherit;
