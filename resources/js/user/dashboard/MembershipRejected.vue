@@ -31,16 +31,16 @@
         </v-card-subtitle>
 
         <v-row align="center" justify="space-around">
-          <v-btn
+          <!-- <v-btn
             @click="goToApply"
             color="white"
             class="ma-5 indigo--text"
             rounded
             large
           >
-            <v-icon left dark> mdi-account-check </v-icon>
+          <v-icon left dark> mdi-account-check </v-icon>
             Re-apply
-          </v-btn>
+          </v-btn> -->
         </v-row>
       </v-card>
     </v-container>
@@ -53,7 +53,7 @@ export default {
   },
   methods: {
     goToApply() {
-      this.$router.push("/user/apply");
+      // this.$router.push("/user/apply");
     },
   },
 };

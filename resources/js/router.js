@@ -14,12 +14,22 @@ const routes = [
         component: require('./user/dashboard/Home').default
     },
     {
-        path: '/user/resources',
+        path: '/apply',
+        name: 'user.apply',
+        component: require('./user/dashboard/ApplyNow').default
+    },
+    {
+        path:'/profile',
+        name:'user.profile',
+        component:require('./user/profile/Profile').default
+    },
+    {
+        path: '/resources',
         name: 'user.resources',
         component: require('./user/resources/Resources').default
     },
     {
-        path: '/user/contactUs',
+        path: '/contactUs',
         name: 'user.contactUs',
         component: require('./user/resources/ContactUs').default
     },
@@ -29,20 +39,11 @@ const routes = [
         component: require('./user/resources/Welcome').default
     },
     {
-        path: '/login',
-        name: 'login',
-        component: require('./user/resources/Login').default
-    },
-    {
         path: '/health-workers',
         name: 'health-workers',
         component: require('./user/resources/HealthWorkers').default
     },
-    // {
-    //     path: '/contact',
-    //     name: 'contact',
-    //     component: require('./user/resources/ContactUs').default
-    // }
+
 ];
 const router = new Router({
     routes,

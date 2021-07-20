@@ -2,21 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Member;
-use Illuminate\Http\Request;
+use App\Models\User;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Auth;
-
 class UserController extends Controller
 {
-   public function index(){
-     $current_user = Auth::user();
-     $membership = Member::where('user_id',$current_user->id)->first();
-    //  if (Member::where('user_id',$current_user->id)->exists()==false) {
-    //     return ['status'=>false,'message'=>"Not a member yet!"];
-    //  }
-     if($membership){
-        return ['status'=>true,'data'=>$membership];
-     }
-    
+
+      public function update(Request $request){
+      // dd($request->all());
    }
 }

@@ -14,17 +14,17 @@ const routes = [
         component: require('./dashboard/Home').default
     },
     {
-        path: '/admin/members',
+        path: '/members',
         name: 'admin.members',
         component: require('./members/Members').default
     },
     {
-        path: '/admin/trash',
+        path: '/trash',
         name: 'admin.trash',
         component: require('./members/Trash').default
     },
     {
-        path: '/admin/membership/request',
+        path: '/membership/request',
         name: 'admin.member-request',
         component: require('./members/Request').default
     },

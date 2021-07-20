@@ -1546,14 +1546,16 @@ export default {
     },
   },
 
-  async created() {
-    const self = this;
+   created() {
+    
+  },
+  async mounted() {
+  const self = this;
     await self.loadProvinces();
     await self.loadDistrict();
     await self.loadMembershipType();
     await self.loadCountry();
   },
-  mounted() {},
   methods: {
     edit(_id) {
       const self = this;
@@ -1575,6 +1577,7 @@ export default {
           console.log(self.form_fields);
         })
         .catch((err) => {
+           Vue.$toast.error("Something went wrong! Please try refreshing page.");
           console.log(err);
         });
       console.log(_id);

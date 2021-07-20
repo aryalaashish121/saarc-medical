@@ -43,25 +43,14 @@ const app = new Vue({
     el: '#app',
     data() {
         return {
-            membership_data: [],
             drawer: true,
             path: "/dashboard",
         };
     },
     methods: {
-
         clickLogout(logoutUrl, redirectLogoutUrl) {
             axios.post(logoutUrl).then(response => {
                 window.location.href = redirectLogoutUrl;
-            });
-        },
-        checkMembership() {
-            axios.get('/check-user').then((res) => {
-                if (this.membership_data.status == true) {
-                    return true;
-                } else {
-                    return false;
-                }
             });
         },
     },

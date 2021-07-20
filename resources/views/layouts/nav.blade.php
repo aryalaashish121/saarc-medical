@@ -173,10 +173,19 @@
             </li>
         </ul>
         <ul class="navbar-nav navbar-right">
+           @if(Auth::user())
+         
+            <a href="{{ route('user.index') }}" class="btn btn-light" style="border-radius: 20px" role="button">
+                {{Auth::user()->name}}
+               
+            </a>
+            @else
             <a href="{{ route('login') }}" class="btn btn-light" style="border-radius: 20px" role="button">Login
                 <i class="fas fa-sign-in-alt ml-1"></i>
             </a>
+            @endif
         </ul>
+        
 
     </div>
 </nav>

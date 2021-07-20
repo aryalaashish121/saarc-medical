@@ -7,7 +7,9 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\Membercontroller;
 use App\Http\Controllers\MembershipTypeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StateController;
+use App\Http\Controllers\user\UserRouteController;
 use App\Http\Controllers\UserController;
 use App\Models\Member;
 use App\Models\MembershipType;
@@ -51,10 +53,12 @@ Route::get('/resource', function () {
 
 // Route::resource('members', [Membercontroller::class]);
 Route::group(['middleware' => 'auth'], function () {
+Route::resource('user', UserRouteController::class);
+Route::resource('admin', AdminController::class);
+Route::get('current-user', [UserRouteController::class, 'getUser']);
+Route::put('user-update/{id}',[UserRouteController::class,'updateUserData']);
+Route::put('user-password/{id}',[UserRouteController::class,'updatePassword']);
 
-    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-        Route::resource('admin', AdminController::class);
-    });
 });
 //country data
 Route::get('get-country-data', [CountryController::class, 'index']);
@@ -78,7 +82,6 @@ Route::post('/members/apply', [Membercontroller::class, 'store']);
 Route::put('/members/edit/{id}', [Membercontroller::class, 'update']);
 
 Route::get('/logout', [LogoutController::class, 'logout']);
-Route::get('check-user', [UserController::class, 'index']);
 Route::post('/media', [ImageController::class, 'store']);
 Route::post('/uploadImage', [ImageController::class, 'handleUpload']);
 

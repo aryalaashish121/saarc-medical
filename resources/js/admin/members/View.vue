@@ -193,11 +193,11 @@
                           <v-avatar
                             class="mb-2 profile"
                             color="grey"
-                            size="154"
+                            size="250"
                             tile
                           >
                             <v-img
-                              :src="`images/${form_fields.image}`"
+                              :src="`${form_fields.image}`"
                               alt="Members image"
                             />
                           </v-avatar>
