@@ -58,8 +58,7 @@ export default {
    created() {
     const self = this;
     axios.get("current-user").then((res) => {
-      self.is_applied_membership = self.user_data.status;
-      self.user_data = res.data.data;
+      self.user_data = res.data.data.membership;
       console.log(self.user_data);
     });
   },

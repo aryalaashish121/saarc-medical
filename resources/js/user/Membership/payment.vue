@@ -121,13 +121,13 @@ export default {
   },
   created() {},
   methods: {
-    add(_id) {
+   async add(_id) {
       const self = this;
       self.url = "/members";
       console.log("payment add menu");
       self.dialog = true;
 
-      axios
+     await axios
         .get(`${self.url}/${_id}/edit`)
         .then((res) => {
           self.form_fields = res.data.data;
@@ -160,9 +160,7 @@ export default {
         .put(`${self.url}/${_id}`, self.form_fields)
         .then((response) => {
           console.log(response);
-          Vue.$toast.success(response.data.message, {
-            position: "top",
-          });
+          Vue.$toast.success(response.data.message);
           self.dialog = false;
            location.reload();
           if (response.data.status === false) {

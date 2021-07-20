@@ -166,7 +166,8 @@ class Membercontroller extends Controller
      */
     public function edit($id)
     {
-    Member::findOrFail($id);
+        // dd($id);
+        Member::findOrFail($id);
        $data = [];
        $data = Member::where('id',$id)->first();
        $data['experiences'] = DB::table('members_work_experience')

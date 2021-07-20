@@ -1439,13 +1439,15 @@ export default {
     },
   },
   created() {
-    const self = this;
-    self.loadProvinces();
-    self.loadDistrict();
-    self.loadMembershipType();
-    self.loadCountry();
+    
   },
-  mounted() {},
+ async mounted() {
+  const self = this;
+   await self.loadProvinces();
+   await self.loadDistrict();
+   await self.loadMembershipType();
+   await self.loadCountry();
+  },
   methods: {
     add() {
       const self = this;

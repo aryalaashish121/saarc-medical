@@ -7,6 +7,7 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\Membercontroller;
 use App\Http\Controllers\MembershipTypeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\user\UserRouteController;
 use App\Http\Controllers\UserController;
@@ -33,11 +34,24 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/health-workers', function () {
+    return view('healthWorkers');
+})->name('health-workers');
+
+Route::get('/contact', function () {
+    return view('contactus');
+})->name('contact');
+
+Route::get('/resource', function () {
+    return view('resource');
+})->name('resource');
+
+// Route::resource('members', [Membercontroller::class]);
 Route::group(['middleware' => 'auth'], function () {
 Route::resource('user', UserRouteController::class);
 Route::resource('admin', AdminController::class);
-Route::get('current-user', [UserController::class, 'index']);
-Route::post('user-update',UserController::class,'update');
+Route::get('current-user', [UserRouteController::class, 'getUser']);
 });
 //country data
 Route::get('get-country-data', [CountryController::class, 'index']);
@@ -67,12 +81,4 @@ Route::post('/uploadImage', [ImageController::class, 'handleUpload']);
 Route::get('/test', [Membercontroller::class, 'create']);
 Route::get('/getmedia', [ImageController::class, 'getMedia']);
 
-Route::put('members/payment/{id}',[Membercontroller::class,'addPayment']);
-
-Route::get('/contact', function () {
-return view('contactus');
-})->name('contact');
-
-Route::get('/resource', function () {
-return view('resource');
-})->name('resource');
+Route::put('members/payment/{id}', [Membercontroller::class, 'addPayment']);

@@ -14,6 +14,11 @@ const routes = [
         component: require('./user/dashboard/Home').default
     },
     {
+        path: '/apply',
+        name: 'user.apply',
+        component: require('./user/dashboard/ApplyNow').default
+    },
+    {
         path:'/profile',
         name:'user.profile',
         component:require('./user/profile/Profile').default

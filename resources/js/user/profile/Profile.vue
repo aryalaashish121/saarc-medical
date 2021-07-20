@@ -20,9 +20,12 @@ export default {
       membership_data:[],
     }
   },
-  created(){
+ async mounted(){
     console.log('loading profile component');
-    this.userData();
+    await this.userData();
+  },
+  created(){
+   
   },
   methods:{
     userData(){
@@ -36,7 +39,6 @@ export default {
     },
     changeDetails(){
       const self = this;
-      
       self.$refs.updateUser.update();
     }
 

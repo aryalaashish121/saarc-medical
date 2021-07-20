@@ -1,10 +1,11 @@
 <?php
 $checkmembership = App\Models\Member::where('user_id', Auth::user()->id)
     ->first(); 
-
-    Auth::user()->name;
-    ?>
-<div id="app" >
+Auth::user()->name;
+?>
+@extends('layouts.layout')
+@section('content')
+<div id="app">
     <template >
         <v-app id="inspire">
             <v-main class="grey lighten-3" >
@@ -13,6 +14,7 @@ $checkmembership = App\Models\Member::where('user_id', Auth::user()->id)
                         <v-col cols="2">
                             <v-sheet rounded="lg">
                                 <v-list color="transparent">
+                                    {{-- need condition here --}}
                                     <v-list-item link exact :to="{ name: 'user.dashboard' }">
                                         <v-list-item-content>
                                             <v-list-item-title>
@@ -23,7 +25,6 @@ $checkmembership = App\Models\Member::where('user_id', Auth::user()->id)
                                     </v-list-item>
 
                                     <v-list-item link exact :to="{ name: 'user.profile' }">
-
                                         <v-list-item-content>
                                             <v-list-item-title>
                                                 <v-icon left> mdi-account-tie </v-icon>
@@ -59,5 +60,7 @@ $checkmembership = App\Models\Member::where('user_id', Auth::user()->id)
         </v-app>
     </template>
 </div>
+
 @include('layouts.fbchat')
+@endsection
 <script src="{{ asset('js/app.js') }}" defer></script>

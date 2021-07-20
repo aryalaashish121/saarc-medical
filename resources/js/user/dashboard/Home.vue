@@ -1,32 +1,29 @@
 <template>
-
   <div class="mt-3">
     <Payment ref="addPayment"></Payment>
     <ProgressBar />
     <edit-membership ref="editMembership"></edit-membership>
-    <div v-if="user_data.user_id === true">
-       <OnProgress />
-      
+    <div v-if="membership==null">
+      <ApplyNow />
     </div>
-    <div v-else-if="user_data.is_paid===false">
+    <div v-else-if="membership.is_paid==false">
       <pre>
       you are under processing. 
       Note. your payment voucher must have information same as you submitted on application details. 
       Your application no is 
-      <i><u>{{user_data.application_no}}</u></i>
+      <i><u>{{membership.application_no}}</u></i>
       
-      <v-btn @click="pay(user_data.id)">Pay</v-btn>
+      <v-btn @click="pay(membership.id)">Pay</v-btn>
       </pre>
     </div>
-    <div v-else-if="user_data.is_aproved">
+    <div v-else-if="membership.is_aproved==true">
       <MembershipApproved />
     </div>
-    <div v-else-if="user_data.is_rejected">
+    <div v-else-if="membership.is_rejected==true">
       <MembershipRejected />
     </div>
-
-    <div v-else>
-     <ApplyNow />
+    <div v-else-if="membership.is_rejected==false && membership.is_aproved==false">
+      <OnProgress />
     </div>
   </div>
 </template>
@@ -53,19 +50,30 @@ export default {
   data() {
     return {
       user_data: [],
-      is_applied_membership: false,
+      membership:[],
     };
   },
-  created() {
+  beforeCreate() {
+    
+  },
+  mounted() {
+    this.checkUserMembership();
+  },
+  
+  methods: {
+   async checkUserMembership(){
     const self = this;
-    axios.get("current-user").then((res) => {
-       self.user_data = res.data.data;
-      self.is_applied_membership = self.user_data.status;
+    await axios.get("current-user").then((res) => {
+      self.user_data = res.data.data;
+      self.membership = res.data.data.membership;
+      // if(Self.membership==null){
+      //   this.$router.push('/apply');
+      // }
+      console.log('Membership data bellow');
+      console.log(self.membership);
       console.log(self.user_data);
     });
   },
-  mounted() {},
-  methods: {
     pay(_id){
       const self = this;
       console.log("editing membership application");
