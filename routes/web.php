@@ -52,6 +52,9 @@ Route::group(['middleware' => 'auth'], function () {
 Route::resource('user', UserRouteController::class);
 Route::resource('admin', AdminController::class);
 Route::get('current-user', [UserRouteController::class, 'getUser']);
+Route::put('user-update/{id}',[UserRouteController::class,'updateUserData']);
+Route::put('user-password/{id}',[UserRouteController::class,'updatePassword']);
+
 });
 //country data
 Route::get('get-country-data', [CountryController::class, 'index']);
