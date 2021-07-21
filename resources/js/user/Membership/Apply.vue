@@ -1,14 +1,14 @@
 <template>
-  <div class="pa-5 mt-3">
-    <v-dialog
-      v-model="dialog"
-      fullscreen
-      hide-overlay
-      transition="dialog-bottom-transition"
-    >
+  <v-dialog
+    v-model="dialog"
+    fullscreen
+    hide-overlay
+    transition="dialog-bottom-transition"
+  >
+    <div class="pa-5 mt-5">
       <notification-bar></notification-bar>
       <validation-observer ref="observer">
-        <v-card class="" rounded="lg" flat>
+        <v-card class="mt-5" rounded="lg" flat>
           <v-toolbar dark color="primary">
             <v-toolbar-title>Membership Application</v-toolbar-title>
             <v-spacer></v-spacer>
@@ -1377,8 +1377,8 @@
           </v-card-text>
         </v-card>
       </validation-observer>
-    </v-dialog>
-  </div>
+    </div>
+  </v-dialog>
 </template>
 
 <script>
@@ -1438,15 +1438,13 @@ export default {
       val && setTimeout(() => (this.activePicker = "YEAR"));
     },
   },
-  created() {
-    
-  },
- async mounted() {
-  const self = this;
-   await self.loadProvinces();
-   await self.loadDistrict();
-   await self.loadMembershipType();
-   await self.loadCountry();
+  created() {},
+  async mounted() {
+    const self = this;
+    await self.loadProvinces();
+    await self.loadDistrict();
+    await self.loadMembershipType();
+    await self.loadCountry();
   },
   methods: {
     add() {

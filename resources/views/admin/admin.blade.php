@@ -46,6 +46,7 @@
                   <v-list-item-title>Trash</v-list-item-title>
               </v-list-item-content>
           </v-list-item>
+          
           <v-list-item  link @click="clickLogout('{{route('logout')}}','{{url('/login')}}')">
               <v-list-item-action>
                   <v-icon> mdi-exit-to-app</v-icon>
@@ -58,7 +59,7 @@
       </v-list>
   </v-navigation-drawer>
 
-  <v-app-bar app color="indigo" dark>
+  <v-app-bar app color="orange darken-2" dark>
     <v-app-bar-nav-icon  @click="drawer = !drawer"></v-app-bar-nav-icon>
     <v-toolbar-title>SAARC Medical Corporation</v-toolbar-title>
 </v-app-bar>
@@ -76,6 +77,6 @@
 </v-app>
 </template>
 </div>
-@include('layouts.fbchat');
+@include('layouts.fbchat')
 <script src="{{ asset('js/admin.js') }}"></script>
 

@@ -1,14 +1,6 @@
 <template>
   <div>
-    <v-dialog
-      v-model="dialog"
-      persistent
-      fullscreen
-      scrollable
-      hide-overlay
-      transition="dialog-bottom-transition"
-    >
-      <v-snackbar v-model="snackbar" top :timeout="5000">
+     <v-snackbar v-model="snackbar" top :timeout="5000">
         {{ snackbar_text }}
 
         <template v-slot:action="{ attrs }">
@@ -17,6 +9,15 @@
           </v-btn>
         </template>
       </v-snackbar>
+    <v-dialog
+      v-model="dialog"
+      persistent
+      fullscreen
+      scrollable
+      hide-overlay
+      transition="dialog-bottom-transition"
+    >
+     
       <v-card>
         <v-toolbar color="primary" dark>
           <v-btn icon dark><v-icon>mdi-account-outline</v-icon></v-btn>
@@ -51,7 +52,12 @@
                         <div class="studentBasics">
                           <v-row>
                             <v-col sm="6" md="3">
-                              <v-icon small class="pb-1"> mdi-account </v-icon>
+                              
+                              <v-icon v-if="form_fields.is_aproved" small class="pb-1" color="primary">  mdi-account-check </v-icon>
+                              <v-icon v-else-if="form_fields.is_rejected" color="error">mdi-account-cancel-outline</v-icon>
+                              <v-icon v-else small class="pb-1"> mdi-account </v-icon>
+                              
+                            
                               <strong class="ml-2 studentDetailHeader">
                                 Applicant Name:
                               </strong>
@@ -63,8 +69,11 @@
                                   form_fields.middle_name_en
                                 }}&nbsp;{{ form_fields.last_name_en }}
                               </span>
-
+                                <v-icon v-if="form_fields.is_aproved" color="primary">mdi-checkbox-marked-circle</v-icon>
+                                <v-icon v-else-if="form_fields.is_rejected" color="error">mdi-close-circle-outline</v-icon>
+                              
                               <v-btn
+                              :disabled="form_fields.is_aproved==1"
                                 color="primary"
                                 @click="
                                   manageMemberRequest(form_fields.id, true)
@@ -73,6 +82,8 @@
                                 Approve</v-btn
                               >
                               <v-btn
+                              :disabled="form_fields.is_rejected==1"
+                                
                                 color="error"
                                 @click="
                                   manageMemberRequest(form_fields.id, false)
@@ -668,9 +679,7 @@ export default {
     async view(_id) {
       const self = this;
       self.form_fields = [];
-      let response = await axios.get(`${"/members"}/${_id}`);
-
-      //  let response = await self.show(_id);
+      await axios.get(`${"/members"}/${_id}`).then((response)=>{
       self.form_fields = response.data;
       self.experienceList = response.data.work_experiences;
       self.traningList = response.data.trainings;
@@ -679,8 +688,10 @@ export default {
 
       console.log(_id);
       self.dialog = true;
+      }).catch(err=>{
+        console.log(err);
+      });     
     },
-
     async manageMemberRequest(_id, data) {
       const self = this;
       self.url = "/members/manage";
@@ -696,9 +707,11 @@ export default {
             if (response.data.status) {
               self.snackbar_text = response.data.message;
               self.snackbar = true;
+              self.dialog = false;
             }
             self.snackbar_text = response.data.message;
             self.snackbar = true;
+            self.dialog = false;
           })
           .catch((err) => {
             console.log(err);
