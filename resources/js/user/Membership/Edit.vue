@@ -1,13 +1,14 @@
 <template>
-
-   <v-dialog
+   <v-dialog    
       v-model="dialog"
       fullscreen
       hide-overlay
       transition="dialog-bottom-transition"
     >
-    
-    <v-toolbar color="primary" dark>
+   
+    <div class="pa-5 mt-5">
+      <v-card class="mt-5" rounded="lg">
+        <v-toolbar  color="primary" dark>
           <v-btn icon dark><v-icon>mdi-account-outline</v-icon></v-btn>
           <v-toolbar-title> Membership Details </v-toolbar-title>
           <v-spacer></v-spacer>
@@ -17,9 +18,6 @@
             >
           </v-toolbar-items>
         </v-toolbar>
-    <div class="pa-5">
-      <v-card class="mt-3" rounded="lg">
-        
         <v-card-title>
           <v-row>
             <v-col cols="12" sm="3" md="3">
@@ -1451,6 +1449,7 @@ import Conversions from "../../utils/conversions";
 export default {
   data() {
     return {
+    
       payment_slip_image: "images/voucher.png",
       profile_image: "images/user_preview.png",
       same_as_permanent:false,
@@ -1495,6 +1494,7 @@ export default {
         application_no: "",
         membership_type: "",
         is_aproved: false,
+        is_rejected: false,
         first_name_en: "",
         last_name_en: "",
         last_name_en: "",
@@ -1562,6 +1562,7 @@ export default {
       self.deleted_qualifications = [];
       self.deleted_experiences = [];
       self.url = "/members";
+       
       self.dialog = true;
 
       axios
@@ -1580,6 +1581,7 @@ export default {
            Vue.$toast.error("Something went wrong! Please try refreshing page.");
           console.log(err);
         });
+      
       console.log(_id);
     },
     save(date) {
@@ -1702,6 +1704,7 @@ export default {
       const self = this;
 
       self.url = "/members/edit";
+      
       self.form_fields["payment_slip"] = this.payment_slip_image;
       self.form_fields["image"] = this.profile_image;
       self.form_fields["work_experiences"] = self.work_experience;

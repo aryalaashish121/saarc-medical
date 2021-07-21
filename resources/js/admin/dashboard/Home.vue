@@ -1,9 +1,7 @@
 <template>
   <div class="px-2">
     <ViewMembers ref="viewMembers"></ViewMembers>
-   
      <edit-membership ref="editMembership"></edit-membership>
-    <!-- <edit-membership ref="editMembership"></edit-membership> -->
     <v-snackbar v-model="snackbar" top :timeout="5000">
       {{ snackbar_text }}
 
@@ -15,8 +13,6 @@
     </v-snackbar>
 
     <v-card class="px-5" outlined elevation="4" rounded="lg">
-      <Report />
-
       <v-data-table
         :headers="headers"
         :loading="isLoading"
@@ -90,11 +86,7 @@
             </v-col>
 
             <v-spacer></v-spacer>
-            <!-- <v-btn dark fab x-small class="primary elevation-1" @click="addMembershipDetails">
-              <v-icon>mdi-plus</v-icon>
-            </v-btn> -->
-
-            <v-btn
+                     <v-btn
               fab
               dark
               x-small
@@ -175,8 +167,7 @@ export default {
   components: {"edit-membership": EditMembership, ViewMembers, Report },
   data() {
     return {
-      snackbar: true,
-      snackbar_text: "Welcome Admin!",
+     
       membersList: [],
       isLoading: false,
       options: {},

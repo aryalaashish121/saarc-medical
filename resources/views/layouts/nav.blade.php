@@ -109,7 +109,27 @@
     </div>
 
 </nav> --}}
+<style>
+    .profile-img{
+    text-align: center;
+}
 
+.profile-img .text {
+    position: relative;
+    overflow: hidden;
+    margin-top: -20%;
+    width: 50%;
+    border: none;
+    border-radius: 0;
+    font-size: 12px;
+
+}
+.profile-img .text .acronym {
+    position: absolute;
+    
+    top: 0;
+}
+</style>
 
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
     <a class="navbar-brand" href="/"><img src="/images/new_logo.png" style="width: 280px" alt=""></a>
@@ -168,20 +188,42 @@
                     <i class="fas fa-phone-alt mr-1"></i> Contact Us</a>
             </li>
         </ul>
-        <ul class="navbar-nav navbar-right">
-            @if (Auth::user())
-
-                <a href="{{ route('user.index') }}" class="btn btn-light" style="border-radius: 20px" role="button">
-                    {{ Auth::user()->name }}
-
-                </a>
+        <li class="nav-item dropdown navbar-nav navbar-right">
+            @if(Auth::user())
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                        <?php
+                        $words = explode(" ",  Auth::user()->name);
+                        $acronym = "";
+                        foreach ($words as $w)
+                        $acronym .= $w[0]
+                     ?>   
+                        {{$acronym}}
+            </a>
             @else
-                <a href="{{ route('login') }}" class="btn btn-light" style="border-radius: 20px" role="button">Login
-                    <i class="fas fa-sign-in-alt ml-1"></i>
-                </a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <img src="https://mondoltech.com/wp-content/uploads/2021/05/pngtree-user-vector-avatar-png-image_1541962-removebg-preview.png" class="rounded-circle" width="40" />
+        </a>
             @endif
-        </ul>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                @if (Auth::user())
 
-
+                    <a href="{{ route('user.index') }}" class="dropdown-item">
+                        Profile
+                    </a> 
+                    <div class="dropdown-divider"></div>
+{{--                    
+                    <a class="dropdown-item" style="pointer"
+                   onclick =clickLogout('{{route('logout')}}','{{url('/login')}})>Logout</a> --}}
+            </div>
+        @else
+        
+            <a href="{{ route('login') }}" class="btn btn-light" style="border-radius: 20px" >Login
+                <i class="fas fa-sign-in-alt ml-1"></i>
+            </a>
+           
+            @endif
+        </li>
     </div>
 </nav>

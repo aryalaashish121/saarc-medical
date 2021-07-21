@@ -207,9 +207,11 @@ class Membercontroller extends Controller
         $update_data = [];
         $update_data = $request->validated();
         $update_data['image']=$file_name;
+        $update_data['is_rejected']=false;
+        $update_data['is_aproved']=false;
+        $update_data['is_deleted']=false;
         $update_data['payment_slip']=$payment_slip_picture;
-        $update_application = Member::where('id',$id)
-        ->update($update_data);
+        $update_application = Member::where('id',$id)->update($update_data);
 
         if($update_application){
         DB::commit();
@@ -300,7 +302,8 @@ class Membercontroller extends Controller
     public function manageMemberRequest(Request $request){
     $checkiD = Member::findOrFail($request->id);
     if($checkiD){
-    $result = Member::where('id',$request->id)->update(['is_aproved'=>$request->status,'is_rejected'=>false]);
+    $result = Member::where('id',$request->id)
+    ->update(['is_aproved'=>$request->status,'is_rejected'=>false]);
     if($request->status){
     return ['status'=>true,'message'=>"Membership request approved ! "];
     }else{
