@@ -113,6 +113,12 @@
     font-family: 'Zen Loop', cursive;
 }
 
+.timelineMessages {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+}
+
 .ourVison .card .content {
     position: relative;
     margin-top: -140px;
@@ -280,111 +286,4 @@
     .nav-link:hover {
         border-bottom: none !important;
     }
-}
-
-/* User Dashboard Styles */
-
-.container {
-    widows: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.clearfix {
-    clear: both;
-}
-
-.myLabels {
-    margin-top: 10px;
-    font-family: 'Roboto', sans-serif;
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: -20px;
-}
-
-.userHeadings {
-    color: #0254b7;
-    font-size: 30px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 800;
-}
-
-.form-1, .form-2, .form-3 {
-    padding-top: 1%;
-    margin-top: 25px;
-    border-radius: 20px;
-    border: none;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    padding-bottom: 20px;
-}
-
-.input-1 {
-    padding: 10px;
-    margin-top: 15px;
-    width: 20%;
-    border: none;
-    border-bottom: 2px solid #ddd;
-    margin-right: 30px;
-}
-
-.input-1:focus {
-    border-bottom: 1px solid #0254b7;
-    color: blue;
-}
-
-.continueButton-1, .continueButton-2 {
-    padding: 10px 30px;
-    margin-top: 25px;
-    font-size: 16px;
-    font-family: 'Roboto', sans-serif;
-    background-color: #0254b7;
-    color: white;
-    border: none;
-    font-weight: 700;
-    border-radius: 30px;
-    opacity: 0.9;
-}
-
-.backButton-1, .backButton-2 {
-    padding: 10px 30px;
-    margin-top: 25px;
-    font-size: 16px;
-    font-family: 'Roboto', sans-serif;
-    background-color: #c7c7c7;
-    color: black;
-    font-weight: 700;
-    border: none;
-    border-radius: 30px;
-}
-
-.error {
-    border-bottom: 1px solid red;
-}
-
-.progress-bar {
-    margin-left: -100px;
-}
-
-.bot-icon-1, .bot-icon-2, .bot-icon-3 {
-    font-size: 30px !important;
-    color: #c7c7c7;
-}
-
-.steps {
-    position: relative;
-    float: left;
-    width: 130px;
-}
-
-.line-1, .line-2, .line-3 {
-    height: 2px;
-    width: 90px;
-    background-color: #c7c7c7;
-    position: absolute;
-    top: 50%;
-    left: 84px;
-}
-
-.form-2, .form-3 {
-    display: none;
 }
