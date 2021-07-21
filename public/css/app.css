@@ -272,6 +272,8 @@
     background: #f7f5ec;
 }
 
+/* Payment Dialog Fixed */
+
 @media (max-width: 720px) {
     .health-workers-div {
         flex-direction: column;

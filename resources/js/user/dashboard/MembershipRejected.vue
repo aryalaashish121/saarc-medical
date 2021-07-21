@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-container class="py-8">
+    <v-container class="py-2">
       <v-card flat>
         <v-card-title
           class="timelineMessages justify-center"
