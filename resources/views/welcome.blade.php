@@ -91,7 +91,7 @@
         <div class="card">
             <div class="imageBox">
                 <img src="/images/economic.svg" alt="">
-                <h2 class="text-center display-4"> Economic Growth </h2>
+                <h2 class="text-center"> Economic Growth </h2>
             </div>
 
             <div class="content">

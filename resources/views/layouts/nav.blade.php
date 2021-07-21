@@ -187,10 +187,6 @@
                 <a class="nav-link" href="{{ route('contact') }}">
                     <i class="fas fa-phone-alt mr-1"></i> Contact Us</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('user-Dashboard') }}">
-                    <i class="fas fa-eye mr-1"></i> User </a>
-            </li>
         </ul>
         <li class="nav-item dropdown navbar-nav navbar-right">
             @if(Auth::user())
@@ -222,19 +218,12 @@
                    onclick =clickLogout('{{route('logout')}}','{{url('/login')}})>Logout</a> --}}
             </div>
         @else
-            <a href="{{ route('login') }}" class="btn btn-light" style="border-radius: 20px" role="button">Login
+        
+            <a href="{{ route('login') }}" class="btn btn-light" style="border-radius: 20px" >Login
                 <i class="fas fa-sign-in-alt ml-1"></i>
             </a>
+           
             @endif
-            {{-- link @click="clickLogout('{{route('logout')}}','{{url('/login')}}')"" --}}
-            {{-- <a class="dropdown-item" href="#">Profile</a> --}}
-
-
         </li>
-        {{-- <ul class="navbar-nav navbar-right">
-          
-        </ul> --}}
-
-
     </div>
 </nav>
