@@ -84,18 +84,6 @@
                 <v-card-subtitle class="text-center yellow--text applySubtitle">
                   Don't be sad though. You can always re-apply. So, cheer up.
                 </v-card-subtitle>
-                <v-row align="center" justify="space-around">
-                  <v-btn
-                    @click="editMembershipForm(user_data.id)"
-                    color="white"
-                    class="ma-5 indigo--text"
-                    rounded
-                    large
-                  >
-                    <v-icon left dark> mdi-account-check </v-icon>
-                    Re-apply
-                  </v-btn>
-                </v-row>
               </v-card>
             </v-timeline-item>
           </v-timeline>
