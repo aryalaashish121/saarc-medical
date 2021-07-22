@@ -13,7 +13,7 @@
       <v-list dense>
         <v-list-item link exact :to="{ name: 'admin.dashboard' }">
               <v-list-item-action>
-                  <v-icon>mdi-home</v-icon>
+                  <v-icon color="info">mdi-home</v-icon>
               </v-list-item-action>
               <v-list-item-content>
                   <v-list-item-title>Home</v-list-item-title>
@@ -23,7 +23,7 @@
           <v-list-item link exact :to="{ name: 'admin.member-request' }">
             
             <v-list-item-action>
-                <v-icon color="info">mdi-account-clock</v-icon>
+                <v-icon color="green">mdi-account-clock</v-icon>
             </v-list-item-action>
             <v-list-item-content>
                 <v-list-item-title>Members Request</v-list-item-title>
@@ -56,7 +56,7 @@
           
           <v-list-item  link @click="clickLogout('{{route('logout')}}','{{url('/login')}}')">
               <v-list-item-action>
-                  <v-icon> mdi-exit-to-app</v-icon>
+                  <v-icon color="red"> mdi-exit-to-app</v-icon>
               </v-list-item-action>
               <v-list-item-content>
                   <v-list-item-title class="text-warning"> Logout</v-list-item-title>

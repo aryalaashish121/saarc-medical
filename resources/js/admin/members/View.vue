@@ -1,14 +1,14 @@
 <template>
   <div>
-     <v-snackbar v-model="snackbar" top :timeout="5000">
-        {{ snackbar_text }}
+    <v-snackbar v-model="snackbar" top :timeout="5000">
+      {{ snackbar_text }}
 
-        <template v-slot:action="{ attrs }">
-          <v-btn color="blue" text v-bind="attrs" @click="snackbar = false">
-            Close
-          </v-btn>
-        </template>
-      </v-snackbar>
+      <template v-slot:action="{ attrs }">
+        <v-btn color="blue" text v-bind="attrs" @click="snackbar = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
     <v-dialog
       v-model="dialog"
       persistent
@@ -17,7 +17,6 @@
       hide-overlay
       transition="dialog-bottom-transition"
     >
-     
       <v-card>
         <v-toolbar color="primary" dark>
           <v-btn icon dark><v-icon>mdi-account-outline</v-icon></v-btn>
@@ -52,12 +51,23 @@
                         <div class="studentBasics">
                           <v-row>
                             <v-col sm="6" md="3">
-                              
-                              <v-icon v-if="form_fields.is_aproved" small class="pb-1" color="primary">  mdi-account-check </v-icon>
-                              <v-icon v-else-if="form_fields.is_rejected" color="error">mdi-account-cancel-outline</v-icon>
-                              <v-icon v-else small class="pb-1"> mdi-account </v-icon>
-                              
-                            
+                              <v-icon
+                                v-if="form_fields.is_aproved"
+                                small
+                                class="pb-1"
+                                color="primary"
+                              >
+                                mdi-account-check
+                              </v-icon>
+                              <v-icon
+                                v-else-if="form_fields.is_rejected"
+                                color="error"
+                                >mdi-account-cancel-outline</v-icon
+                              >
+                              <v-icon v-else small class="pb-1">
+                                mdi-account
+                              </v-icon>
+
                               <strong class="ml-2 studentDetailHeader">
                                 Applicant Name:
                               </strong>
@@ -69,11 +79,19 @@
                                   form_fields.middle_name_en
                                 }}&nbsp;{{ form_fields.last_name_en }}
                               </span>
-                                <v-icon v-if="form_fields.is_aproved" color="primary">mdi-checkbox-marked-circle</v-icon>
-                                <v-icon v-else-if="form_fields.is_rejected" color="error">mdi-close-circle-outline</v-icon>
-                              
+                              <v-icon
+                                v-if="form_fields.is_aproved"
+                                color="primary"
+                                >mdi-checkbox-marked-circle</v-icon
+                              >
+                              <v-icon
+                                v-else-if="form_fields.is_rejected"
+                                color="error"
+                                >mdi-close-circle-outline</v-icon
+                              >
+
                               <v-btn
-                              :disabled="form_fields.is_aproved==1"
+                                :disabled="form_fields.is_aproved == 1"
                                 color="primary"
                                 @click="
                                   manageMemberRequest(form_fields.id, true)
@@ -82,8 +100,7 @@
                                 Approve</v-btn
                               >
                               <v-btn
-                              :disabled="form_fields.is_rejected==1"
-                                
+                                :disabled="form_fields.is_rejected == 1"
                                 color="error"
                                 @click="
                                   manageMemberRequest(form_fields.id, false)
@@ -320,30 +337,45 @@
                         <v-divider></v-divider>
                         <v-card-text>
                           <v-card outlined rounded="xl" elevation="3">
-                            <v-card-text>
+                            <v-row>
+                              <v-col cols="4">
+                            <v-card-text class="ml-2">
                               <h2 style="font-size: 16px" class="text-wrap">
                                 <strong> Bank Name: </strong>
-                                {{ form_fields.bank_name }}
+                               
                               </h2>
+                               {{ form_fields.bank_name }}
                               <br />
                               <h2 style="font-size: 16px">
                                 <strong> Branch Name: </strong>
-                                {{ form_fields.bank_branch }}
+                               
                               </h2>
+                               {{ form_fields.bank_branch }}
                               <h2 style="font-size: 16px">
                                 <strong> Account no.: </strong>
-                                {{ form_fields.bank_account_no }}
+                               
                               </h2>
+                               {{ form_fields.bank_account_no }}
                             </v-card-text>
+                            </v-col><v-col cols="8">
                             <v-card-subtitle class="">
                               <strong>Payment Slip</strong>
-                                <v-img
-                                  max-height="121"
-                                  max-width="250"
-                                  :src="`${form_fields.payment_slip}`"
-                                > </v-img>
+                              <v-slider
+                                v-model="payment_slider_width"
+                                class="align-self-stretch"
+                                min="200"
+                                max="900"
+                                step="1"
+                              ></v-slider>
+
+                              <v-img
                             
+                                :width="payment_slider_width"
+                                :src="`${form_fields.payment_slip}`"
+                              ></v-img>
                             </v-card-subtitle>
+                            </v-col>
+                            </v-row>
                           </v-card>
                         </v-card-text>
                       </v-card>
@@ -659,6 +691,7 @@
 export default {
   data() {
     return {
+      payment_slider_width: "",
       snackbar_text: "",
       snackbar: false,
       dialog: false,
@@ -679,18 +712,21 @@ export default {
     async view(_id) {
       const self = this;
       self.form_fields = [];
-      await axios.get(`${"/members"}/${_id}`).then((response)=>{
-      self.form_fields = response.data;
-      self.experienceList = response.data.work_experiences;
-      self.traningList = response.data.trainings;
-      self.qualificationList = response.data.qualification;
-      self.radios = response.data.radios;
+      await axios
+        .get(`${"/members"}/${_id}`)
+        .then((response) => {
+          self.form_fields = response.data;
+          self.experienceList = response.data.work_experiences;
+          self.traningList = response.data.trainings;
+          self.qualificationList = response.data.qualification;
+          self.radios = response.data.radios;
 
-      console.log(_id);
-      self.dialog = true;
-      }).catch(err=>{
-        console.log(err);
-      });     
+          console.log(_id);
+          self.dialog = true;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
     async manageMemberRequest(_id, data) {
       const self = this;
