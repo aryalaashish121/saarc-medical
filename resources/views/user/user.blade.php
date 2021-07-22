@@ -30,9 +30,10 @@ Auth::user()->name;
                                                         @if (Auth::user()->membership->is_aproved)
                                                             <v-icon left color="primary">mdi-account-check </v-icon>
                                                         @elseif (Auth::user()->membership->is_rejected)
-                                                        <v-icon left color="primary">mdi-account-minus </v-icon>
+                                                            <v-icon left color="error">mdi-account-minus </v-icon>
+                                                        @else
+                                                            <v-icon left color="green">mdi-account-clock</v-icon>
                                                         @endif
-                                                        <v-icon left color="green">mdi-account-clock</v-icon>
                                                     @else
                                                         <v-icon left>mdi-account</v-icon>
                                                     @endif
