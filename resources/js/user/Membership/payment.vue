@@ -88,7 +88,7 @@
                   prepend-inner-icon="mdi-format-text"
                   v-model="form_fields.bank_account_no"
                   dense
-                  v-on:keypress="isName($event)"
+                
                 ></v-text-field>
               </validation-provider>
             </v-col>
@@ -100,7 +100,7 @@
 
               <v-card flat>
                 <v-card-subtitle class="text-center">
-                  <v-avatar class="profile" color="grey" size="164" tile>
+                  <v-avatar class="profile" color="grey"  style="height:300px;width:500px" tile>
                     <v-img :src="`${payment_slip_image}`"></v-img>
                   </v-avatar>
                 </v-card-subtitle>
@@ -147,7 +147,10 @@ export default {
         .get(`${self.url}/${_id}/edit`)
         .then((res) => {
           self.form_fields = res.data.data;
-          self.payment_slip_image = self.form_fields.payment_slip;
+          if(!self.form_fields.payment_slip==null){
+             self.payment_slip_image = self.form_fields.payment_slip;
+          }
+         
         })
         .catch((err) => {
           console.log(err);

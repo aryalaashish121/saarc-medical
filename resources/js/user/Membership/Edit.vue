@@ -1,14 +1,13 @@
 <template>
-   <v-dialog    
-      v-model="dialog"
-      fullscreen
-      hide-overlay
-      transition="dialog-bottom-transition"
-    >
-   
+  <v-dialog
+    v-model="dialog"
+    fullscreen
+    hide-overlay
+    transition="dialog-bottom-transition"
+  >
     <div class="pa-5 mt-5">
       <v-card class="mt-5" rounded="lg">
-        <v-toolbar  color="primary" dark>
+        <v-toolbar color="primary" dark>
           <v-btn icon dark><v-icon>mdi-account-outline</v-icon></v-btn>
           <v-toolbar-title> Membership Details </v-toolbar-title>
           <v-spacer></v-spacer>
@@ -609,13 +608,16 @@
 
                 <v-col cols="12" md="6">
                   <v-card outlined elevation="3" class="px-5">
-                    <v-card-title> Temporary Address  <v-checkbox
-                      class="ml-3"
-                      label="Same As Permanent"
-                      v-model="same_as_permanent"
-                      @click="sameAddressSettings"
-                    ></v-checkbox> </v-card-title>
-                   
+                    <v-card-title>
+                      Temporary Address
+                      <v-checkbox
+                        class="ml-3"
+                        label="Same As Permanent"
+                        v-model="same_as_permanent"
+                        @click="sameAddressSettings"
+                      ></v-checkbox>
+                    </v-card-title>
+
                     <v-card-text class="mt-3">
                       <v-row>
                         <v-col cols="6" sm="1" md="12">
@@ -1359,11 +1361,21 @@
                     Upload scan copy of your payment voucher
                   </v-btn>
 
-                  <v-card flat>
+                  <v-card>
                     <v-card-subtitle class="text-center">
-                      <v-avatar class="profile" color="grey" size="164" tile>
-                        <v-img :src="`${payment_slip_image}`"></v-img>
-                      </v-avatar>
+                      <v-slider
+                        v-model="payment_slider_width"
+                        class="align-self-stretch"
+                        min="200"
+                        max="900"
+                        step="1"
+                      ></v-slider>
+
+                      <v-img
+                  
+                        :width="payment_slider_width"
+                        :src="`${payment_slip_image}`"
+                      ></v-img>
                     </v-card-subtitle>
                     <v-card-subtitle class="text-center">
                       <input
@@ -1449,10 +1461,10 @@ import Conversions from "../../utils/conversions";
 export default {
   data() {
     return {
-    
+      payment_slider_width:"",
       payment_slip_image: "images/voucher.png",
       profile_image: "images/user_preview.png",
-      same_as_permanent:false,
+      same_as_permanent: false,
       members_data: [],
       activePicker: "",
       checkbox: false,
@@ -1546,11 +1558,9 @@ export default {
     },
   },
 
-   created() {
-    
-  },
+  created() {},
   async mounted() {
-  const self = this;
+    const self = this;
     await self.loadProvinces();
     await self.loadDistrict();
     await self.loadMembershipType();
@@ -1562,7 +1572,7 @@ export default {
       self.deleted_qualifications = [];
       self.deleted_experiences = [];
       self.url = "/members";
-       
+
       self.dialog = true;
 
       axios
@@ -1578,10 +1588,10 @@ export default {
           console.log(self.form_fields);
         })
         .catch((err) => {
-           Vue.$toast.error("Something went wrong! Please try refreshing page.");
+          Vue.$toast.error("Something went wrong! Please try refreshing page.");
           console.log(err);
         });
-      
+
       console.log(_id);
     },
     save(date) {
@@ -1704,7 +1714,7 @@ export default {
       const self = this;
 
       self.url = "/members/edit";
-      
+
       self.form_fields["payment_slip"] = this.payment_slip_image;
       self.form_fields["image"] = this.profile_image;
       self.form_fields["work_experiences"] = self.work_experience;
@@ -1789,7 +1799,7 @@ export default {
     ConvertBStoAD(date) {
       this.form_fields.dob_ad = new Conversions().ConvertBStoAD(date);
     },
-     sameAddressSettings() {
+    sameAddressSettings() {
       let self = this;
       console.log(self.same_as_permanent);
       if (self.same_as_permanent == true) {
@@ -1801,8 +1811,7 @@ export default {
         self.form_fields.t_village_name = self.form_fields.p_village_name;
         console.log("true ho yr");
       } else {
-        self.form_fields.t_country = "",
-        self.form_fields.t_state = "";
+        (self.form_fields.t_country = ""), (self.form_fields.t_state = "");
         self.form_fields.t_district = "";
         self.form_fields.t_municipality = "";
         self.form_fields.t_ward_no = "";
