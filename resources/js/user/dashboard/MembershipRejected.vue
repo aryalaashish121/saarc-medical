@@ -1,5 +1,6 @@
 <template>
   <div>
+    <edit-membership ref="editMembership"></edit-membership>
     <v-container class="py-2">
       <v-card flat>
         <v-card-title
@@ -83,7 +84,18 @@
                 </v-card-title>
                 <v-card-subtitle class="text-center yellow--text applySubtitle">
                   Don't be sad though. You can always re-apply. So, cheer up.
+                    <v-btn
+                    @click="editMembershipForm(user_data.id)"
+                    color="white"
+                    class="ma-5 indigo--text text-capitalize font-weight-bold"
+                    rounded
+                    small
+                  >
+                    <v-icon left dark> mdi-update </v-icon>
+                   Re apply
+                  </v-btn>
                 </v-card-subtitle>
+               
               </v-card>
             </v-timeline-item>
           </v-timeline>
