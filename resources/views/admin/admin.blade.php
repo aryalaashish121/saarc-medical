@@ -23,24 +23,31 @@
           <v-list-item link exact :to="{ name: 'admin.member-request' }">
             
             <v-list-item-action>
-                <v-icon>mdi-account-group</v-icon>
+                <v-icon color="info">mdi-account-clock</v-icon>
             </v-list-item-action>
             <v-list-item-content>
                 <v-list-item-title>Members Request</v-list-item-title>
             </v-list-item-content>
         </v-list-item>
           <v-list-item link exact :to="{ name: 'admin.members' }">
-            
               <v-list-item-action>
-                  <v-icon>mdi-account-group</v-icon>
+                  <v-icon color="primary" >mdi-account-multiple-check</v-icon>
               </v-list-item-action>
               <v-list-item-content>
                   <v-list-item-title>Members</v-list-item-title>
               </v-list-item-content>
           </v-list-item>
+          <v-list-item link exact :to="{ name: 'admin.member-rejected' }">
+            <v-list-item-action>
+                <v-icon color="error" >mdi-account-multiple-minus</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+                <v-list-item-title>Rejected Members</v-list-item-title>
+            </v-list-item-content>
+        </v-list-item>
           <v-list-item link exact :to="{ name: 'admin.trash' }">
               <v-list-item-action>
-                  <v-icon>mdi-delete</v-icon>
+                  <v-icon  color="error">mdi-delete</v-icon>
               </v-list-item-action>
               <v-list-item-content>
                   <v-list-item-title>Trash</v-list-item-title>
@@ -52,7 +59,7 @@
                   <v-icon> mdi-exit-to-app</v-icon>
               </v-list-item-action>
               <v-list-item-content>
-                  <v-list-item-title> Logout</v-list-item-title>
+                  <v-list-item-title class="text-warning"> Logout</v-list-item-title>
               </v-list-item-content>
           </v-list-item>
           

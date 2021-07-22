@@ -2,11 +2,21 @@
   <v-container class="py-5">
     <v-dialog
       transition="dialog-top-transition"
-      max-width="500"
+      max-width="750"
       v-model="dialog"
     >
-      <v-card>
-        <v-toolbar color="primary" dark>Payment Details</v-toolbar>
+      <v-card class="mt-5">
+        <v-toolbar color="primary" dark>
+          <v-btn icon dark><v-icon>mdi-account-outline</v-icon></v-btn>
+          <v-toolbar-title> Payment Details </v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-toolbar-items>
+            <v-btn dark icon @click="dialog = false"
+              ><v-icon>mdi-close</v-icon></v-btn
+            >
+          </v-toolbar-items>
+        </v-toolbar>
+
         <v-card-text>
           <v-row class="mt-5">
             <v-col cols="12" md="12">
@@ -137,6 +147,7 @@ export default {
         .get(`${self.url}/${_id}/edit`)
         .then((res) => {
           self.form_fields = res.data.data;
+          self.payment_slip_image = self.form_fields.payment_slip;
         })
         .catch((err) => {
           console.log(err);

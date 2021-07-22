@@ -102,6 +102,7 @@
           </v-toolbar>
         </template>
         <template v-slot:[`item.full_name`]="{ item }">
+      
           {{ item.first_name_en }} {{ item.last_name_en }}
         </template>
         <template v-slot:[`item.address`]="{ item }">
@@ -109,12 +110,9 @@
           {{ item.p_village_name }}
         </template>
         <template v-slot:[`item.is_aproved`]="{ item }">
-          <v-switch
-            v-model="item.is_aproved"
-            readonly
-            color="green"
-            inset
-          ></v-switch>
+             <v-icon v-if="item.is_aproved" color="primary">mdi-checkbox-marked-circle</v-icon>
+        <v-icon v-else-if="item.is_rejected" color="error">mdi-close-circle-outline</v-icon>
+        <v-icon v-else color="info">mdi-timer-sand</v-icon>
         </template>
         <template v-slot:[`item.status`]="{ item }">
           <v-switch
@@ -174,6 +172,7 @@ export default {
       totalMembers: 0,
 
       headers: [
+         { text: "", value: "is_aproved" },
         {
           text: "Application no.",
           align: "start",
@@ -192,7 +191,7 @@ export default {
         },
         { text: "Email", value: "email" },
         { text: "Mobile", value: "mobile", sortable: false, align: "start" },
-        { text: "Approved", value: "is_aproved" },
+       
         { text: "Status", value: "status" },
         { text: "Actions", value: "actions", sortable: false },
       ],
@@ -207,8 +206,10 @@ export default {
         { text: "Inactive", value: false },
       ],
       filterMemberStatus: [
+        { text: "Pending", value:'pending' },
         { text: "Accepted", value: true },
         { text: "Rejected", value: false },
+        
       ],
     };
   },
