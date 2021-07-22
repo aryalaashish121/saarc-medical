@@ -4,10 +4,10 @@
     <Payment ref="addPayment"></Payment>
     <ProgressBar />
     <edit-membership ref="editMembership"></edit-membership>
-    <div v-if="membership == null">
+    <div class="timeline-displayer" v-if="membership == null">
       <ApplyNow />
     </div>
-    <div v-else-if="membership.is_paid == false">
+    <div class="timeline-displayer" v-else-if="membership.is_paid == false">
       <v-container>
         <v-card flat>
           <v-card-title
@@ -135,13 +135,14 @@
         </v-card>
       </v-container>
     </div>
-    <div v-else-if="membership.is_aproved == true">
+    <div class="timeline-displayer" v-else-if="membership.is_aproved == true">
       <MembershipApproved />
     </div>
-    <div v-else-if="membership.is_rejected == true">
+    <div class="timeline-displayer" v-else-if="membership.is_rejected == true">
       <MembershipRejected />
     </div>
     <div
+      class="timeline-displayer"
       v-else-if="
         membership.is_rejected == false && membership.is_aproved == false
       "

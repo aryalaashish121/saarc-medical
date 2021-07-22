@@ -272,6 +272,12 @@
     background: #f7f5ec;
 }
 
+/* timeline-displayer */
+
+.timeline-displayer {
+    margin-top: -50px;
+}
+
 /* login-page-css */
 
 .user_card {
@@ -348,6 +354,42 @@
     box-shadow: none !important;
     border: none;
     outline: none;
+}
+
+/* Profile-page-css */
+
+.profileImage {
+    border: 5px solid white !important;
+    position: relative;
+    z-index: 1;
+    top: 90px;
+}
+
+.profileBackground {
+    margin-top: -50px;
+    border: 5px solid white !important;
+    background-image: url("/images/profile-background.jpg");
+    background-repeat: no-repeat;
+}
+
+.user-details {
+    margin-top: 30px;
+}
+
+.userBasicsName {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    font-size: 25px;
+}
+
+.userBasicsEmail {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.profile-details {
+    margin-top: 100px;
 }
 
 @media (max-width: 720px) {
