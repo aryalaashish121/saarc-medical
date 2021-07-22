@@ -12,7 +12,10 @@
       >
         <v-card-title class="justify-center">
           <v-avatar class="elevation-10 profileImage" size="210">
-            <v-img contain src="/images/aashish-dai.jpg"></v-img>
+            <v-img 
+            contain 
+            :src="`${profile}`">
+            </v-img>
           </v-avatar>
         </v-card-title>
       </v-card>
@@ -60,6 +63,7 @@ export default {
   },
   data() {
     return {
+      profile:"images/user_preview.png",
       user_data: [],
       membership_data: [],
     };
@@ -74,7 +78,12 @@ export default {
       const self = this;
       axios.get("current-user").then((response) => {
         self.user_data = response.data.data;
-        self.membership_data = response.data.membership;
+        self.membership_data = response.data.data.membership;
+        console.log("membership data list");
+        console.log(self.membership_data);
+        if(self.membership_data.image){
+          self.profile = self.membership_data.image;
+        }
         console.log("user data");
         console.log(self.user_data);
       });

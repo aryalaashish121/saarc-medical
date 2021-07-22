@@ -370,6 +370,9 @@
     border: 5px solid white !important;
     background-image: url("/images/profile-background.jpg");
     background-repeat: no-repeat;
+     /* Add the blur effect */
+     filter: blur(3px);
+     -webkit-filter: blur(1px);
 }
 
 .user-details {
