@@ -112,12 +112,9 @@
           {{ item.p_village_name }}
         </template>
         <template v-slot:[`item.is_aproved`]="{ item }">
-          <v-switch
-            v-model="item.is_aproved"
-            readonly
-            color="green"
-            inset
-          ></v-switch>
+           <v-icon v-if="item.is_aproved" color="primary">mdi-checkbox-marked-circle</v-icon>
+        <v-icon v-else-if="item.is_rejected" color="error">mdi-close-circle-outline</v-icon>
+        <v-icon v-else color="info">mdi-timer-sand</v-icon>
         </template>
         <template v-slot:[`item.status`]="{ item }">
           <v-switch
@@ -169,6 +166,7 @@ export default {
       totalMembers: 0,
 
       headers: [
+        { text: "", value: "is_aproved" },
         {
           text: "Application no.",
           align: "start",
@@ -187,7 +185,7 @@ export default {
         },
         { text: "Email", value: "first_name_en" },
         { text: "Mobile", value: "mobile", sortable: false, align: "start" },
-        { text: "Approved", value: "is_aproved" },
+        
         { text: "Status", value: "status" },
         { text: "Actions", value: "actions", sortable: false },
       ],
@@ -195,7 +193,7 @@ export default {
         name: "",
         status: "",
         application_no: "",
-        memberstatus: false,
+        memberstatus: 'pending',
       },
       filterStatusItems: [
         { text: "Active", value: true },
@@ -203,6 +201,7 @@ export default {
       ],
       filterMemberStatus: [
         { text: "Accepted", value: true },
+        { text: "pending", value: 'pending' },
         { text: "Rejected", value: false },
       ],
     };
@@ -308,41 +307,6 @@ export default {
       const self = this;
       self.$refs.viewMembers.view(_id);
     },
-    //    async save() {
-    //   const self = this;
-    //   self.loading = false;
-    //   const form = _.pick(self.form_fields, [
-    //     "school_name",
-    //     "registration_no",
-    //     "pan",
-    //     "edu_reg_no",
-    //     "telephone",
-    //     "alternate_telephone",
-    //     "website",
-    //     "email",
-    //     "postal_code",
-    //     "academic_year_id",
-    //     "fiscal_year_id",
-    //     "year_start_month_id",
-    //     "current_month_id",
-    //     "country_id",
-    //     "province_id",
-    //     "district_id",
-    //     "street",
-    //     "logo_path",
-    //   ]);
-
-    //   self.url = "/appsetting";
-
-    //   if (self.id !== null && self.id > 0) {
-    //     await self.put(self.id, form, (res) => {});
-    //   } else {
-    //     await self.post(form, (res) => {});
-    //   }
-
-    //   window.location.reload();
-    //   self.loading = false;
-    // },
   },
 };
 </script>

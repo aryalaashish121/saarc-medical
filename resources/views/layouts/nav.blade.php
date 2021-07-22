@@ -145,11 +145,11 @@
                     <i class="fas fa-home mr-1"></i> SAARCMC
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">About SAARCMC</a>
-                    <a class="dropdown-item" href="#">SAARC Charter</a>
-                    <a class="dropdown-item" href="#">SAARC Structure</a>
-                    <a class="dropdown-item" href="#">SAARCMC Chairman</a>
-                    <a class="dropdown-item" href="#">External SAARCMC Relations</a>
+                    <a class="dropdown-item" href="/">About SAARCMC</a>
+                    <a class="dropdown-item" href="/">SAARC Charter</a>
+                    <a class="dropdown-item" href="/">SAARC Structure</a>
+                    <a class="dropdown-item" href="/">SAARCMC Chairman</a>
+                    <a class="dropdown-item" href="/">External SAARCMC Relations</a>
 
                 </div>
             </li>
@@ -158,14 +158,14 @@
                     <i class="fas fa-clinic-medical mr-1"></i> SAARCMC Hospitals
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Afghanistan</a>
-                    <a class="dropdown-item" href="#">Bangladesh</a>
-                    <a class="dropdown-item" href="#">Bhutan</a>
-                    <a class="dropdown-item" href="#">India</a>
-                    <a class="dropdown-item" href="#">Maldives</a>
-                    <a class="dropdown-item" href="#">Nepal</a>
-                    <a class="dropdown-item" href="#">Pakistan</a>
-                    <a class="dropdown-item" href="#">Sri Lanka</a>
+                    <a class="dropdown-item" href="/">Afghanistan</a>
+                    <a class="dropdown-item" href="/">Bangladesh</a>
+                    <a class="dropdown-item" href="/">Bhutan</a>
+                    <a class="dropdown-item" href="/">India</a>
+                    <a class="dropdown-item" href="/">Maldives</a>
+                    <a class="dropdown-item" href="/">Nepal</a>
+                    <a class="dropdown-item" href="/">Pakistan</a>
+                    <a class="dropdown-item" href="/">Sri Lanka</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -174,7 +174,7 @@
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="{{ route('health-workers') }}">Health Workers</a>
-                    <a class="dropdown-item" href="#">Centers</a>
+                    <a class="dropdown-item" href="/">Centers</a>
                 </div>
             </li>
 
@@ -184,7 +184,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('contact') }}">
+                <a class="nav-link" href="{{ route('contactus') }}">
                     <i class="fas fa-phone-alt mr-1"></i> Contact Us</a>
             </li>
         </ul>

@@ -53,11 +53,14 @@ class Membercontroller extends Controller
        }
        if (!empty($meberstatus)) {
        if ($meberstatus == 'true') {
-       $meberstatus = 1;
-       } else {
-       $meberstatus = 0;
+       $members->where(['is_aproved' => 1]);
        }
-       $members->where(['is_aproved' => $meberstatus]);
+       if($meberstatus=="pending"){
+       $members->where(['is_aproved' => 0,'is_rejected'=>0]);
+       }
+       if($meberstatus=='false'){
+       $members->where(['is_rejected'=>1]);
+       }
        }
        if (!empty($name)) {
        $members->where('first_name_en', 'like', '\\' . $name . '%');
@@ -351,13 +354,16 @@ class Membercontroller extends Controller
     $members->where(['status' => $status]);
     }
     if (!empty($meberstatus)) {
-    if ($meberstatus == 'true') {
-    $meberstatus = 1;
-    } else {
-    $meberstatus = 0;
-    }
-    $members->where(['is_aproved' => $meberstatus]);
-    }
+        if ($meberstatus == 'true') {
+        $members->where(['is_aproved' => 1]);
+        }
+        if($meberstatus=="pending"){
+        $members->where(['is_aproved' => 0,'is_rejected'=>0]);
+        }
+        if($meberstatus=='false'){
+        $members->where(['is_rejected'=>1]);
+        }
+        }
     if (!empty($name)) {
     $members->where('first_name_en', 'like', '\\' . $name . '%');
     }

@@ -28,6 +28,11 @@ const routes = [
         name: 'admin.member-request',
         component: require('./members/Request').default
     },
+    {
+        path: '/membership/rejected',
+        name: 'admin.member-rejected',
+        component: require('./members/Rejected').default
+    }
 ];
 const router = new Router({
     routes,
