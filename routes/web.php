@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DistrictController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\StateController;
 use App\Http\Controllers\user\UserRouteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -23,20 +25,29 @@ Route::get('/health-workers', function () {
     return view('pages.healthWorkers');
 })->name('health-workers');
 
+Route::get('/about-us', function () {
+    return view('pages.aboutUs');
+})->name('about-us');
+
+Route::get('/chairmanS', function () {
+    return view('pages.chairman');
+})->name('chairman');
+
 Route::get('/previewUserDashboard', function () {
     return view('userDashboard');
 })->name('user-Dashboard');
 
-Route::get('/resource', function () {return view('pages.resource');})->name('resource');
-Route::get('/contactus',[PageRouteController::class,'contactUs'])->name('contactus');
+Route::get('/resource', function () {
+    return view('pages.resource');
+})->name('resource');
+Route::get('/contactus', [PageRouteController::class, 'contactUs'])->name('contactus');
 // Route::resource('members', [Membercontroller::class]);
 Route::group(['middleware' => 'auth'], function () {
-Route::resource('user', UserRouteController::class);
-Route::resource('admin', AdminController::class);
-Route::get('current-user', [UserRouteController::class, 'getUser']);
-Route::put('user-update/{id}',[UserRouteController::class,'updateUserData']);
-Route::put('user-password/{id}',[UserRouteController::class,'updatePassword']);
-
+    Route::resource('user', UserRouteController::class);
+    Route::resource('admin', AdminController::class);
+    Route::get('current-user', [UserRouteController::class, 'getUser']);
+    Route::put('user-update/{id}', [UserRouteController::class, 'updateUserData']);
+    Route::put('user-password/{id}', [UserRouteController::class, 'updatePassword']);
 });
 //country data
 Route::get('get-country-data', [CountryController::class, 'index']);

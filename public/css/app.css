@@ -101,16 +101,16 @@
 
 .ourVison .card .imageBox h2 {
     margin-top: 35px;
-    font-size: 36px;
+    font-size: 24px;
     font-weight: 700;
     margin-bottom: 20px;
-    font-family: 'Zen Loop', cursive;
+    font-family: 'Oxygen', sans-serif;
 }
 
 .myHeadings {
-    font-size: 76px;
+    font-size: 46px;
     font-weight: 700;
-    font-family: 'Zen Loop', cursive;
+    font-family: 'Oxygen', sans-serif;
 }
 
 .timelineMessages {
