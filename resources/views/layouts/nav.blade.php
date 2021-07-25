@@ -110,25 +110,27 @@
 
 </nav> --}}
 <style>
-    .profile-img{
-    text-align: center;
-}
+    .profile-img {
+        text-align: center;
+    }
 
-.profile-img .text {
-    position: relative;
-    overflow: hidden;
-    margin-top: -20%;
-    width: 50%;
-    border: none;
-    border-radius: 0;
-    font-size: 12px;
+    .profile-img .text {
+        position: relative;
+        overflow: hidden;
+        margin-top: -20%;
+        width: 50%;
+        border: none;
+        border-radius: 0;
+        font-size: 12px;
 
-}
-.profile-img .text .acronym {
-    position: absolute;
-    
-    top: 0;
-}
+    }
+
+    .profile-img .text .acronym {
+        position: absolute;
+
+        top: 0;
+    }
+
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
@@ -145,10 +147,10 @@
                     <i class="fas fa-home mr-1"></i> SAARCMC
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/">About SAARCMC</a>
+                    <a class="dropdown-item" href="{{ route('about-us') }}">About SAARCMC</a>
                     <a class="dropdown-item" href="/">SAARC Charter</a>
                     <a class="dropdown-item" href="/">SAARC Structure</a>
-                    <a class="dropdown-item" href="/">SAARCMC Chairman</a>
+                    <a class="dropdown-item" href="{{ route('chairman') }}">SAARCMC Chairman</a>
                     <a class="dropdown-item" href="/">External SAARCMC Relations</a>
 
                 </div>
@@ -189,41 +191,42 @@
             </li>
         </ul>
         <li class="nav-item dropdown navbar-nav navbar-right">
-            @if(Auth::user())
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-               
-                        <?php
-                        $words = explode(" ",  Auth::user()->name);
-                        $acronym = "";
-                        foreach ($words as $w)
-                        $acronym .= $w[0]
-                     ?>   
-                        {{$acronym}}
-            </a>
+            @if (Auth::user())
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+
+                    <?php
+                    $words = explode(' ', Auth::user()->name);
+                    $acronym = '';
+                    foreach ($words as $w) {
+                        $acronym .= $w[0];
+                    }
+                    ?>
+                    {{ $acronym }}
+                </a>
             @else
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            <img src="https://mondoltech.com/wp-content/uploads/2021/05/pngtree-user-vector-avatar-png-image_1541962-removebg-preview.png" class="rounded-circle" width="40" />
-        </a>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <img src="https://mondoltech.com/wp-content/uploads/2021/05/pngtree-user-vector-avatar-png-image_1541962-removebg-preview.png"
+                        class="rounded-circle" width="40" />
+                </a>
             @endif
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 @if (Auth::user())
 
                     <a href="{{ route('user.index') }}" class="dropdown-item">
                         Profile
-                    </a> 
+                    </a>
                     <div class="dropdown-divider"></div>
-{{--                    
-                    <a class="dropdown-item" style="pointer"
+                    {{-- <a class="dropdown-item" style="pointer"
                    onclick =clickLogout('{{route('logout')}}','{{url('/login')}})>Logout</a> --}}
             </div>
         @else
-        
-            <a href="{{ route('login') }}" class="btn btn-light" style="border-radius: 20px" >Login
+
+            <a href="{{ route('login') }}" class="btn btn-light" style="border-radius: 20px">Login
                 <i class="fas fa-sign-in-alt ml-1"></i>
             </a>
-           
+
             @endif
         </li>
     </div>
