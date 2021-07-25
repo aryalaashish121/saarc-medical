@@ -1587,11 +1587,10 @@ export default {
           self.profile_image = self.form_fields.image;
           console.log(self.form_fields);
         })
-        .catch((err) => {
+        .catch(err => {
           Vue.$toast.error("Something went wrong! Please try refreshing page.");
           console.log(err);
-        });
-
+        }); 
       console.log(_id);
     },
     save(date) {
