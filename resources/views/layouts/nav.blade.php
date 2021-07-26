@@ -176,7 +176,7 @@
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="{{ route('health-workers') }}">Health Workers</a>
-                    <a class="dropdown-item" href="/">Centers</a>
+                    <a class="dropdown-item" href="{{ route('registered-centers') }}">Centers</a>
                 </div>
             </li>
 
