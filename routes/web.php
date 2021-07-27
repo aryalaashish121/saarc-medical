@@ -25,11 +25,15 @@ Route::get('/health-workers', function () {
     return view('pages.healthWorkers');
 })->name('health-workers');
 
+Route::get('/registered-centers', function () {
+    return view('pages.registeredCenters');
+})->name('registered-centers');
+
 Route::get('/about-us', function () {
     return view('pages.aboutUs');
 })->name('about-us');
 
-Route::get('/chairmanS', function () {
+Route::get('/chairman', function () {
     return view('pages.chairman');
 })->name('chairman');
 
