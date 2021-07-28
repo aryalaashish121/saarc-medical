@@ -101,14 +101,14 @@
 
 .ourVison .card .imageBox h2 {
     margin-top: 35px;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
     margin-bottom: 20px;
     font-family: 'Oxygen', sans-serif;
 }
 
 .myHeadings {
-    font-size: 46px;
+    font-size: 38px;
     font-weight: 700;
     font-family: 'Oxygen', sans-serif;
 }
@@ -370,9 +370,9 @@
     border: 5px solid white !important;
     background-image: url("/images/profile-background.jpg");
     background-repeat: no-repeat;
-     /* Add the blur effect */
-     filter: blur(3px);
-     -webkit-filter: blur(1px);
+    /* Add the blur effect */
+    filter: blur(3px);
+    -webkit-filter: blur(1px);
 }
 
 .user-details {
