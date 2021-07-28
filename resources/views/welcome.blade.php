@@ -71,6 +71,7 @@
         </a>
     </div>
     <h1 class="text-center mt-5 myHeadings"> Our Vision </h1>
+    <div class="headingsBorder1"></div>
     <div class="ourVison container">
         <div class="card">
             <div class="imageBox">
@@ -122,6 +123,7 @@
 
     </div>
     <h1 class="text-center mt-5 myHeadings"> Our Services </h1>
+    <div class="headingsBorder2"></div>
     <div class="ourVison container">
         <div class="card">
             <div class="imageBox">
