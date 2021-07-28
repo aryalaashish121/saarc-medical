@@ -4,7 +4,7 @@
 
     <div class="container healthCenterContainer">
         <div class="card-deck">
-            <div class="card">
+            <div class="card" data-aos="fade-right" data-aos-duration="1500">
                 <img class="card-img-top img-fluid" src="/images/health-centre.jpg" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">Health Center One</h5>
@@ -21,7 +21,7 @@
                     <small class="text-muted"> <i class="fas fa-map-marker-alt mr-2"></i> Kathmandu, Nepal </small>
                 </div>
             </div>
-            <div class="card">
+            <div class="card" data-aos="fade-down" data-aos-delay="200" data-aos-duration="1500">
                 <img class="card-img-top img-fluid" src="/images/health-centre.jpg" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">Health Center Two</h5>
@@ -38,7 +38,7 @@
                     <small class="text-muted"> <i class="fas fa-map-marker-alt mr-2"></i> New Delhi, India </small>
                 </div>
             </div>
-            <div class="card">
+            <div class="card" data-aos="fade-left" data-aos-delay="400" data-aos-duration="1500">
                 <img class="card-img-top img-fluid" src="/images/health-centre.jpg" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">Health Center Three</h5>

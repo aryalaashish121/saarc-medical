@@ -2,9 +2,9 @@
 @section('title', 'Health Workers')
 @section('content')
     <div class="mt-5">
-        <h1 class="text-center myHeadings"> Health Workers</h1>
+        <h1 class="text-center myHeadings" data-aos="fade-right" data-aos-duration="1500"> Health Workers</h1>
         <!-- Workers Details -->
-        <div class="health-workers-div mt-5">
+        <div class="health-workers-div mt-5" data-aos="zoom-out-down" data-aos-duration="1500">
             <div class="health-workers">
                 <div class="pic">
                     <img src="/images/doctor1.jpg" alt="" />
@@ -51,7 +51,7 @@
                 </ul>
             </div>
         </div>
-        <div class="health-workers-div mt-5">
+        <div class="health-workers-div mt-5" data-aos="zoom-out-up" data-aos-duration="1500">
             <div class="health-workers">
                 <div class="pic">
                     <img src="/images/doctor2.jpg" alt="" />
