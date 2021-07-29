@@ -138,7 +138,7 @@
                             Sign Up
                         </a>
                     </div>
-                    {{-- <div class="d-flex justify-content-center links">
+                    <div class="d-flex justify-content-center links">
 
                         @if (Route::has('password.request'))
                             <a href="{{ route('password.request') }}" style="text-decoration: none; color:white">Forgot
@@ -146,7 +146,7 @@
                                 password?</a>
                         @endif
 
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </div>
