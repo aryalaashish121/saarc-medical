@@ -134,7 +134,8 @@
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-    <a class="navbar-brand" href="/"><img src="/images/new_logo.png" style="width: 280px" alt=""></a>
+    <a class="navbar-brand" href="/"><img src="/images/logo_white letter.png" style="width: 60px" height="60px"
+            alt=""></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fa fa-bars"></i></span>

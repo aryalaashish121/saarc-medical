@@ -37,7 +37,7 @@
 
                         </a>SAARC Medical Co-operation
                     </h6>
-                    <p>
+                    <p class="ml-5">
                         Lorem ipsum
                         dolor sit amet, consectetur adipisicing elit.
                     </p>

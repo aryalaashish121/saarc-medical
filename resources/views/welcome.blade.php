@@ -70,9 +70,12 @@
             <span class="carousel-control-next-icon"></span>
         </a>
     </div>
-    <h1 class="text-center mt-5 myHeadings"> Our Vision </h1>
+    <div data-aos="fade-up" data-aos-duration="600" data-aos-offset="90" data-aos-easing="ease-in-out">
+        <h1 class="text-center mt-5 myHeadings"> Our Vision </h1>
+        <div class="headingsBorder1"></div>
+    </div>
     <div class="ourVison container">
-        <div class="card">
+        <div class="card" data-aos="zoom-in" data-aos-duration="900">
             <div class="imageBox">
                 <img src="/images/family.svg" alt="">
                 <h2 class="text-center display-4"> Quality of Life </h2>
@@ -88,7 +91,7 @@
                 </p>
             </div>
         </div>
-        <div class="card">
+        <div class="card" data-aos="zoom-in" data-aos-delay="200" data-aos-duration="900">
             <div class="imageBox">
                 <img src="/images/economic.svg" alt="">
                 <h2 class="text-center"> Economic Growth </h2>
@@ -104,7 +107,7 @@
                 </p>
             </div>
         </div>
-        <div class="card">
+        <div class="card" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="900">
             <div class="imageBox">
                 <img src="/images/mandala.svg" alt="">
                 <h2 class="text-center display-4"> Cultural Development </h2>
@@ -121,9 +124,12 @@
         </div>
 
     </div>
-    <h1 class="text-center mt-5 myHeadings"> Our Services </h1>
+    <div data-aos="fade-up" data-aos-duration="600" data-aos-easing="ease-in-out">
+        <h1 class="text-center mt-5 myHeadings"> Our Services </h1>
+        <div class="headingsBorder2"></div>
+    </div>
     <div class="ourVison container">
-        <div class="card">
+        <div class="card" data-aos="zoom-in" data-aos-duration="900">
             <div class="imageBox">
                 <img src="/images/health.svg" alt="">
                 <h2 class="text-center display-4"> Quality Health </h2>
@@ -139,7 +145,7 @@
                 </p>
             </div>
         </div>
-        <div class="card">
+        <div class="card" data-aos="zoom-in" data-aos-delay="200" data-aos-duration="900">
             <div class="imageBox">
                 <img src="/images/study.svg" alt="">
                 <h2 class="text-center display-4"> Quality Education </h2>
@@ -155,7 +161,7 @@
                 </p>
             </div>
         </div>
-        <div class="card">
+        <div class="card" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="900">
             <div class="imageBox">
                 <img src="/images/robot.svg" alt="">
                 <h2 class="text-center display-4"> Technological Education </h2>
