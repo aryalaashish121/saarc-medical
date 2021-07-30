@@ -1590,8 +1590,8 @@ export default {
               });
             }
           })
-          .catch((err) => {
-            console.log(err);
+          .catch(err=> {
+            console.log(err.data.message);
           });
         console.log("membership application data..");
       });
