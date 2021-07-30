@@ -78,9 +78,9 @@
     </div> --}}
     <div class="container h-100 mt-5">
         <div class="d-flex justify-content-center h-100">
-            <div class="user_card py-5">
+            <div class=" user_card py-5">
                 <div class="d-flex justify-content-center">
-                    <div class="brand_logo_container">
+                    <div class="brand_logo_container" data-aos="flip-left" data-aos-duration="1100">
                         <img src="/images/saarc_logo.jpg" class="brand_logo img-fluid" alt="Logo">
                     </div>
                 </div>
@@ -138,7 +138,7 @@
                             Sign Up
                         </a>
                     </div>
-                    {{-- <div class="d-flex justify-content-center links">
+                    <div class="d-flex justify-content-center links">
 
                         @if (Route::has('password.request'))
                             <a href="{{ route('password.request') }}" style="text-decoration: none; color:white">Forgot
@@ -146,7 +146,7 @@
                                 password?</a>
                         @endif
 
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </div>

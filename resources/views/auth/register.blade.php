@@ -87,7 +87,7 @@
         <div class="d-flex justify-content-center h-100">
             <div class="user_card py-5">
                 <div class="d-flex justify-content-center">
-                    <div class="brand_logo_container">
+                    <div class="brand_logo_container" data-aos="flip-left" data-aos-duration="1100">
                         <img src="/images/saarc_logo.jpg" class="brand_logo img-fluid" alt="Logo">
                     </div>
                 </div>

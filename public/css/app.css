@@ -334,6 +334,8 @@
 
 .form_container {
     margin-top: 100px;
+    padding-left: 70px;
+    padding-right: 70px;
 }
 
 .login_btn {
