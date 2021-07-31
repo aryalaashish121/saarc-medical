@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MemberRequest;
 use App\Http\Requests\MemberUpdateRequest;
+use App\Http\Requests\PaymentRequest;
 use App\Models\Member;
 use App\services\MemberService;
 use Carbon\Carbon;
@@ -149,11 +150,12 @@ class Membercontroller extends Controller
 
        $data = Member::where('id',$id)
        ->get()->first();
-       $data['qualification'] = DB::table('members_qualifications')->where('member_id',$data->id)->get();
+       $data['qualification'] = DB::table('members_qualifications')
+       ->where('member_id',$id)->get();
        $data['trainings'] = DB::table('members_qualifications')
-       ->where(['member_id'=>$data->id,'is_training'=>true])->get();
-       $data['work_experiences'] = DB::table('members_work_experience')->where('member_id',$data->id)->get();
-
+       ->where(['member_id'=>$id,'is_training'=>true])->get();
+       $data['work_experiences'] = DB::table('members_work_experience')
+       ->where('member_id',$id)->get();
 
        if($data){
        return $data;
@@ -174,6 +176,7 @@ class Membercontroller extends Controller
        $data = [];
        $data = Member::where('id',$id)->first();
        $data['experiences'] = DB::table('members_work_experience')
+       ->where('member_id',$id)
        ->get();
 
        $data['qualifications'] = DB::table('members_qualifications')
@@ -227,7 +230,7 @@ class Membercontroller extends Controller
         // return ['status'=>true,'message'=>"Checking for update"];
     }
 
-    public function addPayment(MemberUpdateRequest $request, $id, MemberService $memberService) {
+    public function addPayment(PaymentRequest $request, $id, MemberService $memberService) {
     $payment_slip_picture = $memberService->UploadPaymentSlip($request->payment_slip);
     try{
     $add_payment_details = [];

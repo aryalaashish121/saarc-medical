@@ -384,7 +384,7 @@
                         :rules="{
                           length: 10,
                           required: true,
-                          regex: /^9(8|7)[0-9]{8}/,
+                          
                         }"
                         name="Mobile"
                         v-slot="{ errors, valid }"
@@ -838,7 +838,7 @@
                         :rules="{
                           length: 10,
                           required: false,
-                          regex: /^9(8|7)[0-9]{8}/,
+                          
                         }"
                         name="Father's mobile number"
                         v-slot="{ errors, valid }"
@@ -908,7 +908,7 @@
                         :rules="{
                           length: 10,
                           required: false,
-                          regex: /^9(8|7)[0-9]{8}/,
+                         
                         }"
                         name="Mobile number"
                         v-slot="{ errors, valid }"

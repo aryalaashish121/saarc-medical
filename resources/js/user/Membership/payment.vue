@@ -5,6 +5,7 @@
       max-width="750"
       v-model="dialog"
     >
+<validation-observer ref="observer">
       <v-card class="mt-5">
         <v-toolbar color="primary" dark>
           <v-btn icon dark><v-icon>mdi-account-outline</v-icon></v-btn>
@@ -31,7 +32,7 @@
             <v-col cols="12" md="12">
               <validation-provider
                 :rules="{
-                  required: false,
+                  required: true,
                 }"
                 name="Bank Name"
                 v-slot="{ errors, valid }"
@@ -52,7 +53,7 @@
             <v-col cols="12" md="6">
               <validation-provider
                 :rules="{
-                  required: false,
+                  required: true,
                 }"
                 name="Branch Name"
                 v-slot="{ errors, valid }"
@@ -74,7 +75,7 @@
             <v-col cols="12" md="6">
               <validation-provider
                 :rules="{
-                  required: false,
+                  required: true,
                 }"
                 name="Payment Account No. "
                 v-slot="{ errors, valid }"
@@ -121,6 +122,7 @@
           <v-btn text @click="update(form_fields.id)">Save</v-btn>
         </v-card-actions>
       </v-card>
+</validation-observer>
     </v-dialog>
   </v-container>
 </template>
@@ -175,7 +177,15 @@ export default {
     async update(_id) {
       const self = this;
       self.url = "/members/payment";
+      
       self.form_fields["payment_slip"] = this.payment_slip_image;
+       self.$refs.observer.validate().then(async (result) => {
+         if(this.payment_slip_image=="images/voucher.png"){
+           Vue.$toast.error("you cannot submit sample payment voucher image");
+      }
+        if (result === false) {
+          Vue.$toast.error("Please enter all the required fields..");
+        }
       await axios
         .put(`${self.url}/${_id}`, self.form_fields)
         .then((response) => {
@@ -187,9 +197,10 @@ export default {
             Vue.$toast.error(response.data.message);
           }
         })
-        .catch((err) => {
-          console.log(err);
+        .catch((errors) => {
+          console.log(errors);
         });
+       })
       console.log("membership application data..");
       console.log(self.form_fields);
     },
