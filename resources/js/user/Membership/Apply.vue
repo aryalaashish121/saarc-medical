@@ -1591,6 +1591,7 @@ export default {
             }
           })
           .catch(err=> {
+            Vue.$toast.error(err.data.message);
             console.log(err.data.message);
           });
         console.log("membership application data..");

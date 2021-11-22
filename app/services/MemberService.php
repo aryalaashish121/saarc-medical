@@ -71,8 +71,6 @@ public function UploadPaymentSlip($img){
         $extension = 'jpeg';
         } elseif(str_contains($explode[0],'png')){
         $extension = 'png';
-        }else{
-        return ['status'=>false,'message'=>'Please select only jpeg or png image'];
         }
         $file_name = time().rand(0, 99999).'.'.$extension;
 

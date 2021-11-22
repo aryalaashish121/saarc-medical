@@ -232,6 +232,9 @@ class Membercontroller extends Controller
 
     public function addPayment(PaymentRequest $request, $id, MemberService $memberService) {
     $payment_slip_picture = $memberService->UploadPaymentSlip($request->payment_slip);
+    if($payment_slip_picture->status==false){
+    return $payment_slip_picture;
+    }
     try{
     $add_payment_details = [];
     $add_payment_details = $request->validated();

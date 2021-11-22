@@ -93,12 +93,18 @@
                 ></v-text-field>
               </validation-provider>
             </v-col>
+           
             <v-col cols="12" md="6">
+                <validation-provider
+                rules="required|image|ext:jpeg,jpg,png"
+                name="Payment Account No. "
+                v-slot="{ errors }"
+              >
               <v-btn small rounded class="primary" @click="openUploadPayment">
                 <v-icon left dark> mdi-camera </v-icon>
                 Upload scan copy of your payment voucher
               </v-btn>
-
+              <span :aria-errormessage="errors" ></span>
               <v-card flat>
                 <v-card-subtitle class="text-center">
                   <v-avatar class="profile" color="grey"  style="height:300px;width:500px" tile>
@@ -114,6 +120,7 @@
                   />
                 </v-card-subtitle>
               </v-card>
+                </validation-provider>
             </v-col>
           </v-row>
         </v-card-text>
@@ -180,9 +187,6 @@ export default {
       
       self.form_fields["payment_slip"] = this.payment_slip_image;
        self.$refs.observer.validate().then(async (result) => {
-         if(this.payment_slip_image=="images/voucher.png"){
-           Vue.$toast.error("you cannot submit sample payment voucher image");
-      }
         if (result === false) {
           Vue.$toast.error("Please enter all the required fields..");
         }
@@ -198,6 +202,7 @@ export default {
           }
         })
         .catch((errors) => {
+          vue.$toast.error(errors.response.data.message);
           console.log(errors);
         });
        })
